@@ -75,6 +75,10 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>E:\githome\gui\ext\glfw\include;E:\githome\gui\ext\glew-2.1.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\githome\gui\lib\x64\Debug;E:\githome\gui\ext\glew-2.1.0\lib\Release\x64;$(LibraryPath)</LibraryPath>
+    <LibraryWPath>E:\githome\gui\ext\glew-2.1.0\bin\Release\x64;$(LibraryWPath)</LibraryWPath>
+    <ExecutablePath>E:\githome\gui\ext\glew-2.1.0\bin\Release\x64;$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -110,6 +114,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
