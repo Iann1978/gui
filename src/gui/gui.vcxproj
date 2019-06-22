@@ -103,13 +103,14 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>prebuild.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>.</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -156,7 +157,64 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="common\controls.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="common\objloader.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="common\quaternion_utils.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="common\shader.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="common\tangentspace.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="common\text2D.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="common\texture.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="common\vboindexer.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="engine\Camera.cpp" />
+    <ClCompile Include="engine\Cube.cpp" />
+    <ClCompile Include="engine\Engine.cpp" />
+    <ClCompile Include="engine\Image.cpp" />
+    <ClCompile Include="engine\Input.cpp" />
+    <ClCompile Include="engine\Screen.cpp" />
+    <ClCompile Include="engine\Text.cpp" />
+    <ClCompile Include="engine\Time.cpp" />
     <ClCompile Include="gui.cpp" />
+    <ClCompile Include="prebuild.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="StatusBar.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="common\controls.hpp" />
+    <ClInclude Include="common\objloader.hpp" />
+    <ClInclude Include="common\quaternion_utils.hpp" />
+    <ClInclude Include="common\shader.hpp" />
+    <ClInclude Include="common\tangentspace.hpp" />
+    <ClInclude Include="common\text2D.hpp" />
+    <ClInclude Include="common\texture.hpp" />
+    <ClInclude Include="common\vboindexer.hpp" />
+    <ClInclude Include="engine\Camera.h" />
+    <ClInclude Include="engine\Cube.h" />
+    <ClInclude Include="engine\Engine.h" />
+    <ClInclude Include="engine\Image.h" />
+    <ClInclude Include="engine\Input.h" />
+    <ClInclude Include="engine\Renderable.h" />
+    <ClInclude Include="engine\Screen.h" />
+    <ClInclude Include="engine\Text.h" />
+    <ClInclude Include="engine\Time.h" />
+    <ClInclude Include="prebuild.h" />
+    <ClInclude Include="StatusBar.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

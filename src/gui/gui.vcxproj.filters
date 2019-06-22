@@ -1,6 +1,119 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="common\controls.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\objloader.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\quaternion_utils.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\shader.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\tangentspace.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\text2D.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\texture.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="common\vboindexer.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\Camera.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\Cube.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\Engine.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\Image.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\Input.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\Screen.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\Text.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\Time.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
+    <ClCompile Include="prebuild.cpp" />
     <ClCompile Include="gui.cpp" />
+    <ClCompile Include="StatusBar.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="common">
+      <UniqueIdentifier>{65c72dc4-82cb-475a-9e8c-a5131ad6050d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="engine">
+      <UniqueIdentifier>{3f566cda-8dfd-4355-940c-8e268d53f366}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="common\controls.hpp">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\objloader.hpp">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\quaternion_utils.hpp">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\shader.hpp">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\tangentspace.hpp">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\text2D.hpp">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\texture.hpp">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\vboindexer.hpp">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\Camera.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\Cube.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\Engine.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\Image.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\Input.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\Renderable.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\Screen.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\Text.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\Time.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="prebuild.h" />
+    <ClInclude Include="StatusBar.h" />
   </ItemGroup>
 </Project>
