@@ -9,9 +9,10 @@ class Curve : public IRenderable
 	GLuint colorbuffer;
 	GLuint screenWidthID;
 	GLuint screenHeightID;
+	int pointNumber;
 
 public:
-	Curve();
+	Curve(int pointNumber, float *vertexBufferData, float *colorBufferData);
 	~Curve();
 
 	void Update();

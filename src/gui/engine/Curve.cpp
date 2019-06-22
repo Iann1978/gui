@@ -11,30 +11,22 @@
 
 
 
-Curve::Curve()
+Curve::Curve(int pointNumber, float *vertexBufferData, float *colorBufferData)
 {
-	static const GLfloat vertexBufferData[] = {
-		0.0f,45.0f,0.0f,
-		1920.0f, 45.0f, 0.0f,
-	};
 
-	static const GLfloat colorBufferData[] = {
-		1.0f, 0.0f, 1.0f,
-		0.0f, 1.0f, 1.0f,
-	};
-
+	this->pointNumber = pointNumber;
 	shader = LoadShaders("shaders/Curve_vert.shader", "shaders/Curve_frag.shader");
 	screenWidthID = glGetUniformLocation(shader, "screenWidth");
 	screenHeightID = glGetUniformLocation(shader, "screenHeight");
 	
 	glGenBuffers(1, &vertexbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexBufferData), vertexBufferData, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, pointNumber * sizeof(float) * 3, vertexBufferData, GL_STATIC_DRAW);
 
 
 	glGenBuffers(1, &colorbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, colorbuffer);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(colorBufferData), colorBufferData, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, pointNumber * sizeof(float) * 3, colorBufferData, GL_STATIC_DRAW);
 }
 
 
@@ -80,7 +72,7 @@ void Curve::Render()
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	// Draw the triangle !
-	glDrawArrays(GL_LINES, 0, 2); // 12*3 indices starting at 0 -> 12 triangles
+	glDrawArrays(GL_LINE_STRIP, 0, pointNumber); // 12*3 indices starting at 0 -> 12 triangles
 
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);

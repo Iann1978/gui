@@ -39,9 +39,21 @@ void CreateUI(std::list<IRenderable*>& renders)
 	StatusBar* statusBar = new StatusBar();
 	renders.push_back(statusBar);
 
-	Curve* curve = new Curve();
+	static GLfloat vertexBufferData[] = {
+	0.0f,45.0f,0.0f,
+	1920.0f, 45.0f, 0.0f,
+	920.0f, 445.0f, 0.0f,
+	};
+
+	static GLfloat colorBufferData[] = {
+		1.0f, 0.0f, 1.0f,
+		0.0f, 1.0f, 1.0f,
+		0.0f, 1.0f, 1.0f,
+	};
+	Curve* curve = new Curve(3, vertexBufferData, colorBufferData);
 	renders.push_back(curve);
 	
+	return;
 	int xint = 20;
 	int yint = 20;
 	int x = xint;
