@@ -52,6 +52,9 @@
     <ClCompile Include="prebuild.cpp" />
     <ClCompile Include="gui.cpp" />
     <ClCompile Include="StatusBar.cpp" />
+    <ClCompile Include="engine\Curve.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="common">
@@ -59,6 +62,9 @@
     </Filter>
     <Filter Include="engine">
       <UniqueIdentifier>{3f566cda-8dfd-4355-940c-8e268d53f366}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{95595da8-30aa-420b-9684-c3d19420548e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -115,5 +121,34 @@
     </ClInclude>
     <ClInclude Include="prebuild.h" />
     <ClInclude Include="StatusBar.h" />
+    <ClInclude Include="engine\Curve.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\geo_frag.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\geo_vert.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\Image_frag.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\Image_vert.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\Text_frag.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\Text_vert.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\Curve_frag.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\Curve_vert.shader">
+      <Filter>shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

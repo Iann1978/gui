@@ -16,6 +16,7 @@
 #include <Engine/Image.h>
 #include <Engine/Text.h>
 #include <Engine/Cube.h>
+#include <Engine/Curve.h>
 #include <Engine/Engine.h>
 
 
@@ -38,6 +39,9 @@ void CreateUI(std::list<IRenderable*>& renders)
 	StatusBar* statusBar = new StatusBar();
 	renders.push_back(statusBar);
 
+	Curve* curve = new Curve();
+	renders.push_back(curve);
+	
 	int xint = 20;
 	int yint = 20;
 	int x = xint;
@@ -102,6 +106,7 @@ void DestroyUI(std::list<IRenderable*>& renders)
 
 void CreateGeo(std::list<IRenderable*>& renders)
 {
+	return;
 	Cube* cube = new Cube("images/1.dds", 0, 0, 100, 100);
 	renders.push_back(cube);
 }

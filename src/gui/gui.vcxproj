@@ -183,6 +183,7 @@
     </ClCompile>
     <ClCompile Include="engine\Camera.cpp" />
     <ClCompile Include="engine\Cube.cpp" />
+    <ClCompile Include="engine\Curve.cpp" />
     <ClCompile Include="engine\Engine.cpp" />
     <ClCompile Include="engine\Image.cpp" />
     <ClCompile Include="engine\Input.cpp" />
@@ -206,6 +207,7 @@
     <ClInclude Include="common\vboindexer.hpp" />
     <ClInclude Include="engine\Camera.h" />
     <ClInclude Include="engine\Cube.h" />
+    <ClInclude Include="engine\Curve.h" />
     <ClInclude Include="engine\Engine.h" />
     <ClInclude Include="engine\Image.h" />
     <ClInclude Include="engine\Input.h" />
@@ -215,6 +217,16 @@
     <ClInclude Include="engine\Time.h" />
     <ClInclude Include="prebuild.h" />
     <ClInclude Include="StatusBar.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\Curve_frag.shader" />
+    <None Include="shaders\Curve_vert.shader" />
+    <None Include="shaders\geo_frag.shader" />
+    <None Include="shaders\geo_vert.shader" />
+    <None Include="shaders\Image_frag.shader" />
+    <None Include="shaders\Image_vert.shader" />
+    <None Include="shaders\Text_frag.shader" />
+    <None Include="shaders\Text_vert.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
