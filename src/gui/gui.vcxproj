@@ -75,7 +75,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>E:\githome\gui\ext\glfw\include;E:\githome\gui\ext\glew-2.1.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>E:\githome\gui\ext\glfw\include;E:\githome\gui\ext\glew-2.1.0\include;E:\githome\gui\ext\glm;$(IncludePath)</IncludePath>
     <LibraryPath>E:\githome\gui\lib\x64\Debug;E:\githome\gui\ext\glew-2.1.0\lib\Release\x64;$(LibraryPath)</LibraryPath>
     <LibraryWPath>E:\githome\gui\ext\glew-2.1.0\bin\Release\x64;$(LibraryWPath)</LibraryWPath>
     <ExecutablePath>E:\githome\gui\ext\glew-2.1.0\bin\Release\x64;$(ExecutablePath)</ExecutablePath>
