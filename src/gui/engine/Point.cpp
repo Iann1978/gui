@@ -3,16 +3,16 @@
 #include <common/texture.hpp>
 
 #include <Engine/Shader.h>
-#include <Engine/Curve.h>
+#include <Engine/Point.h>
 #include <Engine/Input.h>
 #include <Engine/Screen.h>
 
 
 
-	
 
 
-Curve::Curve(int pointNumber, float *vertexBufferData, float *colorBufferData)
+
+Point::Point(glm::vec3 position, glm::vec3 color)
 {
 
 	this->pointNumber = pointNumber;
@@ -22,33 +22,33 @@ Curve::Curve(int pointNumber, float *vertexBufferData, float *colorBufferData)
 
 	screenWidthID = glGetUniformLocation(program, "screenWidth");
 	screenHeightID = glGetUniformLocation(program, "screenHeight");
-	
+
 	glGenBuffers(1, &vertexbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-	glBufferData(GL_ARRAY_BUFFER, pointNumber * sizeof(float) * 3, vertexBufferData, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER,  sizeof(float) * 3, &position, GL_STATIC_DRAW);
 
 
 	glGenBuffers(1, &colorbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, colorbuffer);
-	glBufferData(GL_ARRAY_BUFFER, pointNumber * sizeof(float) * 3, colorBufferData, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3, &color, GL_STATIC_DRAW);
 }
 
 
-Curve::~Curve()
+Point::~Point()
 {
 	glDeleteBuffers(1, &vertexbuffer);
 	glDeleteBuffers(1, &colorbuffer);
 	//glDeleteProgram(program);
 }
 
-void Curve::Render()
+void Point::Render()
 {
 
 	glUseProgram(program);
 
 	glUniform1f(screenWidthID, Screen::width);
 	glUniform1f(screenHeightID, Screen::height);
-	
+
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
 	glVertexAttribPointer(
@@ -75,18 +75,17 @@ void Curve::Render()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glDisable(GL_DEPTH_TEST);
-	glLineWidth(7.0f);
-	glEnable(GL_LINE_WIDTH);
+	glPointSize(15.0f);
 
 	// Draw the triangle !
-	glDrawArrays(GL_LINE_STRIP, 0, pointNumber); // 12*3 indices starting at 0 -> 12 triangles
+	glDrawArrays(GL_POINTS, 0, 1); // 12*3 indices starting at 0 -> 12 triangles
 
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
 
 }
 
-void Curve::Update()
+void Point::Update()
 {
-	
+
 }

@@ -58,6 +58,9 @@
     <ClCompile Include="engine\Shader.cpp">
       <Filter>engine</Filter>
     </ClCompile>
+    <ClCompile Include="engine\Point.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="common">
@@ -128,6 +131,9 @@
       <Filter>common</Filter>
     </ClInclude>
     <ClInclude Include="engine\Shader.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\Point.h">
       <Filter>engine</Filter>
     </ClInclude>
   </ItemGroup>

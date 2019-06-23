@@ -187,6 +187,7 @@
     <ClCompile Include="engine\Engine.cpp" />
     <ClCompile Include="engine\Image.cpp" />
     <ClCompile Include="engine\Input.cpp" />
+    <ClCompile Include="engine\Point.cpp" />
     <ClCompile Include="engine\Screen.cpp" />
     <ClCompile Include="engine\Shader.cpp" />
     <ClCompile Include="engine\Text.cpp" />
@@ -212,6 +213,7 @@
     <ClInclude Include="engine\Engine.h" />
     <ClInclude Include="engine\Image.h" />
     <ClInclude Include="engine\Input.h" />
+    <ClInclude Include="engine\Point.h" />
     <ClInclude Include="engine\Renderable.h" />
     <ClInclude Include="engine\Screen.h" />
     <ClInclude Include="engine\Shader.h" />
