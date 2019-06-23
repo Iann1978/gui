@@ -2,9 +2,10 @@
 #include <Engine/Renderable.h>
 
 
+
 class Curve : public IRenderable
 {
-	GLuint shader;
+	GLuint program;
 	GLuint vertexbuffer;
 	GLuint colorbuffer;
 	GLuint screenWidthID;

@@ -10,9 +10,6 @@
     <ClCompile Include="common\quaternion_utils.cpp">
       <Filter>common</Filter>
     </ClCompile>
-    <ClCompile Include="common\shader.cpp">
-      <Filter>common</Filter>
-    </ClCompile>
     <ClCompile Include="common\tangentspace.cpp">
       <Filter>common</Filter>
     </ClCompile>
@@ -55,6 +52,12 @@
     <ClCompile Include="engine\Curve.cpp">
       <Filter>engine</Filter>
     </ClCompile>
+    <ClCompile Include="common\common_shader.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\Shader.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="common">
@@ -75,9 +78,6 @@
       <Filter>common</Filter>
     </ClInclude>
     <ClInclude Include="common\quaternion_utils.hpp">
-      <Filter>common</Filter>
-    </ClInclude>
-    <ClInclude Include="common\shader.hpp">
       <Filter>common</Filter>
     </ClInclude>
     <ClInclude Include="common\tangentspace.hpp">
@@ -122,6 +122,12 @@
     <ClInclude Include="prebuild.h" />
     <ClInclude Include="StatusBar.h" />
     <ClInclude Include="engine\Curve.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="common\common_shader.hpp">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\Shader.h">
       <Filter>engine</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,7 +1,8 @@
 #include "prebuild.h"
 #include <common/texture.hpp>
-#include <common/shader.hpp>
+#include <common/common_shader.hpp>
 #include <vector>
+#include <Engine/Shader.h>
 #include <Engine/Text.h>
 #include <Engine/Screen.h>
 
@@ -30,7 +31,9 @@ void Text::initText2D(const char* texturePath) {
 	glGenBuffers(1, &Text2DUVBufferID);
 
 	// Initialize Shader
-	Text2DShaderID = LoadShaders("shaders/Text_vert.shader", "shaders/Text_frag.shader");
+	//Text2DShaderID = LoadShaders("shaders/Text_vert.shader", "shaders/Text_frag.shader");
+	Shader *shader = Shader::Find("Text");
+	Text2DShaderID = shader->program;
 
 	// Initialize uniforms' IDs
 	Text2DUniformID = glGetUniformLocation(Text2DShaderID, "myTextureSampler");

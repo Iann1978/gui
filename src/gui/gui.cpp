@@ -5,7 +5,7 @@
 #include <list>
 
 
-#include <common/shader.hpp>
+#include <common/common_shader.hpp>
 #include <common/texture.hpp>
 #include <common/text2D.hpp>
 
@@ -13,6 +13,7 @@
 #include <Engine/Time.h>
 #include <Engine/Input.h>
 #include <Engine/Screen.h>
+#include <Engine/Shader.h>
 #include <Engine/Image.h>
 #include <Engine/Text.h>
 #include <Engine/Cube.h>
@@ -53,7 +54,7 @@ void CreateUI(std::list<IRenderable*>& renders)
 	Curve* curve = new Curve(3, vertexBufferData, colorBufferData);
 	renders.push_back(curve);
 	
-	return;
+	//return;
 	int xint = 20;
 	int yint = 20;
 	int x = xint;
@@ -136,6 +137,9 @@ void DestroyGeo(std::list<IRenderable*>& renders)
 int main(void)
 {
 	Engine engine;
+	Shader *shader = new Shader("Curve", "shaders/Curve_vert.shader", "shaders/Curve_frag.shader");
+	shader = new Shader("Image", "shaders/Image_vert.shader", "shaders/Image_frag.shader");
+	shader = new Shader("Text", "shaders/Text_vert.shader", "shaders/Text_frag.shader");
 	CreateGeo(engine.geolist);
 	CreateUI(engine.uilist);
 
@@ -143,6 +147,12 @@ int main(void)
 
 	DestroyGeo(engine.geolist);
 	DestroyUI(engine.uilist);
+	shader = Shader::Find("Curve");
+	delete shader;
+	shader = Shader::Find("Image");
+	delete shader;
+	shader = Shader::Find("Text");
+	delete shader;
 
 	return 0;
 }

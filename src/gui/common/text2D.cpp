@@ -7,7 +7,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 using namespace glm;
 
-#include "shader.hpp"
+#include "common_shader.hpp"
 #include "texture.hpp"
 
 #include "text2D.hpp"

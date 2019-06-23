@@ -166,7 +166,7 @@
     <ClCompile Include="common\quaternion_utils.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="common\shader.cpp">
+    <ClCompile Include="common\common_shader.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="common\tangentspace.cpp">
@@ -188,6 +188,7 @@
     <ClCompile Include="engine\Image.cpp" />
     <ClCompile Include="engine\Input.cpp" />
     <ClCompile Include="engine\Screen.cpp" />
+    <ClCompile Include="engine\Shader.cpp" />
     <ClCompile Include="engine\Text.cpp" />
     <ClCompile Include="engine\Time.cpp" />
     <ClCompile Include="gui.cpp" />
@@ -200,7 +201,7 @@
     <ClInclude Include="common\controls.hpp" />
     <ClInclude Include="common\objloader.hpp" />
     <ClInclude Include="common\quaternion_utils.hpp" />
-    <ClInclude Include="common\shader.hpp" />
+    <ClInclude Include="common\common_shader.hpp" />
     <ClInclude Include="common\tangentspace.hpp" />
     <ClInclude Include="common\text2D.hpp" />
     <ClInclude Include="common\texture.hpp" />
@@ -213,6 +214,7 @@
     <ClInclude Include="engine\Input.h" />
     <ClInclude Include="engine\Renderable.h" />
     <ClInclude Include="engine\Screen.h" />
+    <ClInclude Include="engine\Shader.h" />
     <ClInclude Include="engine\Text.h" />
     <ClInclude Include="engine\Time.h" />
     <ClInclude Include="prebuild.h" />

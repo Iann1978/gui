@@ -1,7 +1,7 @@
 #include "prebuild.h"
 #include <list>
 
-#include <common/shader.hpp>
+#include <common/common_shader.hpp>
 #include <common/texture.hpp>
 
 #include <Engine/Time.h>

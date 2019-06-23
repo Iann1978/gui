@@ -1,8 +1,8 @@
 #include "prebuild.h"
-#include <common/shader.hpp>
+#include <common/common_shader.hpp>
 #include <common/texture.hpp>
 
-
+#include <Engine/Shader.h>
 #include <Engine/Image.h>
 #include <Engine/Input.h>
 #include <Engine/Screen.h>
@@ -43,7 +43,9 @@ Image::Image(const char* path, float x, float y, float w, float h)
 	//texture = loadDDS("uvtemplate.DDS");
 	texture = loadDDS(path);
 	//texture = loadDDS("1.dds");
-	programID_image = LoadShaders("shaders/Image_vert.shader", "shaders/Image_frag.shader");
+	Shader *shader = Shader::Find("Image");
+	//programID_image = LoadShaders("shaders/Image_vert.shader", "shaders/Image_frag.shader");
+	programID_image = shader->program;
 	textureID = glGetUniformLocation(programID_image, "myTextureSampler");
 	rectID = glGetUniformLocation(programID_image, "rect");
 	screenWidthID = glGetUniformLocation(programID_image, "screenWidth");

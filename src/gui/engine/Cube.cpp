@@ -1,5 +1,5 @@
 #include "prebuild.h"
-#include <common/shader.hpp>
+#include <common/common_shader.hpp>
 #include <common/texture.hpp>
 
 

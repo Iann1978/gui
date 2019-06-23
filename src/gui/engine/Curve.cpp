@@ -1,23 +1,27 @@
 #include "prebuild.h"
-#include <common/shader.hpp>
+#include <common/common_shader.hpp>
 #include <common/texture.hpp>
 
-
+#include <Engine/Shader.h>
 #include <Engine/Curve.h>
 #include <Engine/Input.h>
 #include <Engine/Screen.h>
 
 
 
+	
 
 
 Curve::Curve(int pointNumber, float *vertexBufferData, float *colorBufferData)
 {
 
 	this->pointNumber = pointNumber;
-	shader = LoadShaders("shaders/Curve_vert.shader", "shaders/Curve_frag.shader");
-	screenWidthID = glGetUniformLocation(shader, "screenWidth");
-	screenHeightID = glGetUniformLocation(shader, "screenHeight");
+	//shader = LoadShaders("shaders/Curve_vert.shader", "shaders/Curve_frag.shader");
+	Shader *shader = Shader::Find("Curve");
+	program = shader->program;
+
+	screenWidthID = glGetUniformLocation(program, "screenWidth");
+	screenHeightID = glGetUniformLocation(program, "screenHeight");
 	
 	glGenBuffers(1, &vertexbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
@@ -34,13 +38,13 @@ Curve::~Curve()
 {
 	glDeleteBuffers(1, &vertexbuffer);
 	glDeleteBuffers(1, &colorbuffer);
-	glDeleteProgram(shader);
+	//glDeleteProgram(program);
 }
 
 void Curve::Render()
 {
 
-	glUseProgram(shader);
+	glUseProgram(program);
 
 	glUniform1f(screenWidthID, Screen::width);
 	glUniform1f(screenHeightID, Screen::height);
