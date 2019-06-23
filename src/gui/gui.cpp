@@ -109,7 +109,11 @@ void CreateUI(std::list<IRenderable*>& renders)
 
 void CreateTechFeel001(std::list<IRenderable*>& renders)
 {
-	Image *image = new Image("images/tech-feel-001.dds", 0, 0, 1024, 1024);
+
+	StatusBar* statusBar = new StatusBar();
+	renders.push_back(statusBar);
+
+	Image *image = new Image("images/tech-feel-001.dds", 0, 45, 1024, 1024);
 	renders.push_back(image);
 
 	static GLfloat vertexBufferData[] = {

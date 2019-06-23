@@ -8,6 +8,12 @@ class StatusBar : public IRenderable
 	char timestr[100];
 	Text* time;
 	void UpdateTime();
+
+	// mousepos
+	char mouseposstr[100];
+	Text* mousepos;
+	void UpdateMousePos();
+
 	void RenderTime();
 
 	Text* carrier;

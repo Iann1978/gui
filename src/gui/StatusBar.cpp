@@ -1,19 +1,24 @@
 #include "prebuild.h"
-#include "Engine/Time.h"
+#include "engine/Time.h"
+#include "engine/Input.h"
 #include "StatusBar.h"
 
 #include <chrono>
 #include <ctime>
 #include <iomanip>
 #include <string>
+#include <stdio.h>
+#include <string.h>
 
 
 StatusBar::StatusBar()
 {
 	// time
 	time = new Text(timestr, 1920/2-150, 5, 24);
-	
 	UpdateTime();
+
+	mousepos = new Text(mouseposstr, 1920 - 300, 5, 24);
+	UpdateMousePos();
 
 	carrier = new Text("china mobile", 38, 5, 24);
 
@@ -34,12 +39,14 @@ StatusBar::~StatusBar()
 void StatusBar::Update()
 {
 	UpdateTime();
+	UpdateMousePos();
 	UpdateWifi();
 }
 
 void StatusBar::Render()
 {
 	RenderTime();
+	mousepos->Render();
 	carrier->Render();
 	wifi->Render();
 	volume->Render();
@@ -57,6 +64,15 @@ void StatusBar::UpdateTime()
 		int b = 0;
 	}
 }
+
+
+void StatusBar::UpdateMousePos()
+{
+	int x = Input::mousePosX;
+	int y = Input::mousePosY;
+	sprintf_s(mouseposstr, sizeof(mouseposstr), "%d:%d", x, y);
+}
+
 void StatusBar::RenderTime()
 {
 	time->Render();
