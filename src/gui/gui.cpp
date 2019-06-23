@@ -107,6 +107,25 @@ void CreateUI(std::list<IRenderable*>& renders)
 	renders.push_back(text);
 }
 
+Curve *CreateCurve(glm::vec3 color, int pointNumber, float *vertex)
+{
+	float *colorBufferData = new float[pointNumber * 3];
+	float *vertexBufferData = new float[pointNumber * 3];
+	for (int i = 0; i < pointNumber; i++)
+	{
+		vertexBufferData[i * 3 + 0] = vertex[i * 2 + 0];
+		vertexBufferData[i * 3 + 1] = vertex[i * 2 + 1];
+		vertexBufferData[i * 3 + 2] = 0;
+		colorBufferData[i * 3 + 0] = color[0];
+		colorBufferData[i * 3 + 1] = color[1];
+		colorBufferData[i * 3 + 2] = color[2];
+	}
+	Curve* curve = new Curve(pointNumber, vertexBufferData, colorBufferData);
+	delete colorBufferData;
+	delete vertexBufferData;
+	delete vertex;
+	return curve;
+}
 void CreateTechFeel001(std::list<IRenderable*>& renders)
 {
 
@@ -120,7 +139,7 @@ void CreateTechFeel001(std::list<IRenderable*>& renders)
 		0.0f,45.0f,0.0f,
 		1920.0f, 45.0f, 0.0f,
 		920.0f, 445.0f, 0.0f,
-	};
+	}; 
 
 	static GLfloat colorBufferData[] = {
 		1.0f, 0.0f, 1.0f,
@@ -130,6 +149,89 @@ void CreateTechFeel001(std::list<IRenderable*>& renders)
 	Curve* curve = new Curve(3, vertexBufferData, colorBufferData);
 	renders.push_back(curve);
 
+	curve = CreateCurve(glm::vec3(1, 1, 1), 3,  new float[6] {0,955,55,1008,55,1075});
+	renders.push_back(curve);
+
+	curve = CreateCurve(glm::vec3(1, 1, 1), 2, new float[4]{ 41,837,41,941});
+	renders.push_back(curve);
+
+	curve = CreateCurve(glm::vec3(1, 1, 1), 4, new float[8]{ 84,718,84,960,105,977,104,1075 });
+	renders.push_back(curve);
+
+	curve = CreateCurve(glm::vec3(1, 1, 1), 2, new float[4]{ 105,591,105,945 });
+	renders.push_back(curve);
+
+	curve = CreateCurve(glm::vec3(1, 1, 1), 4, new float[8]{ 166,755,169,810,145,837,143,1075 });
+	renders.push_back(curve);
+
+	curve = CreateCurve(glm::vec3(1, 1, 1), 4, new float[8]{ 200,645,200,850,173,882,173,1075 });
+	renders.push_back(curve);
+
+	curve = CreateCurve(glm::vec3(1, 1, 1), 3, new float[6]{ 215,1001,257,1033,257,1075 });
+	renders.push_back(curve);
+
+	curve = CreateCurve(glm::vec3(1, 1, 1), 4, new float[8]{ 228,733,228,941,296,1020,296,1075 });
+	renders.push_back(curve);
+
+	curve = CreateCurve(glm::vec3(1, 1, 1), 4, new float[8]{ 265,820,265,920,330,980,330,1075 });
+	renders.push_back(curve);
+
+	curve = CreateCurve(glm::vec3(1, 1, 1), 4, new float[8]{ 294,605,294,887,358,978,358,1075 });
+	renders.push_back(curve);
+
+	curve = CreateCurve(glm::vec3(1, 1, 1), 4, new float[8]{ 329,704,329,911,384,970,384,1075 });
+	renders.push_back(curve);
+
+	curve = CreateCurve(glm::vec3(1, 1, 1), 4, new float[8]{ 457,635,457,766,417,814,417,1075 });
+	renders.push_back(curve);
+
+	curve = CreateCurve(glm::vec3(1, 1, 1), 4, new float[8]{ 512,564,512,775,456,832,456,1075 });
+	renders.push_back(curve);
+
+	curve = CreateCurve(glm::vec3(1, 1, 1), 4, new float[8]{ 621,626,623,731,483,870,483,1075 });
+	renders.push_back(curve);
+
+	curve = CreateCurve(glm::vec3(1, 1, 1), 2, new float[4]{ 533,948,533,1075 });
+	renders.push_back(curve);
+
+	curve = CreateCurve(glm::vec3(1, 1, 1), 4, new float[8]{ 516,865,516,884,597,965,597,1075 });
+	renders.push_back(curve);
+
+	curve = CreateCurve(glm::vec3(1, 1, 1), 4, new float[8]{571,821,571,864,647,931,647,1075 });
+	renders.push_back(curve);
+
+	curve = CreateCurve(glm::vec3(1, 1, 1), 4, new float[8]{ 607,784,607,824,678,888,678,1075 });
+	renders.push_back(curve);
+
+	curve = CreateCurve(glm::vec3(1, 1, 1), 3, new float[6]{ 631,811,699,879,699,1075 });
+	renders.push_back(curve);
+
+	curve = CreateCurve(glm::vec3(1, 1, 1), 4, new float[8]{ 660,493,660,771,729,847,729,1075 });
+	renders.push_back(curve);
+
+	curve = CreateCurve(glm::vec3(1, 1, 1), 6, new float[12]{ 679,573,679,762,751,838,751,894,772,922,772,1075 });
+	renders.push_back(curve);
+
+	curve = CreateCurve(glm::vec3(1, 1, 1), 2, new float[4]{ 807,570,804,830 });
+	renders.push_back(curve);
+
+	curve = CreateCurve(glm::vec3(1, 1, 1), 4, new float[8]{ 837,631,837,836,798,881,798,1075});
+	renders.push_back(curve);
+
+	curve = CreateCurve(glm::vec3(1, 1, 1), 4, new float[8]{ 876,736,876,850,824,905,824,1075 });
+	renders.push_back(curve);
+
+	curve = CreateCurve(glm::vec3(1, 1, 1), 4, new float[8]{ 901,622,901,943,869,981,869,1075 });
+	renders.push_back(curve);
+
+	curve = CreateCurve(glm::vec3(1, 1, 1), 2, new float[4]{ 927,1003,927,1075 });
+	renders.push_back(curve);
+
+	curve = CreateCurve(glm::vec3(1, 1, 1), 4, new float[8]{ 932,697,932,858,957,889,957,1075 });
+	renders.push_back(curve);
+
+	curve = CreateCurve(glm::vec3(1, 1, 1), 4, new float[8]{ 978,788,978,851,1005,877,1005,1075 });
+	renders.push_back(curve);
 }
 
 void DestroyUI(std::list<IRenderable*>& renders)
