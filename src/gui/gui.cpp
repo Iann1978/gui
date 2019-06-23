@@ -87,7 +87,7 @@ void CreateUI(std::list<IRenderable*>& renders)
 
 	y += yint + height;
 	x = xint;
-	image = new Image("images/3.dds", x, y, width, height);
+	image = new Image("images/tech-feel-001.dds", x, y, width, height);
 	renders.push_back(image);
 	text = new Text("Baikal", x + 5, y + 5, 30);
 	renders.push_back(text);
@@ -105,6 +105,27 @@ void CreateUI(std::list<IRenderable*>& renders)
 	renders.push_back(image);
 	text = new Text("Baikal", x + 5, y + 5, 30);
 	renders.push_back(text);
+}
+
+void CreateTechFeel001(std::list<IRenderable*>& renders)
+{
+	Image *image = new Image("images/tech-feel-001.dds", 0, 0, 1024, 1024);
+	renders.push_back(image);
+
+	static GLfloat vertexBufferData[] = {
+		0.0f,45.0f,0.0f,
+		1920.0f, 45.0f, 0.0f,
+		920.0f, 445.0f, 0.0f,
+	};
+
+	static GLfloat colorBufferData[] = {
+		1.0f, 0.0f, 1.0f,
+		0.0f, 1.0f, 1.0f,
+		0.0f, 1.0f, 1.0f,
+	};
+	Curve* curve = new Curve(3, vertexBufferData, colorBufferData);
+	renders.push_back(curve);
+
 }
 
 void DestroyUI(std::list<IRenderable*>& renders)
@@ -140,8 +161,9 @@ int main(void)
 	Shader *shader = new Shader("Curve", "shaders/Curve_vert.shader", "shaders/Curve_frag.shader");
 	shader = new Shader("Image", "shaders/Image_vert.shader", "shaders/Image_frag.shader");
 	shader = new Shader("Text", "shaders/Text_vert.shader", "shaders/Text_frag.shader");
-	CreateGeo(engine.geolist);
-	CreateUI(engine.uilist);
+	//CreateGeo(engine.geolist);
+	//CreateUI(engine.uilist);
+	CreateTechFeel001(engine.uilist);
 
 	engine.Run();
 
