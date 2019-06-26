@@ -9,10 +9,11 @@
 #include <Engine/Screen.h>
 #include <Engine/Camera.h>
 #include <Engine/Renderable.h>
+#include <Engine/PostProcess.h>
 #include <Engine/Engine.h>
 
 
-
+PostProcess *postProcess;
 GLFWwindow* window;
 GLuint VertexArrayID;
 Engine::Engine()
@@ -69,6 +70,7 @@ Engine::Engine()
 	glGenVertexArrays(1, &VertexArrayID);
 	glBindVertexArray(VertexArrayID);
 
+	postProcess = new PostProcess();
 }
 Engine::~Engine()
 {
@@ -89,6 +91,9 @@ void Engine::Run()
 		Camera::UpdateAtFrameStart();
 
 
+		
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		glBindFramebuffer(GL_FRAMEBUFFER, postProcess->FramebufferName);
 		// Clear the screen
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -118,6 +123,7 @@ void Engine::Run()
 			(*it)->Render();
 		}
 
+		postProcess->Render();
 
 		// Swap buffers
 		glfwSwapBuffers(window);

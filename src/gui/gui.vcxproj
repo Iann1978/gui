@@ -188,6 +188,7 @@
     <ClCompile Include="engine\Image.cpp" />
     <ClCompile Include="engine\Input.cpp" />
     <ClCompile Include="engine\Point.cpp" />
+    <ClCompile Include="engine\PostProcess.cpp" />
     <ClCompile Include="engine\Screen.cpp" />
     <ClCompile Include="engine\Shader.cpp" />
     <ClCompile Include="engine\Text.cpp" />
@@ -214,6 +215,7 @@
     <ClInclude Include="engine\Image.h" />
     <ClInclude Include="engine\Input.h" />
     <ClInclude Include="engine\Point.h" />
+    <ClInclude Include="engine\PostProcess.h" />
     <ClInclude Include="engine\Renderable.h" />
     <ClInclude Include="engine\Screen.h" />
     <ClInclude Include="engine\Shader.h" />
@@ -229,6 +231,8 @@
     <None Include="shaders\geo_vert.shader" />
     <None Include="shaders\Image_frag.shader" />
     <None Include="shaders\Image_vert.shader" />
+    <None Include="shaders\PostProcess_Blur_frag.shader" />
+    <None Include="shaders\PostProcess_Blur_vert.shader" />
     <None Include="shaders\Text_frag.shader" />
     <None Include="shaders\Text_vert.shader" />
   </ItemGroup>

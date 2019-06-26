@@ -61,6 +61,9 @@
     <ClCompile Include="engine\Point.cpp">
       <Filter>engine</Filter>
     </ClCompile>
+    <ClCompile Include="engine\PostProcess.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="common">
@@ -136,6 +139,9 @@
     <ClInclude Include="engine\Point.h">
       <Filter>engine</Filter>
     </ClInclude>
+    <ClInclude Include="engine\PostProcess.h">
+      <Filter>engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\geo_frag.shader">
@@ -160,6 +166,12 @@
       <Filter>shaders</Filter>
     </None>
     <None Include="shaders\Curve_vert.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\PostProcess_Blur_frag.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\PostProcess_Blur_vert.shader">
       <Filter>shaders</Filter>
     </None>
   </ItemGroup>

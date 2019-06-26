@@ -10,4 +10,5 @@ public:
 	std::list<IRenderable*> uilist;
 	std::list<IRenderable*> geolist;
 
+
 };
