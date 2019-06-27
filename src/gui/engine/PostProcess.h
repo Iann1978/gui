@@ -2,17 +2,17 @@
 class PostProcess
 {
 public:
-	GLuint FramebufferName = 0;
-	GLuint renderedTexture;
-	GLuint programID_image;
-	GLuint vertexbuffer_image;
-	GLuint uvbuffer_image;
+	GLuint framebuffer = 0;
+	GLuint vertexbuffer;
+	GLuint uvbuffer;
 	GLuint texture = 0;
+
+
+	GLuint program;
 	GLuint textureID;
-	GLuint rectID;
 	GLuint screenWidthID;
 	GLuint screenHeightID;
-	GLuint statusID;
+
 
 public:
 

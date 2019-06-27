@@ -7,15 +7,15 @@
 PostProcess::PostProcess()
 {
 
-	glGenFramebuffers(1, &FramebufferName);
-	glBindFramebuffer(GL_FRAMEBUFFER, FramebufferName);
+	glGenFramebuffers(1, &framebuffer);
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
 
 	// The texture we're going to render to
 
-	glGenTextures(1, &renderedTexture);
+	glGenTextures(1, &texture);
 
 	// "Bind" the newly created texture : all future texture functions will modify this texture
-	glBindTexture(GL_TEXTURE_2D, renderedTexture);
+	glBindTexture(GL_TEXTURE_2D, texture);
 
 	// Give an empty image to OpenGL ( the last "0" means "empty" )
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, Screen::width, Screen::height, 0, GL_RGB, GL_UNSIGNED_BYTE, 0);
@@ -26,7 +26,7 @@ PostProcess::PostProcess()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-	glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, renderedTexture, 0);
+	glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, texture, 0);
 
 	//// Depth texture alternative : 
 	//glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, depthTexture, 0);
@@ -44,12 +44,12 @@ PostProcess::PostProcess()
 
 
 	static const GLfloat g_vertex_buffer_data_image[] = {
-		0.0f,0.0f,0.0f,
-		0.0f,1.0f, 0.0f,
+		-1.0f,-1.0f,0.0f,
+		-1.0f,1.0f, 0.0f,
 		1.0f, 1.0f, 0.0f,
-		0.0f,0.0f,0.0f,
+		-1.0f,-1.0f,0.0f,
 		1.0f, 1.0f, 0.0f,
-		1.0f,0.0f,0.0f,
+		1.0f,-1.0f,0.0f,
 	};
 
 	// Two UV coordinatesfor each vertex. They were created with Blender.
@@ -64,18 +64,18 @@ PostProcess::PostProcess()
 
 	Shader *shader = new Shader("PostProcess_Blur", "shaders/PostProcess_Blur_vert.shader", "shaders/PostProcess_Blur_frag.shader");
 	//programID_image = LoadShaders("shaders/Image_vert.shader", "shaders/Image_frag.shader");
-	programID_image = shader->program;
-	textureID = glGetUniformLocation(programID_image, "myTextureSampler");
-	screenWidthID = glGetUniformLocation(programID_image, "screenWidth");
-	screenHeightID = glGetUniformLocation(programID_image, "screenHeight");
+	program = shader->program;
+	textureID = glGetUniformLocation(program, "myTextureSampler");
+	screenWidthID = glGetUniformLocation(program, "screenWidth");
+	screenHeightID = glGetUniformLocation(program, "screenHeight");
 
-	glGenBuffers(1, &vertexbuffer_image);
-	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer_image);
+	glGenBuffers(1, &vertexbuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data_image), g_vertex_buffer_data_image, GL_STATIC_DRAW);
 
 
-	glGenBuffers(1, &uvbuffer_image);
-	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer_image);
+	glGenBuffers(1, &uvbuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_uv_buffer_data_image), g_uv_buffer_data_image, GL_STATIC_DRAW);
 }
 
@@ -90,10 +90,10 @@ void PostProcess::Render()
 
 	//glClearColor(1, 0, 0, 1);
 	//glClear(GL_COLOR_BUFFER_BIT);
-	glUseProgram(programID_image);
+	glUseProgram(program);
 
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, renderedTexture);
+	glBindTexture(GL_TEXTURE_2D, texture);
 	// Set our "myTextureSampler" sampler to use Texture Unit 0
 	glUniform1i(textureID, 0);
 
@@ -108,7 +108,7 @@ void PostProcess::Render()
 
 	// 1rst attribute buffer : vertices
 	glEnableVertexAttribArray(0);
-	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer_image);
+	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
 	glVertexAttribPointer(
 		0,                  // attribute. No particular reason for 0, but must match the layout in the shader.
 		3,                  // size
@@ -120,7 +120,7 @@ void PostProcess::Render()
 
 	// 2nd attribute buffer : UVs
 	glEnableVertexAttribArray(1);
-	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer_image);
+	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
 	glVertexAttribPointer(
 		1,                                // attribute. No particular reason for 1, but must match the layout in the shader.
 		2,                                // size : U+V => 2
