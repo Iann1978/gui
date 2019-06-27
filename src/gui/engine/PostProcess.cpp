@@ -6,53 +6,16 @@
 
 PostProcess::PostProcess()
 {
-
-	glGenFramebuffers(1, &framebuffer);
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
-
-	// The texture we're going to render to
-
-	glGenTextures(1, &texture);
-
-	// "Bind" the newly created texture : all future texture functions will modify this texture
-	glBindTexture(GL_TEXTURE_2D, texture);
-
-	// Give an empty image to OpenGL ( the last "0" means "empty" )
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, Screen::width, Screen::height, 0, GL_RGB, GL_UNSIGNED_BYTE, 0);
-
-	// Poor filtering
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-
-	glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, texture, 0);
-
-	//// Depth texture alternative : 
-	//glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, depthTexture, 0);
-
-
-	// Set the list of draw buffers.
-	GLenum DrawBuffers[1] = { GL_COLOR_ATTACHMENT0 };
-	glDrawBuffers(1, DrawBuffers); // "1" is the size of DrawBuffers
-
-	// Always check that our framebuffer is ok
-	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-	{
-		printf("Error in PostProcess::PostProcess()");
-	}
-
-
+	// Generate vertex buffer and coordinate buffer
 	static const GLfloat g_vertex_buffer_data_image[] = {
-		-1.0f,-1.0f,0.0f,
-		-1.0f,1.0f, 0.0f,
-		1.0f, 1.0f, 0.0f,
-		-1.0f,-1.0f,0.0f,
-		1.0f, 1.0f, 0.0f,
-		1.0f,-1.0f,0.0f,
+	-1.0f,-1.0f,0.0f,
+	-1.0f,1.0f, 0.0f,
+	1.0f, 1.0f, 0.0f,
+	-1.0f,-1.0f,0.0f,
+	1.0f, 1.0f, 0.0f,
+	1.0f,-1.0f,0.0f,
 	};
 
-	// Two UV coordinatesfor each vertex. They were created with Blender.
 	static const GLfloat g_uv_buffer_data_image[] = {
 		0.0f, 0.0f,
 		0.0f, 1.0f,
@@ -62,13 +25,6 @@ PostProcess::PostProcess()
 		1.0f, 0.0f,
 	};
 
-	Shader *shader = new Shader("PostProcess_Blur", "shaders/PostProcess_Blur_vert.shader", "shaders/PostProcess_Blur_frag.shader");
-	//programID_image = LoadShaders("shaders/Image_vert.shader", "shaders/Image_frag.shader");
-	program = shader->program;
-	textureID = glGetUniformLocation(program, "myTextureSampler");
-	screenWidthID = glGetUniformLocation(program, "screenWidth");
-	screenHeightID = glGetUniformLocation(program, "screenHeight");
-
 	glGenBuffers(1, &vertexbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data_image), g_vertex_buffer_data_image, GL_STATIC_DRAW);
@@ -77,30 +33,71 @@ PostProcess::PostProcess()
 	glGenBuffers(1, &uvbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_uv_buffer_data_image), g_uv_buffer_data_image, GL_STATIC_DRAW);
+
+
+	// Generate render textures
+	glGenTextures(2, texture);
+	for (int i = 0; i < 2; i++)
+	{
+		glBindTexture(GL_TEXTURE_2D, texture[i]);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, Screen::width, Screen::height, 0, GL_RGB, GL_UNSIGNED_BYTE, 0);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	}
+
+
+	
+
+
+	glGenFramebuffers(2, framebuffer);
+	for (int i = 0; i < 2; i++)
+	{
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer[i]);
+		glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, texture[i], 0);
+		GLenum DrawBuffers[1] = { GL_COLOR_ATTACHMENT0 };
+		glDrawBuffers(1, DrawBuffers); 
+		if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+		{
+			printf("Error in PostProcess::PostProcess()");
+		}
+	}
+
+
+
+
+	Shader* shader[2];
+	shader[0] = new Shader("PostProcess_HBlur", "shaders/PostProcess_HBlur_vert.shader", "shaders/PostProcess_HBlur_frag.shader");
+	shader[1] = new Shader("PostProcess_VBlur", "shaders/PostProcess_VBlur_vert.shader", "shaders/PostProcess_VBlur_frag.shader");
+	for (int i = 0; i < 2; i++)
+	{
+		program[i] = shader[i]->program;
+		textureID[i] = glGetUniformLocation(program[i], "myTextureSampler");
+		screenWidthID[i] = glGetUniformLocation(program[i], "screenWidth");
+		screenHeightID[i] = glGetUniformLocation(program[i], "screenHeight");
+	}
+
+
 }
 
 
 PostProcess::~PostProcess()
 {
 }
-
-void PostProcess::Render()
+void PostProcess::RenderPass()
 {
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-	//glClearColor(1, 0, 0, 1);
-	//glClear(GL_COLOR_BUFFER_BIT);
-	glUseProgram(program);
+	glUseProgram(program[currentBufferIndex]);
 
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, texture);
+	glBindTexture(GL_TEXTURE_2D, texture[currentBufferIndex]);
 	// Set our "myTextureSampler" sampler to use Texture Unit 0
-	glUniform1i(textureID, 0);
+	glUniform1i(textureID[currentBufferIndex], 0);
 
 
 
-	glUniform1f(screenWidthID, Screen::width);
-	glUniform1f(screenHeightID, Screen::height);
+	glUniform1f(screenWidthID[currentBufferIndex], Screen::width);
+	glUniform1f(screenHeightID[currentBufferIndex], Screen::height);
 
 
 
@@ -131,7 +128,7 @@ void PostProcess::Render()
 	);
 
 	glEnable(GL_BLEND);
-	
+
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glDisable(GL_DEPTH_TEST);
 
@@ -140,5 +137,43 @@ void PostProcess::Render()
 
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
+}
+void PostProcess::Render()
+{
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer[(currentBufferIndex+1)%2]);
+	RenderPass();
+	currentBufferIndex = (currentBufferIndex + 1) % 2;
 
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer[(currentBufferIndex + 1) % 2]);
+	RenderPass();
+	currentBufferIndex = (currentBufferIndex + 1) % 2;
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer[(currentBufferIndex + 1) % 2]);
+	RenderPass();
+	currentBufferIndex = (currentBufferIndex + 1) % 2;
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer[(currentBufferIndex + 1) % 2]);
+	RenderPass();
+	currentBufferIndex = (currentBufferIndex + 1) % 2;
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer[(currentBufferIndex + 1) % 2]);
+	RenderPass();
+	currentBufferIndex = (currentBufferIndex + 1) % 2;
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer[(currentBufferIndex + 1) % 2]);
+	RenderPass();
+	currentBufferIndex = (currentBufferIndex + 1) % 2;
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer[(currentBufferIndex + 1) % 2]);
+	RenderPass();
+	currentBufferIndex = (currentBufferIndex + 1) % 2;
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer[(currentBufferIndex + 1) % 2]);
+	RenderPass();
+	currentBufferIndex = (currentBufferIndex + 1) % 2;
+
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	RenderPass();
+	currentBufferIndex = (currentBufferIndex + 1) % 2;
+	
 }

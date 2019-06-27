@@ -93,7 +93,7 @@ void Engine::Run()
 
 		
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
-		glBindFramebuffer(GL_FRAMEBUFFER, postProcess->framebuffer);
+		glBindFramebuffer(GL_FRAMEBUFFER, postProcess->GetCurrentFrameBuffer());
 		// Clear the screen
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 

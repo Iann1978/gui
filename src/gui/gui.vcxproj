@@ -233,6 +233,10 @@
     <None Include="shaders\Image_vert.shader" />
     <None Include="shaders\PostProcess_Blur_frag.shader" />
     <None Include="shaders\PostProcess_Blur_vert.shader" />
+    <None Include="shaders\PostProcess_HBlur_frag.shader" />
+    <None Include="shaders\PostProcess_HBlur_vert.shader" />
+    <None Include="shaders\PostProcess_VBlur_frag.shader" />
+    <None Include="shaders\PostProcess_VBlur_vert.shader" />
     <None Include="shaders\Text_frag.shader" />
     <None Include="shaders\Text_vert.shader" />
   </ItemGroup>

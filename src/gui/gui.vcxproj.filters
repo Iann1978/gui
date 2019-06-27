@@ -174,5 +174,17 @@
     <None Include="shaders\PostProcess_Blur_vert.shader">
       <Filter>shaders</Filter>
     </None>
+    <None Include="shaders\PostProcess_HBlur_frag.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\PostProcess_HBlur_vert.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\PostProcess_VBlur_frag.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\PostProcess_VBlur_vert.shader">
+      <Filter>shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
