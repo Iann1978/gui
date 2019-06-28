@@ -189,6 +189,7 @@
     <ClCompile Include="engine\Input.cpp" />
     <ClCompile Include="engine\Point.cpp" />
     <ClCompile Include="engine\PostProcess.cpp" />
+    <ClCompile Include="engine\PostProcess_Blur.cpp" />
     <ClCompile Include="engine\Screen.cpp" />
     <ClCompile Include="engine\Shader.cpp" />
     <ClCompile Include="engine\Text.cpp" />
@@ -216,6 +217,7 @@
     <ClInclude Include="engine\Input.h" />
     <ClInclude Include="engine\Point.h" />
     <ClInclude Include="engine\PostProcess.h" />
+    <ClInclude Include="engine\PostProcess_Blur.h" />
     <ClInclude Include="engine\Renderable.h" />
     <ClInclude Include="engine\Screen.h" />
     <ClInclude Include="engine\Shader.h" />
