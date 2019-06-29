@@ -8,6 +8,7 @@
 #include <Engine/Input.h>
 #include <Engine/Screen.h>
 #include <Engine/Camera.h>
+#include <Engine/Shader.h>
 #include <Engine/Renderable.h>
 #include <Engine/PostProcess.h>
 #include <Engine/Engine.h>
@@ -70,16 +71,39 @@ Engine::Engine()
 	glGenVertexArrays(1, &VertexArrayID);
 	glBindVertexArray(VertexArrayID);
 
+	LoadAllShaders();
+
 	postProcess = new PostProcess();
 }
 Engine::~Engine()
 {
+	ReleaseAllShaders();
 
 	// Cleanup VBO and shader
 	glDeleteVertexArrays(1, &VertexArrayID);
 
 	// Close OpenGL window and terminate GLFW
 	glfwTerminate();
+}
+
+void Engine::LoadAllShaders()
+{
+	Shader *shader = new Shader("Curve", "shaders/Curve_vert.shader", "shaders/Curve_frag.shader");
+	shader = new Shader("Image", "shaders/Image_vert.shader", "shaders/Image_frag.shader");
+	shader = new Shader("Text", "shaders/Text_vert.shader", "shaders/Text_frag.shader");
+	shader = new Shader("PostProcess_HBlur", "shaders/PostProcess_HBlur_vert.shader", "shaders/PostProcess_HBlur_frag.shader");
+	shader = new Shader("PostProcess_VBlur", "shaders/PostProcess_VBlur_vert.shader", "shaders/PostProcess_VBlur_frag.shader");
+	shader = new Shader("PostProcess_Add", "shaders/PostProcess_Add_vert.shader", "shaders/PostProcess_Add_frag.shader");
+}
+
+void Engine::ReleaseAllShaders()
+{
+	delete Shader::Find("Curve");
+	delete Shader::Find("Image");
+	delete Shader::Find("Text");
+	delete Shader::Find("PostProcess_HBlur");
+	delete Shader::Find("PostProcess_VBlur");
+	delete Shader::Find("PostProcess_Add");
 }
 
 void Engine::Run()

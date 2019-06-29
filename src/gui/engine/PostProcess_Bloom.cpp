@@ -47,8 +47,8 @@ PostProcess_Bloom::PostProcess_Bloom(PostProcess *process)
 
 
 	Shader* shader[2];
-	shader[0] = new Shader("PostProcess_HBlur", "shaders/PostProcess_HBlur_vert.shader", "shaders/PostProcess_HBlur_frag.shader");
-	shader[1] = new Shader("PostProcess_VBlur", "shaders/PostProcess_VBlur_vert.shader", "shaders/PostProcess_VBlur_frag.shader");
+	shader[0] = Shader::Find("PostProcess_HBlur");
+	shader[1] = Shader::Find("PostProcess_VBlur"); 
 	for (int i = 0; i < 2; i++)
 	{
 		program[i] = shader[i]->program;
@@ -58,7 +58,7 @@ PostProcess_Bloom::PostProcess_Bloom(PostProcess *process)
 	}
 
 
-	Shader* shaderAdd = new Shader("PostProcess_Add", "shaders/PostProcess_Add_vert.shader", "shaders/PostProcess_Add_frag.shader");
+	Shader* shaderAdd = Shader::Find("PostProcess_Add");
 	programOfAddPass = shaderAdd->program;
 	texture0ID_inAddPass = glGetUniformLocation(programOfAddPass, "texture0");
 	texture1ID_inAddPass = glGetUniformLocation(programOfAddPass, "texture1");

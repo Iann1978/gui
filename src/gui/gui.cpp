@@ -223,11 +223,7 @@ void DestroyGeo(std::list<IRenderable*>& renders)
 int main(void)
 {
 	Engine engine;
-	Shader *shader = new Shader("Curve", "shaders/Curve_vert.shader", "shaders/Curve_frag.shader");
-	shader = new Shader("Image", "shaders/Image_vert.shader", "shaders/Image_frag.shader");
-	shader = new Shader("Text", "shaders/Text_vert.shader", "shaders/Text_frag.shader");
-	shader = new Shader("PostProcess_HBlur", "shaders/PostProcess_HBlur_vert.shader", "shaders/PostProcess_HBlur_frag.shader");
-	shader = new Shader("PostProcess_VBlur", "shaders/PostProcess_VBlur_vert.shader", "shaders/PostProcess_VBlur_frag.shader");
+	
 	//CreateGeo(engine.geolist);
 	//CreateUI(engine.uilist);
 	CreateTechFeel001(engine.uilist);
@@ -236,12 +232,7 @@ int main(void)
 
 	DestroyGeo(engine.geolist);
 	DestroyUI(engine.uilist);
-	shader = Shader::Find("Curve");
-	delete shader;
-	shader = Shader::Find("Image");
-	delete shader;
-	shader = Shader::Find("Text");
-	delete shader;
+	
 
 	return 0;
 }
