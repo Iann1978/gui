@@ -1,5 +1,6 @@
 #pragma once
 class PostProcess_Blur;
+class PostProcess_Bloom;
 class PostProcess
 {
 public:
@@ -7,6 +8,7 @@ public:
 	GLuint texture[2];
 	int currentBufferIndex = 0;
 	PostProcess_Blur *blur = nullptr;
+	PostProcess_Bloom *bloom = nullptr;
 
 public:
 

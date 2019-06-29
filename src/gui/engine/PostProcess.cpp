@@ -1,6 +1,7 @@
 #include "prebuild.h"
 #include "PostProcess.h"
 #include <engine/PostProcess_Blur.h>
+#include <engine/PostProcess_Bloom.h>
 #include <engine/Screen.h>
 #include <engine/Shader.h>
 
@@ -8,6 +9,7 @@
 PostProcess::PostProcess()
 {
 	blur = new PostProcess_Blur(this);
+	bloom = new PostProcess_Bloom(this);
 
 	// Generate render textures
 	glGenTextures(2, texture);
@@ -42,7 +44,8 @@ PostProcess::~PostProcess()
 
 void PostProcess::Render()
 {
-	blur->Render();
+	//blur->Render();
+	bloom->Render();
 	return;
 	
 	
