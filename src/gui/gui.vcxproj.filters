@@ -70,6 +70,9 @@
     <ClCompile Include="engine\PostProcess_Bloom.cpp">
       <Filter>engine</Filter>
     </ClCompile>
+    <ClCompile Include="demos\demo002\demo002.cpp">
+      <Filter>demos\demo002</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="common">
@@ -80,6 +83,12 @@
     </Filter>
     <Filter Include="shaders">
       <UniqueIdentifier>{95595da8-30aa-420b-9684-c3d19420548e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="demos">
+      <UniqueIdentifier>{cb0c2f42-6213-495a-ad87-a876c6b0fa31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="demos\demo002">
+      <UniqueIdentifier>{9e3939f9-adb9-4b65-9a84-4e494a0faaf1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -213,5 +222,10 @@
     <None Include="shaders\Point_Star_geo.shader">
       <Filter>shaders</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="demos\demo002\fake.jpg">
+      <Filter>demos\demo002</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -1,3 +1,5 @@
+#include <list>
+class IRenderable;
 class Engine
 {
 public:

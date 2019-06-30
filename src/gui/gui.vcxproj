@@ -181,6 +181,7 @@
     <ClCompile Include="common\vboindexer.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="demos\demo002\demo002.cpp" />
     <ClCompile Include="engine\Camera.cpp" />
     <ClCompile Include="engine\Cube.cpp" />
     <ClCompile Include="engine\Curve.cpp" />
@@ -195,7 +196,9 @@
     <ClCompile Include="engine\Shader.cpp" />
     <ClCompile Include="engine\Text.cpp" />
     <ClCompile Include="engine\Time.cpp" />
-    <ClCompile Include="gui.cpp" />
+    <ClCompile Include="gui.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="prebuild.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
@@ -248,6 +251,9 @@
     <None Include="shaders\PostProcess_VBlur_vert.shader" />
     <None Include="shaders\Text_frag.shader" />
     <None Include="shaders\Text_vert.shader" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="demos\demo002\fake.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
