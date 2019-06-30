@@ -5,10 +5,10 @@
 #include <common/common_shader.hpp>
 static std::map<std::string, Shader*> shaders;
 
-Shader::Shader(const char *name, const char *vertexShaderFile, const char *fragmentShaderFile)
+Shader::Shader(const char *name, const char *vertexShaderFile, const char *fragmentShaderFile, const char *geometryShaderFile)
 {
 	strcpy_s(this->name, sizeof(this->name)-1, name);
-	program = LoadShaders(vertexShaderFile, fragmentShaderFile);
+	program = LoadShaders(vertexShaderFile, fragmentShaderFile, geometryShaderFile);
 	shaders.insert(std::pair<std::string, Shader*>(this->name, this));
 }
 

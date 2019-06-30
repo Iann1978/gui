@@ -235,6 +235,9 @@
     <None Include="shaders\geo_vert.shader" />
     <None Include="shaders\Image_frag.shader" />
     <None Include="shaders\Image_vert.shader" />
+    <None Include="shaders\Point_Star_frag.shader" />
+    <None Include="shaders\Point_Star_geo.shader" />
+    <None Include="shaders\Point_Star_vert.shader" />
     <None Include="shaders\PostProcess_Add_frag.shader" />
     <None Include="shaders\PostProcess_Add_vert.shader" />
     <None Include="shaders\PostProcess_Blur_frag.shader" />

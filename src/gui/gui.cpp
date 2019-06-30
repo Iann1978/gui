@@ -124,7 +124,7 @@ void CreateCurve(std::list<IRenderable*>& renders, glm::vec3 color, int pointNum
 	Curve* curve = new Curve(pointNumber, vertexBufferData, colorBufferData);
 	renders.push_back(curve);
 
-	Point *point = new Point(glm::vec3(vertex[0], vertex[1], 0), color);
+	Point *point = new Point(glm::vec3(vertex[0], vertex[1], 0), color, Point::Type::Star);
 	renders.push_back(point);
 
 	delete colorBufferData;

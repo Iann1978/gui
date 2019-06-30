@@ -204,5 +204,14 @@
     <None Include="shaders\PostProcess_Add_vert.shader">
       <Filter>shaders</Filter>
     </None>
+    <None Include="shaders\Point_Star_frag.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\Point_Star_vert.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\Point_Star_geo.shader">
+      <Filter>shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

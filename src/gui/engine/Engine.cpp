@@ -94,6 +94,7 @@ void Engine::LoadAllShaders()
 	shader = new Shader("PostProcess_HBlur", "shaders/PostProcess_HBlur_vert.shader", "shaders/PostProcess_HBlur_frag.shader");
 	shader = new Shader("PostProcess_VBlur", "shaders/PostProcess_VBlur_vert.shader", "shaders/PostProcess_VBlur_frag.shader");
 	shader = new Shader("PostProcess_Add", "shaders/PostProcess_Add_vert.shader", "shaders/PostProcess_Add_frag.shader");
+	shader = new Shader("Point_Star", "shaders/Point_Star_vert.shader", "shaders/Point_Star_frag.shader", "shaders/Point_Star_geo.shader");
 }
 
 void Engine::ReleaseAllShaders()
@@ -104,6 +105,7 @@ void Engine::ReleaseAllShaders()
 	delete Shader::Find("PostProcess_HBlur");
 	delete Shader::Find("PostProcess_VBlur");
 	delete Shader::Find("PostProcess_Add");
+	delete Shader::Find("Point_Star");
 }
 
 void Engine::Run()
