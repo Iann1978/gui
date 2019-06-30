@@ -3,7 +3,7 @@ class IRenderable;
 class Engine
 {
 public:
-	Engine();
+	Engine(int width = 1920, int height = 1080);
 	~Engine();
 
 	

@@ -29,7 +29,7 @@
 
 int main(void)
 {
-	Engine engine;
+	Engine engine(1100, 1100);
 
 	//CreateGeo(engine.geolist);
 	//CreateUI(engine.uilist);

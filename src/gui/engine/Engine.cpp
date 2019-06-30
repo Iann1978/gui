@@ -17,10 +17,10 @@
 PostProcess *postProcess;
 GLFWwindow* window;
 GLuint VertexArrayID;
-Engine::Engine()
+Engine::Engine(int width, int height)
 {
-	Screen::width = 1920;
-	Screen::height = 1080;
+	Screen::width = width;
+	Screen::height = height;
 
 	Time::UpdateAtGameStart();
 	Camera::UpdateAtGameStart();
