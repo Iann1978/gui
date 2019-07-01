@@ -222,6 +222,15 @@
     <None Include="shaders\Point_Star_geo.shader">
       <Filter>shaders</Filter>
     </None>
+    <None Include="shaders\Point_Cross_frag.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\Point_Cross_geo.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\Point_Cross_vert.shader">
+      <Filter>shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="demos\demo002\fake.jpg">

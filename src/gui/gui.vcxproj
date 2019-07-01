@@ -240,6 +240,9 @@
     <None Include="shaders\geo_vert.shader" />
     <None Include="shaders\Image_frag.shader" />
     <None Include="shaders\Image_vert.shader" />
+    <None Include="shaders\Point_Cross_frag.shader" />
+    <None Include="shaders\Point_Cross_geo.shader" />
+    <None Include="shaders\Point_Cross_vert.shader" />
     <None Include="shaders\Point_Star_frag.shader" />
     <None Include="shaders\Point_Star_geo.shader" />
     <None Include="shaders\Point_Star_vert.shader" />

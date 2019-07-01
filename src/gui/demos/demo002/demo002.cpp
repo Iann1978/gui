@@ -31,9 +31,8 @@ void CreateBackPoints(std::list<IRenderable*>& renders)
 	{
 		for (float y = inteval; y < 1090; y += inteval)
 		{
-			Point *point = new Point(glm::vec3(x, y, 0), glm::vec3(1, 0, 1), Point::Type::Star);
+			Point *point = new Point(glm::vec3(x, y, 0), glm::vec3(29.0f/255, 139.0f/255, 175.0f/255), Point::Type::Cross);
 			renders.push_back(point);
-
 		}
 
 	}

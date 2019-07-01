@@ -9,6 +9,7 @@ public:
 	enum Type {
 		Normal,
 		Star,
+		Cross,
 	};
 	Type type;
 	GLuint program;
@@ -16,6 +17,7 @@ public:
 	GLuint colorbuffer;
 	GLuint screenWidthID;
 	GLuint screenHeightID;
+	GLuint centerColorID;
 	glm::vec3 position;
 	glm::vec3 color;
 
@@ -31,5 +33,8 @@ public:
 
 	void LoadStar(glm::vec3 position, glm::vec3 color);
 	void RenderStar();
+	
+	void LoadCross(glm::vec3 position, glm::vec3 color);
+	void RenderCross();
 };
 
