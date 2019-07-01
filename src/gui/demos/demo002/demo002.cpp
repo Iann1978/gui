@@ -1,12 +1,6 @@
+// Include standard headers
 #include "prebuild.h"
 
-
-#include <list>
-
-
-#include <common/common_shader.hpp>
-#include <common/texture.hpp>
-#include <common/text2D.hpp>
 
 #include <Engine/Renderable.h>
 #include <Engine/Time.h>
@@ -27,20 +21,40 @@
 #pragma warning (disable: 4996)
 
 
+
+void CreateBackPoints(std::list<IRenderable*>& renders)
+{
+
+
+	float inteval = 1.0f* 1100 / 24;
+	for (float x = inteval; x < 1090; x += inteval)
+	{
+		for (float y = inteval; y < 1090; y += inteval)
+		{
+			Point *point = new Point(glm::vec3(x, y, 0), glm::vec3(1, 0, 1), Point::Type::Star);
+			renders.push_back(point);
+
+		}
+
+	}
+
+}
 int main(void)
 {
-	Engine engine(1100, 1100);
+	Engine engine(1100,1100);
 
-	//CreateGeo(engine.geolist);
-	//CreateUI(engine.uilist);
-	//CreateTechFeel001(engine.uilist);
+
+	CreateBackPoints(engine.uilist);
 
 	engine.Run();
 
-	//DestroyGeo(engine.geolist);
-	//DestroyUI(engine.uilist);
+
 
 
 	return 0;
 }
+
+
+
+
 

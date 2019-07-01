@@ -14,13 +14,14 @@
 #include <Engine/Engine.h>
 
 
-PostProcess *postProcess;
+
 GLFWwindow* window;
 GLuint VertexArrayID;
 Engine::Engine(int width, int height)
 {
 	Screen::width = width;
 	Screen::height = height;
+	backgroundColor = glm::vec3(0, 0, 0.07);
 
 	Time::UpdateAtGameStart();
 	Camera::UpdateAtGameStart();
@@ -73,7 +74,7 @@ Engine::Engine(int width, int height)
 
 	LoadAllShaders();
 
-	postProcess = new PostProcess();
+	//postProcess = new PostProcess();
 }
 Engine::~Engine()
 {
@@ -118,11 +119,11 @@ void Engine::Run()
 
 
 		
-		glBindFramebuffer(GL_FRAMEBUFFER, 0);
-		glBindFramebuffer(GL_FRAMEBUFFER, postProcess->GetCurrentFrameBuffer());
+		glBindFramebuffer(GL_FRAMEBUFFER, postProcess? postProcess->GetCurrentFrameBuffer():0);
+		//glBindFramebuffer(GL_FRAMEBUFFER, postProcess->GetCurrentFrameBuffer());
 		// Clear the screen
+		glClearColor(backgroundColor.r, backgroundColor.g, backgroundColor.b, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 
 
 
@@ -149,7 +150,8 @@ void Engine::Run()
 			(*it)->Render();
 		}
 
-		postProcess->Render();
+		if (postProcess)
+			postProcess->Render();
 
 		// Swap buffers
 		glfwSwapBuffers(window);

@@ -181,7 +181,9 @@
     <ClCompile Include="common\vboindexer.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="demos\demo002\demo002.cpp" />
+    <ClCompile Include="demos\demo002\demo002.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="engine\Camera.cpp" />
     <ClCompile Include="engine\Cube.cpp" />
     <ClCompile Include="engine\Curve.cpp" />
