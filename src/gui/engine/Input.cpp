@@ -16,6 +16,10 @@ bool Input::GetKey(KeyCode key)
 {
 	return buttons[key];
 }
+bool Input::GetKeyDown(KeyCode key)
+{
+	return !lastFrameButtons[key] && buttons[key];
+}
 
 void Input::UpdateAtFrameStart(void* window)
 {
