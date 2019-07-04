@@ -73,6 +73,9 @@
     <ClCompile Include="demos\demo002\demo002.cpp">
       <Filter>demos\demo002</Filter>
     </ClCompile>
+    <ClCompile Include="engine\Region.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="common">
@@ -163,6 +166,9 @@
     <ClInclude Include="engine\PostProcess_Bloom.h">
       <Filter>engine</Filter>
     </ClInclude>
+    <ClInclude Include="engine\Region.h">
+      <Filter>engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\geo_frag.shader">
@@ -229,6 +235,12 @@
       <Filter>shaders</Filter>
     </None>
     <None Include="shaders\Point_Cross_vert.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\Region_frag.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\Region_vert.shader">
       <Filter>shaders</Filter>
     </None>
   </ItemGroup>

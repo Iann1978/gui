@@ -194,6 +194,7 @@
     <ClCompile Include="engine\PostProcess.cpp" />
     <ClCompile Include="engine\PostProcess_Bloom.cpp" />
     <ClCompile Include="engine\PostProcess_Blur.cpp" />
+    <ClCompile Include="engine\Region.cpp" />
     <ClCompile Include="engine\Screen.cpp" />
     <ClCompile Include="engine\Shader.cpp" />
     <ClCompile Include="engine\Text.cpp" />
@@ -225,6 +226,7 @@
     <ClInclude Include="engine\PostProcess.h" />
     <ClInclude Include="engine\PostProcess_Bloom.h" />
     <ClInclude Include="engine\PostProcess_Blur.h" />
+    <ClInclude Include="engine\Region.h" />
     <ClInclude Include="engine\Renderable.h" />
     <ClInclude Include="engine\Screen.h" />
     <ClInclude Include="engine\Shader.h" />
@@ -254,6 +256,8 @@
     <None Include="shaders\PostProcess_HBlur_vert.shader" />
     <None Include="shaders\PostProcess_VBlur_frag.shader" />
     <None Include="shaders\PostProcess_VBlur_vert.shader" />
+    <None Include="shaders\Region_frag.shader" />
+    <None Include="shaders\Region_vert.shader" />
     <None Include="shaders\Text_frag.shader" />
     <None Include="shaders\Text_vert.shader" />
   </ItemGroup>
