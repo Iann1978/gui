@@ -14,8 +14,11 @@ class Image : public IRenderable
 	GLuint screenWidthID;
 	GLuint screenHeightID;
 	GLuint statusID;
+	GLuint colorID;
 
 	GLfloat x, y, w, h;
+protected:
+	glm::vec4 color;
 
 public:
 	GLfloat status;
@@ -23,7 +26,7 @@ public:
 	
 
 public:
-	Image(const char* path, float x = 0.0f, float y = 0.0f, float w = 1.0f, float h = 1.0f);
+	Image(const char* path, float x = 0.0f, float y = 0.0f, float w = 1.0f, float h = 1.0f, glm::vec4 color = glm::vec4(1,1,1,1));
 	~Image();
 
 	void Update();

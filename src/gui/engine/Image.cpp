@@ -11,9 +11,9 @@
 
 
 
-Image::Image(const char* path, float x, float y, float w, float h)
+Image::Image(const char* path, float x, float y, float w, float h, glm::vec4 color)
 {
-	
+	this->color = color;
 	this->status = 0.7 * (rand() %5)/5;
 	this->x = x;
 	this->y = y;
@@ -51,6 +51,7 @@ Image::Image(const char* path, float x, float y, float w, float h)
 	screenWidthID = glGetUniformLocation(programID_image, "screenWidth");
 	screenHeightID = glGetUniformLocation(programID_image, "screenHeight");
 	statusID = glGetUniformLocation(programID_image, "status");
+	colorID = glGetUniformLocation(programID_image, "color");
 	
 	glGenBuffers(1, &vertexbuffer_image);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer_image);
@@ -106,6 +107,7 @@ void Image::Render()
 	glUniform1i(textureID, 0);
 
 	glUniform4fv(rectID, 1, &x);
+	glUniform4fv(colorID, 1, &color.x);
 
 	glUniform1f(screenWidthID, Screen::width);
 	glUniform1f(screenHeightID, Screen::height);
