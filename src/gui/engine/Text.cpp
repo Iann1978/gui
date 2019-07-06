@@ -138,6 +138,6 @@ void Text::cleanupText2D() {
 void Text::Render()
 {
 	//printText2D("BEIJING WEST MOUNT COMPOUNDI", 0, 0, 20);
-
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	printText2D(text, x, y, fontSize);
 }
