@@ -76,6 +76,12 @@
     <ClCompile Include="engine\Region.cpp">
       <Filter>engine</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\ext\triangle\triangle.c">
+      <Filter>ext\triangle</Filter>
+    </ClCompile>
+    <ClCompile Include="test_triangle.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="common">
@@ -92,6 +98,15 @@
     </Filter>
     <Filter Include="demos\demo002">
       <UniqueIdentifier>{9e3939f9-adb9-4b65-9a84-4e494a0faaf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ext">
+      <UniqueIdentifier>{6ad4b8f2-2006-4fc2-823b-926f44f4f229}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ext\triangle">
+      <UniqueIdentifier>{766bcac8-f58c-453a-8376-eac79cab3d1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test">
+      <UniqueIdentifier>{3581e5b6-e6ac-4edf-a168-276f3782761d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +183,9 @@
     </ClInclude>
     <ClInclude Include="engine\Region.h">
       <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ext\triangle\triangle.h">
+      <Filter>ext\triangle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
