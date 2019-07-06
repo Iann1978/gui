@@ -20,6 +20,7 @@
 #include <StatusBar.h>
 
 
+
 #pragma warning (disable: 4996)
 
 
@@ -126,6 +127,63 @@ void Background::Update()
 		color.a = (color.a == 0) ? 0.4 : 0;
 	}
 }
+
+class ShowMousePosition : public IRenderable
+{
+	// mousepos
+	char mouseposstr[100];
+	Text* mousepos;
+	void UpdateMousePos()
+	{
+		int x = Input::mousePosX;
+		int y = Input::mousePosY;
+		sprintf_s(mouseposstr, sizeof(mouseposstr), "%d:%d", x, y);
+	}
+
+public:
+	ShowMousePosition()
+	{
+		mousepos = new Text(mouseposstr, 5, 5, 24);
+		UpdateMousePos();
+	}
+
+	void Update()
+	{
+		UpdateMousePos();
+	}
+	void Render()
+	{
+		mousepos->Render();
+	}
+};
+
+Region *CreatePolygon(std::vector<glm::vec3> polygon)
+{
+	for (glm::vec3& p : polygon)
+	{
+		p.x = p.x / Screen::width * 2 - 1;
+		p.y = 1 - p.y / Screen::height * 2;
+		p.z = 0;
+	}
+	Region *region = new Region(polygon, glm::vec4(1, 1, 1, 0.2));
+	return region;
+}
+
+void CreatePolygons(std::list<IRenderable *>& renders)
+{
+	std::vector<glm::vec3> polygon;
+	polygon.push_back(glm::vec3(512, 751, 0));
+	polygon.push_back(glm::vec3(585, 751, 0));
+	polygon.push_back(glm::vec3(845, 380, 0));
+	polygon.push_back(glm::vec3(824, 344, 0));
+	polygon.push_back(glm::vec3(280, 344, 0));
+	polygon.push_back(glm::vec3(250, 380, 0));
+
+	Region *region = CreatePolygon(polygon);
+	renders.push_back(region);
+}
+
+
 int main(void)
 {
 	Engine engine(1100,1100);
@@ -134,6 +192,11 @@ int main(void)
 	engine.uilist.push_back(new Background());
 	CreateBackPoints(engine.uilist);
 	CreateBackgroundRects(engine.uilist);
+	CreatePolygons(engine.uilist);
+
+	ShowMousePosition *showMousePosition = new ShowMousePosition();
+	engine.uilist.push_back(showMousePosition);
+	
 
 	engine.Run();
 
