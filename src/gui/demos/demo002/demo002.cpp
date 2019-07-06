@@ -40,15 +40,16 @@ void CreateBackPoints(std::list<IRenderable*>& renders)
 
 Region * CreateRegion(int i, int j, int colorIndex)
 {
+	j = 23 - j;
 	glm::vec4 colors[] = { glm::vec4(0.08873602, 0.4435053, 0.752, 0.3), glm::vec4(0.694, 0.5205, 0.5205, 0.2) };
 	float inteval = 1.0f * 1100 / 24;
-	Region *region = new Region(glm::vec4(2*i*inteval/Screen::width-1, 2 * j*inteval / Screen::height - 1, 2 * inteval / Screen::width, 2 * inteval / Screen::height), colors[colorIndex]);
+	Region *region = new Region(glm::vec4(i*inteval, j*inteval, inteval, inteval), colors[colorIndex]);
 	return region;
 }
 
 void CreateBackgroundRects(std::list<IRenderable *>& renders)
 {
-	for (int j = 12; j < 24; j++)
+	for (int j = 12; j < 23; j++)
 	{
 		int count = rand() % 8;
 		count = (count != 0) ? count : (rand() % 8);
@@ -65,7 +66,6 @@ void CreateBackgroundRects(std::list<IRenderable *>& renders)
 		for (int row : rowSet)
 		{
 			renders.push_back(CreateRegion(row, j, rand() % 2));
-
 		}
 
 	}
@@ -159,12 +159,12 @@ public:
 
 Region *CreatePolygon(std::vector<glm::vec3> polygon)
 {
-	for (glm::vec3& p : polygon)
-	{
-		p.x = p.x / Screen::width * 2 - 1;
-		p.y = 1 - p.y / Screen::height * 2;
-		p.z = 0;
-	}
+	//for (glm::vec3& p : polygon)
+	//{
+	//	p.x = p.x / Screen::width * 2 - 1;
+	//	p.y = 1 - p.y / Screen::height * 2;
+	//	p.z = 0;
+	//}
 	Region *region = new Region(polygon, glm::vec4(1, 1, 1, 0.2));
 	return region;
 }

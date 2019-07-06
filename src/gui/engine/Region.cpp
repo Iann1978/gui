@@ -61,7 +61,8 @@ void Region::LoadRect(glm::vec4 rect, glm::vec4 color)
 	program = shader->program;
 
 	mainColorId = glGetUniformLocation(program, "mainColor");
-
+	screenWidthID = glGetUniformLocation(program, "screenWidth");
+	screenHeightID = glGetUniformLocation(program, "screenHeight");
 
 	float x = rect.x;
 	float y = rect.y;
@@ -87,6 +88,8 @@ void Region::RenderRect()
 
 
 	glUniform4fv(mainColorId, 1, &color.x);
+	glUniform1f(screenWidthID, Screen::width);
+	glUniform1f(screenHeightID, Screen::height);
 
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
@@ -198,8 +201,8 @@ void Region::LoadPolygon(std::vector<glm::vec3> polygon)
 	program = shader->program;
 
 	mainColorId = glGetUniformLocation(program, "mainColor");
-
-
+	screenWidthID = glGetUniformLocation(program, "screenWidth");
+	screenHeightID = glGetUniformLocation(program, "screenHeight");
 
 
 	
@@ -234,8 +237,9 @@ void Region::RenderPolygon()
 {
 	glUseProgram(program);
 
-
 	glUniform4fv(mainColorId, 1, &color.x);
+	glUniform1f(screenWidthID, Screen::width);
+	glUniform1f(screenHeightID, Screen::height);
 
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);

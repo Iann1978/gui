@@ -17,6 +17,8 @@ public:
 	GLuint elementbuffer;
 	GLuint elementsize;
 	GLuint mainColorId;
+	GLuint screenWidthID;
+	GLuint screenHeightID;
 
 	glm::vec4 rect;
 	glm::vec4 color;
