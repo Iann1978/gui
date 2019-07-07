@@ -98,6 +98,7 @@ void Engine::LoadAllShaders()
 	shader = new Shader("Point_Star", "shaders/Point_Star_vert.shader", "shaders/Point_Star_frag.shader", "shaders/Point_Star_geo.shader");
 	shader = new Shader("Point_Cross", "shaders/Point_Cross_vert.shader", "shaders/Point_Cross_frag.shader", "shaders/Point_Cross_geo.shader");
 	shader = new Shader("Region", "shaders/Region_vert.shader", "shaders/Region_frag.shader");
+	shader = new Shader("Template", "shaders/Template_vert.shader", "shaders/Template_frag.shader");
 }
 
 void Engine::ReleaseAllShaders()
@@ -111,6 +112,7 @@ void Engine::ReleaseAllShaders()
 	delete Shader::Find("Point_Star");
 	delete Shader::Find("Point_Cross");
 	delete Shader::Find("Region");
+	delete Shader::Find("Template");
 }
 
 void Engine::Run()

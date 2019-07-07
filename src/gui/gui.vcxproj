@@ -266,6 +266,8 @@
     <None Include="shaders\PostProcess_VBlur_vert.shader" />
     <None Include="shaders\Region_frag.shader" />
     <None Include="shaders\Region_vert.shader" />
+    <None Include="shaders\Template_frag.shader" />
+    <None Include="shaders\Template_vert.shader" />
     <None Include="shaders\Text_frag.shader" />
     <None Include="shaders\Text_vert.shader" />
   </ItemGroup>

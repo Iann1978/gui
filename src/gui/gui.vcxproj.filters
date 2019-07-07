@@ -261,6 +261,12 @@
     <None Include="shaders\Region_vert.shader">
       <Filter>shaders</Filter>
     </None>
+    <None Include="shaders\Template_frag.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\Template_vert.shader">
+      <Filter>shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="demos\demo002\fake.jpg">
