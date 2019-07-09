@@ -82,6 +82,9 @@
     <ClCompile Include="test_triangle.cpp">
       <Filter>test</Filter>
     </ClCompile>
+    <ClCompile Include="engine\Color.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="common">
@@ -186,6 +189,9 @@
     </ClInclude>
     <ClInclude Include="..\..\ext\triangle\triangle.h">
       <Filter>ext\triangle</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\Color.h">
+      <Filter>engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
