@@ -85,6 +85,9 @@
     <ClCompile Include="engine\Color.cpp">
       <Filter>engine</Filter>
     </ClCompile>
+    <ClCompile Include="engine\FrameBuffer.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="common">
@@ -191,6 +194,9 @@
       <Filter>ext\triangle</Filter>
     </ClInclude>
     <ClInclude Include="engine\Color.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\FrameBuffer.h">
       <Filter>engine</Filter>
     </ClInclude>
   </ItemGroup>

@@ -192,6 +192,7 @@
     <ClCompile Include="engine\Cube.cpp" />
     <ClCompile Include="engine\Curve.cpp" />
     <ClCompile Include="engine\Engine.cpp" />
+    <ClCompile Include="engine\FrameBuffer.cpp" />
     <ClCompile Include="engine\Image.cpp" />
     <ClCompile Include="engine\Input.cpp" />
     <ClCompile Include="engine\Point.cpp" />
@@ -230,6 +231,7 @@
     <ClInclude Include="engine\Cube.h" />
     <ClInclude Include="engine\Curve.h" />
     <ClInclude Include="engine\Engine.h" />
+    <ClInclude Include="engine\FrameBuffer.h" />
     <ClInclude Include="engine\Image.h" />
     <ClInclude Include="engine\Input.h" />
     <ClInclude Include="engine\Point.h" />
