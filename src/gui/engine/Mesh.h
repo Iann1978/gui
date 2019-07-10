@@ -20,5 +20,6 @@ public:
 	//static Mesh *CreateMesh(const int vertexBufferLength, const float* vertexBufferData, const int uvBufferLength, const float *uvBufferData, const int elementBufferLength, const unsigned short *elementBufferData);
 	static Mesh *CreateMesh(glm::vec4 rect);
 	//static Mesh quad0011;
+	static void RenderMesh(Mesh *mesh);
 };
 

@@ -67,3 +67,44 @@ Mesh *Mesh::CreateMesh(glm::vec4 rect)
 
 	return new Mesh(12, vertexBufferData, 8, quad2_uvBufferData, 6, quad2_elementBufferData);
 }
+
+
+void Mesh::RenderMesh(Mesh *mesh)
+{
+	glEnableVertexAttribArray(0);
+	glBindBuffer(GL_ARRAY_BUFFER, mesh->vertexbuffer);
+	glVertexAttribPointer(
+		0,                  // attribute. No particular reason for 0, but must match the layout in the shader.
+		3,                  // size
+		GL_FLOAT,           // type
+		GL_FALSE,           // normalized?
+		0,                  // stride
+		(void*)0            // array buffer offset
+	);
+
+	// 2nd attribute buffer : UVs
+	glEnableVertexAttribArray(1);
+	//glBindBuffer(GL_ARRAY_BUFFER, uvbuffer_image);
+	glBindBuffer(GL_ARRAY_BUFFER, Mesh::quad2->uvbuffer);
+	glVertexAttribPointer(
+		1,                                // attribute. No particular reason for 1, but must match the layout in the shader.
+		2,                                // size : U+V => 2
+		GL_FLOAT,                         // type
+		GL_FALSE,                         // normalized?
+		0,                                // stride
+		(void*)0                          // array buffer offset
+	);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->elementbuffer);
+
+	// Draw the triangles !
+	glDrawElements(
+		GL_TRIANGLES,      // mode
+		mesh->elementsize,    // count
+		GL_UNSIGNED_SHORT, // type
+		(void*)0           // element array buffer offset
+	);
+
+	glDisableVertexAttribArray(0);
+	glDisableVertexAttribArray(1);
+}

@@ -1,13 +1,13 @@
 #pragma once
 #include <Engine/Renderable.h>
 
-
+class Mesh;
 class Image : public IRenderable
 {
 	typedef void (*FuncOnClick)();
 	GLuint programID_image;
-	GLuint vertexbuffer_image;
-	GLuint uvbuffer_image;
+	//GLuint vertexbuffer_image;
+	//GLuint uvbuffer_image;
 	GLuint texture = 0;
 	GLuint textureID;
 	GLuint rectID;

@@ -6,6 +6,7 @@
 #include <Engine/Image.h>
 #include <Engine/Input.h>
 #include <Engine/Screen.h>
+#include <Engine/Mesh.h>
 
 
 
@@ -53,21 +54,21 @@ Image::Image(const char* path, float x, float y, float w, float h, glm::vec4 col
 	statusID = glGetUniformLocation(programID_image, "status");
 	colorID = glGetUniformLocation(programID_image, "color");
 	
-	glGenBuffers(1, &vertexbuffer_image);
-	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer_image);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data_image), g_vertex_buffer_data_image, GL_STATIC_DRAW);
+	//glGenBuffers(1, &vertexbuffer_image);
+	//glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer_image);
+	//glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data_image), g_vertex_buffer_data_image, GL_STATIC_DRAW);
 
-	
-	glGenBuffers(1, &uvbuffer_image);
-	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer_image);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(g_uv_buffer_data_image), g_uv_buffer_data_image, GL_STATIC_DRAW);
+	//
+	//glGenBuffers(1, &uvbuffer_image);
+	//glBindBuffer(GL_ARRAY_BUFFER, uvbuffer_image);
+	//glBufferData(GL_ARRAY_BUFFER, sizeof(g_uv_buffer_data_image), g_uv_buffer_data_image, GL_STATIC_DRAW);
 }
 
 
 Image::~Image()
 {
-	glDeleteBuffers(1, &uvbuffer_image);
-	glDeleteBuffers(1, &vertexbuffer_image);
+	//glDeleteBuffers(1, &uvbuffer_image);
+	//glDeleteBuffers(1, &vertexbuffer_image);
 	glDeleteProgram(programID_image);
 	glDeleteTextures(1, &texture);
 }
@@ -88,6 +89,9 @@ bool Image::RayCast(float x, float y)
 	return  (x >= this->x && x <= (this->x + this->w) &&
 		y >= this->y && y <= (this->y + this->h));
 }
+
+
+
 void Image::Render()
 {
 	if (RayCast(Input::mousePosX, Input::mousePosY))
@@ -114,41 +118,13 @@ void Image::Render()
 	glUniform1f(statusID, status);
 	
 
-	//glUniform4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
-
-	// 1rst attribute buffer : vertices
-	glEnableVertexAttribArray(0);
-	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer_image);
-	glVertexAttribPointer(
-		0,                  // attribute. No particular reason for 0, but must match the layout in the shader.
-		3,                  // size
-		GL_FLOAT,           // type
-		GL_FALSE,           // normalized?
-		0,                  // stride
-		(void*)0            // array buffer offset
-	);
-
-	// 2nd attribute buffer : UVs
-	glEnableVertexAttribArray(1);
-	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer_image);
-	glVertexAttribPointer(
-		1,                                // attribute. No particular reason for 1, but must match the layout in the shader.
-		2,                                // size : U+V => 2
-		GL_FLOAT,                         // type
-		GL_FALSE,                         // normalized?
-		0,                                // stride
-		(void*)0                          // array buffer offset
-	);
-
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-	// Draw the triangle !
-	glDrawArrays(GL_TRIANGLES, 0, 6); // 12*3 indices starting at 0 -> 12 triangles
 
-	glDisableVertexAttribArray(0);
-	glDisableVertexAttribArray(1);
+
+	Mesh::RenderMesh(Mesh::quad2);
 
 }
 
