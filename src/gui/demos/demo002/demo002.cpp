@@ -8,6 +8,7 @@
 #include <Engine/Input.h>
 #include <Engine/Screen.h>
 #include <Engine/Shader.h>
+#include <Engine/Mesh.h>
 #include <Engine/Image.h>
 #include <Engine/Text.h>
 #include <Engine/Cube.h>

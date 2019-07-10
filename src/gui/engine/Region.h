@@ -3,6 +3,7 @@
 
 #include <vector>
 
+class Mesh;
 class Region : public IRenderable
 {
 public:
@@ -12,10 +13,8 @@ public:
 	};
 
 	Type type;
+	Mesh *mesh;
 	GLuint program;
-	GLuint vertexbuffer;
-	GLuint elementbuffer;
-	GLuint elementsize;
 	GLuint mainColorId;
 	GLuint screenWidthID;
 	GLuint screenHeightID;

@@ -6,6 +6,7 @@
 #include <Engine/Region.h>
 #include <Engine/Input.h>
 #include <Engine/Screen.h>
+#include <Engine/Mesh.h>
 
 #include <vector>
 extern "C"
@@ -34,7 +35,7 @@ Region::Region(std::vector<glm::vec3> polygon, glm::vec4 color)
 
 Region::~Region()
 {
-	glDeleteBuffers(1, &vertexbuffer);
+	//glDeleteBuffers(1, &vertexbuffer);
 }
 
 void Region::Render()
@@ -64,35 +65,29 @@ void Region::LoadRect(glm::vec4 rect, glm::vec4 color)
 	screenWidthID = glGetUniformLocation(program, "screenWidth");
 	screenHeightID = glGetUniformLocation(program, "screenHeight");
 
-	float x = rect.x;
-	float y = rect.y;
-	float w = rect.z;
-	float h = rect.w;
+	//float x = rect.x;
+	//float y = rect.y;
+	//float w = rect.z;
+	//float h = rect.w;
 
-	float vertexBufferData[] = {
-		x,		y,		0.0f,
-		x + w,	y,		0.0f,
-		x + w,	y + h,	0.0f,
-		x,		y,		0.0f,
-		x + w,	y + h,	0.0f,
-		x,		y + h,	0.0f,
-	};
+	//float vertexBufferData[] = {
+	//	x,		y,		0.0f,
+	//	x + w,	y,		0.0f,
+	//	x + w,	y + h,	0.0f,
+	//	x,		y + h,	0.0f,
+	//};
 
-	glGenBuffers(1, &vertexbuffer);
-	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 18, vertexBufferData, GL_STATIC_DRAW);
+	//glGenBuffers(1, &vertexbuffer);
+	//glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+	//glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 18, vertexBufferData, GL_STATIC_DRAW);
+
+	mesh = Mesh::CreateMesh(rect);
 }
-void Region::RenderRect()
+
+void RenderMesh(Mesh *mesh)
 {
-	glUseProgram(program);
-
-
-	glUniform4fv(mainColorId, 1, &color.x);
-	glUniform1f(screenWidthID, Screen::width);
-	glUniform1f(screenHeightID, Screen::height);
-
 	glEnableVertexAttribArray(0);
-	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, mesh->vertexbuffer);
 	glVertexAttribPointer(
 		0,                  // attribute. No particular reason for 0, but must match the layout in the shader.
 		3,                  // size
@@ -103,6 +98,25 @@ void Region::RenderRect()
 	);
 
 
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->elementbuffer);
+
+	// Draw the triangles !
+	glDrawElements(
+		GL_TRIANGLES,      // mode
+		mesh->elementsize,    // count
+		GL_UNSIGNED_SHORT, // type
+		(void*)0           // element array buffer offset
+	);
+
+	glDisableVertexAttribArray(0);
+}
+void Region::RenderRect()
+{
+	glUseProgram(program);
+
+	glUniform4fv(mainColorId, 1, &color.x);
+	glUniform1f(screenWidthID, Screen::width);
+	glUniform1f(screenHeightID, Screen::height);
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -110,23 +124,11 @@ void Region::RenderRect()
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-
-	// Draw the triangle !
-	glDrawArrays(GL_TRIANGLES, 0, 6);
-
-	glDisableVertexAttribArray(0);
-	glDisableVertexAttribArray(1);
+	RenderMesh(mesh);
 }
 
 void Region::LoadPolygon(std::vector<glm::vec3> polygon)
 {
-	//std::vector<glm::vec2> points;
-	//points.push_back(glm::vec2(0, 0));
-	//points.push_back(glm::vec2(1, 0));
-	//points.push_back(glm::vec2(1, 1));
-	//points.push_back(glm::vec2(0, 1));
-
-
 
 	struct triangulateio in, out;
 	in.numberofpoints = polygon.size();
@@ -194,6 +196,27 @@ void Region::LoadPolygon(std::vector<glm::vec3> polygon)
 	triangulate((char *)"pzAen", &in, &out, (struct triangulateio *) NULL);
 
 
+	float *vertexBufferData = new float[out.numberofpoints * 3];
+	for (int i = 0; i < out.numberofpoints; i++)
+	{
+		vertexBufferData[i * 3 + 0] = out.pointlist[i * 2 + 0];
+		vertexBufferData[i * 3 + 1] = out.pointlist[i * 2 + 1];
+		vertexBufferData[i * 3 + 2] = 0.1;
+	}
+
+
+	unsigned short *elementBufferData = new unsigned short[out.numberoftriangles * 3];
+	for (int i = 0; i < out.numberoftriangles; i++)
+	{
+		elementBufferData[i * 3 + 0] = out.trianglelist[i * 3 + 0];
+		elementBufferData[i * 3 + 1] = out.trianglelist[i * 3 + 1];
+		elementBufferData[i * 3 + 2] = out.trianglelist[i * 3 + 2];
+	}
+
+
+	mesh = new Mesh(out.numberofpoints * 3, vertexBufferData, 0, nullptr, out.numberoftriangles * 3, elementBufferData);
+	delete elementBufferData;
+	delete vertexBufferData;
 
 
 
@@ -206,31 +229,6 @@ void Region::LoadPolygon(std::vector<glm::vec3> polygon)
 
 
 	
-	float *vertexBufferData = new float[out.numberofpoints * 3];
-	for (int i = 0; i < out.numberofpoints; i++)
-	{
-		vertexBufferData[i * 3 + 0] = out.pointlist[i * 2 + 0];
-		vertexBufferData[i * 3 + 1] = out.pointlist[i * 2 + 1];
-		vertexBufferData[i * 3 + 2] = 0.1;
-	}
-	glGenBuffers(1, &vertexbuffer);
-	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-	glBufferData(GL_ARRAY_BUFFER, out.numberofpoints * 3 * sizeof(float), vertexBufferData, GL_STATIC_DRAW);
-	delete vertexBufferData;
-
-
-	unsigned short *elementBufferData = new unsigned short[out.numberoftriangles * 3];
-	for (int i = 0; i < out.numberoftriangles; i++)
-	{
-		elementBufferData[i * 3 + 0] = out.trianglelist[i * 3 + 0];
-		elementBufferData[i * 3 + 1] = out.trianglelist[i * 3 + 1];
-		elementBufferData[i * 3 + 2] = out.trianglelist[i * 3 + 2];
-	}
-	glGenBuffers(1, &elementbuffer);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, out.numberoftriangles * 3 * sizeof(unsigned short), elementBufferData, GL_STATIC_DRAW);
-	delete elementBufferData;
-	elementsize = out.numberoftriangles * 3;
 
 }
 void Region::RenderPolygon()
@@ -241,38 +239,9 @@ void Region::RenderPolygon()
 	glUniform1f(screenWidthID, Screen::width);
 	glUniform1f(screenHeightID, Screen::height);
 
-	glEnableVertexAttribArray(0);
-	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-	glVertexAttribPointer(
-		0,                  // attribute. No particular reason for 0, but must match the layout in the shader.
-		3,                  // size
-		GL_FLOAT,           // type
-		GL_FALSE,           // normalized?
-		0,                  // stride
-		(void*)0            // array buffer offset
-	);
-
-
-
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glDisable(GL_DEPTH_TEST);
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	//glDisable(GL_CULL_FACE);
-	//glCullFace(GL_FRONT);
-	// Draw the triangle !
-	//glDrawArrays(GL_TRIANGLES, 0, 6);
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
-
-	// Draw the triangles !
-	glDrawElements(
-		GL_TRIANGLES,      // mode
-		elementsize,    // count
-		GL_UNSIGNED_SHORT, // type
-		(void*)0           // element array buffer offset
-	);
-
-	glDisableVertexAttribArray(0);
-	glDisableVertexAttribArray(1);
+	RenderMesh(mesh);
 }
