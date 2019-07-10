@@ -88,6 +88,9 @@
     <ClCompile Include="engine\FrameBuffer.cpp">
       <Filter>engine</Filter>
     </ClCompile>
+    <ClCompile Include="engine\Mesh.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="common">
@@ -197,6 +200,9 @@
       <Filter>engine</Filter>
     </ClInclude>
     <ClInclude Include="engine\FrameBuffer.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\Mesh.h">
       <Filter>engine</Filter>
     </ClInclude>
   </ItemGroup>

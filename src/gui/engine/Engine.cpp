@@ -9,6 +9,7 @@
 #include <Engine/Screen.h>
 #include <Engine/Camera.h>
 #include <Engine/Shader.h>
+#include <Engine/Mesh.h>
 #include <Engine/Renderable.h>
 #include <Engine/PostProcess.h>
 #include <Engine/Engine.h>
@@ -72,12 +73,14 @@ Engine::Engine(int width, int height)
 	glGenVertexArrays(1, &VertexArrayID);
 	glBindVertexArray(VertexArrayID);
 
+	Mesh::LoadPredefinedMeshes();
 	LoadAllShaders();
 
 	//postProcess = new PostProcess();
 }
 Engine::~Engine()
 {
+	//ReleasePredefinedMeshed();
 	ReleaseAllShaders();
 
 	// Cleanup VBO and shader
@@ -86,6 +89,7 @@ Engine::~Engine()
 	// Close OpenGL window and terminate GLFW
 	glfwTerminate();
 }
+
 
 void Engine::LoadAllShaders()
 {

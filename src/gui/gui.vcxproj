@@ -195,6 +195,7 @@
     <ClCompile Include="engine\FrameBuffer.cpp" />
     <ClCompile Include="engine\Image.cpp" />
     <ClCompile Include="engine\Input.cpp" />
+    <ClCompile Include="engine\Mesh.cpp" />
     <ClCompile Include="engine\Point.cpp" />
     <ClCompile Include="engine\PostProcess.cpp" />
     <ClCompile Include="engine\PostProcess_Bloom.cpp" />
@@ -234,6 +235,7 @@
     <ClInclude Include="engine\FrameBuffer.h" />
     <ClInclude Include="engine\Image.h" />
     <ClInclude Include="engine\Input.h" />
+    <ClInclude Include="engine\Mesh.h" />
     <ClInclude Include="engine\Point.h" />
     <ClInclude Include="engine\PostProcess.h" />
     <ClInclude Include="engine\PostProcess_Bloom.h" />
