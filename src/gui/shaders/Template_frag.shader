@@ -25,9 +25,9 @@ void main(){
 
 	vec4 newColor = vec4(0,0,0,0);
 
-	for (int i = -templateWidth/2; i < templateWidth/2; i++)
+	for (int i = -templateWidth/2; i <= templateWidth/2; i++)
 	{
-		for (int j = -templateHeight/2; j < templateHeight/2; j++)
+		for (int j = -templateHeight/2; j <= templateHeight/2; j++)
 		{
 			vec2 baseTexcoord = VertexTexcoord +vec2(1.0f * i / baseWidth, 1.0f * j / baseHeight);
 			vec2 templateTexcoord = vec2(1.0f * i / templateWidth, 1.0f * j / templateHeight);

@@ -195,8 +195,8 @@ int main(void)
 	CreateBackgroundRects(engine.uilist);
 	CreatePolygons(engine.uilist);
 
-	ShowMousePosition *showMousePosition = new ShowMousePosition();
-	engine.uilist.push_back(showMousePosition);
+
+	engine.uilist.push_back(new ShowMousePosition());
 	
 
 	engine.Run();

@@ -7,6 +7,9 @@
 #include <Engine/Input.h>
 #include <Engine/Screen.h>
 #include <Engine/Mesh.h>
+#include <Engine/Color.h>
+#include <Engine/FrameBuffer.h>
+
 
 #include <vector>
 extern "C"
@@ -20,6 +23,7 @@ extern "C"
 Region::Region(glm::vec4 rect, glm::vec4 color)
 {
 	this->type = Rect;
+	this->effect = Fill;
 	this->rect = rect;
 	this->color = color;
 	LoadRect(rect, color);
@@ -28,6 +32,7 @@ Region::Region(glm::vec4 rect, glm::vec4 color)
 Region::Region(std::vector<glm::vec3> polygon, glm::vec4 color)
 {
 	this->type = Polygon;
+	this->effect = FadeInEdge;
 	this->color = color;
 	LoadPolygon(polygon);
 }
@@ -65,51 +70,10 @@ void Region::LoadRect(glm::vec4 rect, glm::vec4 color)
 	screenWidthID = glGetUniformLocation(program, "screenWidth");
 	screenHeightID = glGetUniformLocation(program, "screenHeight");
 
-	//float x = rect.x;
-	//float y = rect.y;
-	//float w = rect.z;
-	//float h = rect.w;
-
-	//float vertexBufferData[] = {
-	//	x,		y,		0.0f,
-	//	x + w,	y,		0.0f,
-	//	x + w,	y + h,	0.0f,
-	//	x,		y + h,	0.0f,
-	//};
-
-	//glGenBuffers(1, &vertexbuffer);
-	//glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-	//glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 18, vertexBufferData, GL_STATIC_DRAW);
 
 	mesh = Mesh::CreateMesh(rect);
 }
 
-void RenderMesh(Mesh *mesh)
-{
-	glEnableVertexAttribArray(0);
-	glBindBuffer(GL_ARRAY_BUFFER, mesh->vertexbuffer);
-	glVertexAttribPointer(
-		0,                  // attribute. No particular reason for 0, but must match the layout in the shader.
-		3,                  // size
-		GL_FLOAT,           // type
-		GL_FALSE,           // normalized?
-		0,                  // stride
-		(void*)0            // array buffer offset
-	);
-
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->elementbuffer);
-
-	// Draw the triangles !
-	glDrawElements(
-		GL_TRIANGLES,      // mode
-		mesh->elementsize,    // count
-		GL_UNSIGNED_SHORT, // type
-		(void*)0           // element array buffer offset
-	);
-
-	glDisableVertexAttribArray(0);
-}
 void Region::RenderRect()
 {
 	glUseProgram(program);
@@ -124,7 +88,7 @@ void Region::RenderRect()
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-	RenderMesh(mesh);
+	Mesh::RenderMesh(mesh);
 }
 
 void Region::LoadPolygon(std::vector<glm::vec3> polygon)
@@ -220,6 +184,139 @@ void Region::LoadPolygon(std::vector<glm::vec3> polygon)
 
 
 
+
+
+
+	framebuffer0 = new FrameBuffer();
+	framebuffer1 = new FrameBuffer();
+
+	LoadBasePass();
+	LoadTemplatePass();
+	LoadAddPass();
+
+}
+void Region::RenderPolygon()
+{
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+	//glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glClearColor(1, 1, 1, 1);
+	glClear(GL_COLOR_BUFFER_BIT);
+	RenderBasePass(Color::black);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+	RenderTemplatePass(framebuffer0->texture);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+	RenderTemplatePass(framebuffer1->texture);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+	RenderTemplatePass(framebuffer0->texture);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+	RenderTemplatePass(framebuffer1->texture);
+
+
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+	RenderTemplatePass(framebuffer0->texture);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+	RenderTemplatePass(framebuffer1->texture);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+	RenderTemplatePass(framebuffer0->texture);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+	RenderTemplatePass(framebuffer1->texture);
+
+
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+	RenderTemplatePass(framebuffer0->texture);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+	RenderTemplatePass(framebuffer1->texture);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+	RenderTemplatePass(framebuffer0->texture);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+	RenderTemplatePass(framebuffer1->texture);
+
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+	RenderTemplatePass(framebuffer0->texture);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+	RenderTemplatePass(framebuffer1->texture);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+	RenderTemplatePass(framebuffer0->texture);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+	RenderTemplatePass(framebuffer1->texture);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+	RenderTemplatePass(framebuffer0->texture);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+	RenderTemplatePass(framebuffer1->texture);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+	RenderTemplatePass(framebuffer0->texture);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+	RenderTemplatePass(framebuffer1->texture);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+	RenderTemplatePass(framebuffer0->texture);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+	RenderTemplatePass(framebuffer1->texture);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+	RenderTemplatePass(framebuffer0->texture);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+	RenderTemplatePass(framebuffer1->texture);
+
+	//glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+	//RenderTemplatePass(framebuffer0->texture);
+
+	//glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+	//RenderTemplatePass(framebuffer1->texture);
+
+	//glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+	//RenderTemplatePass(framebuffer0->texture);
+
+	//glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+	//RenderTemplatePass(framebuffer1->texture);
+
+	//glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+	//RenderTemplatePass(framebuffer0->texture);
+
+	//glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+	//RenderTemplatePass(framebuffer1->texture);
+
+	//glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+	//RenderTemplatePass(framebuffer0->texture);
+
+	//glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+	//RenderTemplatePass(framebuffer1->texture);
+
+	//glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	//RenderTemplatePass(framebuffer0->texture);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	RenderMaskPass();
+
+	RenderAddPass(framebuffer1->texture);
+}
+
+void Region::LoadBasePass()
+{
+
 	Shader *shader = Shader::Find("Region");
 	program = shader->program;
 
@@ -227,11 +324,8 @@ void Region::LoadPolygon(std::vector<glm::vec3> polygon)
 	screenWidthID = glGetUniformLocation(program, "screenWidth");
 	screenHeightID = glGetUniformLocation(program, "screenHeight");
 
-
-	
-
 }
-void Region::RenderPolygon()
+void Region::RenderBasePass(glm::vec4 color)
 {
 	glUseProgram(program);
 
@@ -239,9 +333,109 @@ void Region::RenderPolygon()
 	glUniform1f(screenWidthID, Screen::width);
 	glUniform1f(screenHeightID, Screen::height);
 
-	glEnable(GL_BLEND);
+	glDisable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glDisable(GL_DEPTH_TEST);
+	Mesh::RenderMesh(mesh);
+}
+void Region::RenderMaskPass()
+{
+	glUseProgram(program);
 
-	RenderMesh(mesh);
+	glUniform4fv(mainColorId, 1, &Color::black0.x);
+	glUniform1f(screenWidthID, Screen::width);
+	glUniform1f(screenHeightID, Screen::height);
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_ZERO, GL_ONE);
+	glDisable(GL_DEPTH_TEST);
+
+	glEnable(GL_STENCIL_TEST);
+	glStencilMask(0xFF);
+	glStencilFunc(GL_ALWAYS, 0xFF, 0xFF);
+	glStencilOp(GL_REPLACE, GL_REPLACE, GL_REPLACE);
+
+	Mesh::RenderMesh(mesh);
+}
+void Region::LoadTemplatePass()
+{
+	Shader *shader = Shader::Find("Template");
+	programOfTemplatePass = shader->program;
+
+
+	baseWidthID = glGetUniformLocation(programOfTemplatePass, "baseWidth");
+	baseHeightID = glGetUniformLocation(programOfTemplatePass, "baseHeight");
+	templateWidthID = glGetUniformLocation(programOfTemplatePass, "templateWidth");
+	templateHeightID = glGetUniformLocation(programOfTemplatePass, "templateHeight");
+	baseTextureID = glGetUniformLocation(programOfTemplatePass, "baseTexture");
+	templateTextureID = glGetUniformLocation(programOfTemplatePass, "templateTexture");
+
+	//templateTexture = loadBMP_custom("images/template-white-5x5.bmp");
+	templateTexture = generateGaussianTemplate();
+}
+
+void Region::RenderTemplatePass(GLuint texture)
+{
+	glUseProgram(programOfTemplatePass);
+
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, texture);
+	glUniform1i(baseTextureID, 0);
+
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, templateTexture);
+	glUniform1i(templateTextureID, 1);
+
+	glUniform1i(baseWidthID, Screen::width);
+	glUniform1i(baseHeightID, Screen::height);
+	glUniform1i(templateWidthID, 5);
+	glUniform1i(templateHeightID, 5);
+
+
+
+	glDisable(GL_BLEND);
+
+	glBlendFunc(GL_ONE, GL_ZERO);
+	glDisable(GL_DEPTH_TEST);
+
+	Mesh::RenderMesh(Mesh::quad3);
+}
+
+
+void Region::LoadAddPass()
+{
+	Shader* shaderAdd = Shader::Find("PostProcess_Add");
+	programOfAddPass = shaderAdd->program;
+	texture0ID_inAddPass = glGetUniformLocation(programOfAddPass, "texture0");
+	texture1ID_inAddPass = glGetUniformLocation(programOfAddPass, "texture1");
+}
+void Region::RenderAddPass(GLuint texture)
+{
+	glUseProgram(programOfAddPass);
+
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, texture);
+	// Set our "myTextureSampler" sampler to use Texture Unit 0
+	glUniform1i(texture0ID_inAddPass, 0);
+
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, texture);
+	glUniform1i(texture1ID_inAddPass, 1);
+
+
+
+	glEnable(GL_BLEND);
+
+	glBlendFunc(GL_ONE, GL_ONE);
+	glDisable(GL_DEPTH_TEST);
+
+	glEnable(GL_STENCIL_TEST);
+	glStencilMask(0x00);
+	glStencilFunc(GL_EQUAL, 0xFF, 0xFF);
+	glStencilOp(GL_KEEP, GL_KEEP, GL_KEEP);
+
+	Mesh::RenderMesh(Mesh::quad3);
+
+	//glDisable(GL_STENCIL_TEST);
+
 }
