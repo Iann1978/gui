@@ -121,6 +121,8 @@ void Image::Render()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glDisable(GL_STENCIL_TEST);
+	glDisable(GL_DEPTH_TEST);
 
 
 
