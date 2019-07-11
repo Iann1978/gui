@@ -33,6 +33,8 @@ public:
 	FrameBuffer *framebuffer0;
 	FrameBuffer *framebuffer1;
 
+	bool dirty = true;
+
 
 
 public:

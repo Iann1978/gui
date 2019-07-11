@@ -197,117 +197,121 @@ void Region::LoadPolygon(std::vector<glm::vec3> polygon)
 }
 void Region::RenderPolygon()
 {
-
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
-	//glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	glClearColor(1, 1, 1, 1);
-	glClear(GL_COLOR_BUFFER_BIT);
-	RenderBasePass(Color::black);
-
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
-	RenderTemplatePass(framebuffer0->texture);
-
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
-	RenderTemplatePass(framebuffer1->texture);
-
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
-	RenderTemplatePass(framebuffer0->texture);
-
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
-	RenderTemplatePass(framebuffer1->texture);
+	if (dirty)
+	{
 
 
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+		//glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		glClearColor(1, 1, 1, 1);
+		glClear(GL_COLOR_BUFFER_BIT);
+		RenderBasePass(Color::black);
 
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
-	RenderTemplatePass(framebuffer0->texture);
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+		RenderTemplatePass(framebuffer0->texture);
 
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
-	RenderTemplatePass(framebuffer1->texture);
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+		RenderTemplatePass(framebuffer1->texture);
 
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
-	RenderTemplatePass(framebuffer0->texture);
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+		RenderTemplatePass(framebuffer0->texture);
 
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
-	RenderTemplatePass(framebuffer1->texture);
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+		RenderTemplatePass(framebuffer1->texture);
 
 
 
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
-	RenderTemplatePass(framebuffer0->texture);
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+		RenderTemplatePass(framebuffer0->texture);
 
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
-	RenderTemplatePass(framebuffer1->texture);
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+		RenderTemplatePass(framebuffer1->texture);
 
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
-	RenderTemplatePass(framebuffer0->texture);
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+		RenderTemplatePass(framebuffer0->texture);
 
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
-	RenderTemplatePass(framebuffer1->texture);
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+		RenderTemplatePass(framebuffer1->texture);
 
 
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
-	RenderTemplatePass(framebuffer0->texture);
 
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
-	RenderTemplatePass(framebuffer1->texture);
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+		RenderTemplatePass(framebuffer0->texture);
 
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
-	RenderTemplatePass(framebuffer0->texture);
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+		RenderTemplatePass(framebuffer1->texture);
 
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
-	RenderTemplatePass(framebuffer1->texture);
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+		RenderTemplatePass(framebuffer0->texture);
 
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
-	RenderTemplatePass(framebuffer0->texture);
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+		RenderTemplatePass(framebuffer1->texture);
 
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
-	RenderTemplatePass(framebuffer1->texture);
 
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
-	RenderTemplatePass(framebuffer0->texture);
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+		RenderTemplatePass(framebuffer0->texture);
 
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
-	RenderTemplatePass(framebuffer1->texture);
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+		RenderTemplatePass(framebuffer1->texture);
 
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
-	RenderTemplatePass(framebuffer0->texture);
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+		RenderTemplatePass(framebuffer0->texture);
 
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
-	RenderTemplatePass(framebuffer1->texture);
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+		RenderTemplatePass(framebuffer1->texture);
 
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
-	RenderTemplatePass(framebuffer0->texture);
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+		RenderTemplatePass(framebuffer0->texture);
 
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
-	RenderTemplatePass(framebuffer1->texture);
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+		RenderTemplatePass(framebuffer1->texture);
 
-	//glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
-	//RenderTemplatePass(framebuffer0->texture);
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+		RenderTemplatePass(framebuffer0->texture);
 
-	//glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
-	//RenderTemplatePass(framebuffer1->texture);
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+		RenderTemplatePass(framebuffer1->texture);
 
-	//glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
-	//RenderTemplatePass(framebuffer0->texture);
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+		RenderTemplatePass(framebuffer0->texture);
 
-	//glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
-	//RenderTemplatePass(framebuffer1->texture);
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+		RenderTemplatePass(framebuffer1->texture);
 
-	//glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
-	//RenderTemplatePass(framebuffer0->texture);
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+		RenderTemplatePass(framebuffer0->texture);
 
-	//glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
-	//RenderTemplatePass(framebuffer1->texture);
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+		RenderTemplatePass(framebuffer1->texture);
 
-	//glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
-	//RenderTemplatePass(framebuffer0->texture);
+		//glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+		//RenderTemplatePass(framebuffer0->texture);
 
-	//glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
-	//RenderTemplatePass(framebuffer1->texture);
+		//glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+		//RenderTemplatePass(framebuffer1->texture);
 
-	//glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	//RenderTemplatePass(framebuffer0->texture);
+		//glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+		//RenderTemplatePass(framebuffer0->texture);
 
+		//glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+		//RenderTemplatePass(framebuffer1->texture);
+
+		//glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+		//RenderTemplatePass(framebuffer0->texture);
+
+		//glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+		//RenderTemplatePass(framebuffer1->texture);
+
+		//glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
+		//RenderTemplatePass(framebuffer0->texture);
+
+		//glBindFramebuffer(GL_FRAMEBUFFER, framebuffer0->framebuffer);
+		//RenderTemplatePass(framebuffer1->texture);
+
+		//glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		//RenderTemplatePass(framebuffer0->texture);
+		dirty = false;
+	}
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	RenderMaskPass();
 
