@@ -250,6 +250,8 @@
     <ClInclude Include="StatusBar.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="shaders\ColorTexture_frag.shader" />
+    <None Include="shaders\ColorTexture_vert.shader" />
     <None Include="shaders\Curve_frag.shader" />
     <None Include="shaders\Curve_vert.shader" />
     <None Include="shaders\geo_frag.shader" />

@@ -73,8 +73,8 @@ public:
 
 	// Add pass
 	GLuint programOfAddPass;
-	GLuint texture0ID_inAddPass;
-	GLuint texture1ID_inAddPass;
+	GLuint baseTextureID_inAddPass;
+	GLuint colorID_inAddPass;
 	void LoadAddPass();
 	void RenderAddPass(GLuint texture);
 	// Effect

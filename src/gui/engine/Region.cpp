@@ -408,10 +408,10 @@ void Region::RenderTemplatePass(GLuint texture)
 
 void Region::LoadAddPass()
 {
-	Shader* shaderAdd = Shader::Find("PostProcess_Add");
+	Shader* shaderAdd = Shader::Find("ColorTexture");
 	programOfAddPass = shaderAdd->program;
-	texture0ID_inAddPass = glGetUniformLocation(programOfAddPass, "texture0");
-	texture1ID_inAddPass = glGetUniformLocation(programOfAddPass, "texture1");
+	baseTextureID_inAddPass = glGetUniformLocation(programOfAddPass, "baseTexture");
+	colorID_inAddPass = glGetUniformLocation(programOfAddPass, "color");
 }
 void Region::RenderAddPass(GLuint texture)
 {
@@ -419,13 +419,8 @@ void Region::RenderAddPass(GLuint texture)
 
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture);
-	// Set our "myTextureSampler" sampler to use Texture Unit 0
-	glUniform1i(texture0ID_inAddPass, 0);
-
-	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D, texture);
-	glUniform1i(texture1ID_inAddPass, 1);
-
+	glUniform1i(baseTextureID_inAddPass, 0);
+	glUniform4fv(colorID_inAddPass, 1, &Color::white.x);
 
 
 	glEnable(GL_BLEND);
