@@ -3,16 +3,16 @@
 
 static const GLfloat quad2_vertexBufferData[] = {
 	0.0f,0.0f,0.0f,
-	0.0f,1.0f, 0.0f,
+	1.0f,0.0f, 0.0f,
 	1.0f, 1.0f, 0.0f,
-	1.0f,0.0f,0.0f,
+	0.0f,1.0f,0.0f,
 };
 
 static const GLfloat quad2_uvBufferData[] = {
 	0.0f, 0.0f,
-	0.0f, 1.0f,
-	1.0f, 1.0f,
 	1.0f, 0.0f,
+	1.0f, 1.0f,
+	0.0f, 1.0f,
 };
 
 static const unsigned short quad2_elementBufferData[] = {
@@ -44,11 +44,13 @@ Mesh::~Mesh()
 
 
 Mesh *Mesh::quad2 = nullptr;
+Mesh *Mesh::quad3 = nullptr;
 
 void Mesh::LoadPredefinedMeshes()
 {
 	
 	quad2 = new Mesh(12, quad2_vertexBufferData, 8, quad2_uvBufferData, 6, quad2_elementBufferData);
+	quad3 = CreateMesh(glm::vec4(-1, -1, 2, 2));
 }
 
 Mesh *Mesh::CreateMesh(glm::vec4 rect)
