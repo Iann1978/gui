@@ -217,3 +217,46 @@ GLuint loadDDS(const char * imagepath){
 
 
 }
+
+
+
+GLuint generateGaussianTemplate()
+{
+
+	// Create one OpenGL texture
+	GLuint textureID;
+	glGenTextures(1, &textureID);
+
+	// "Bind" the newly created texture : all future texture functions will modify this texture
+	glBindTexture(GL_TEXTURE_2D, textureID);
+	unsigned char data[] = { 2,4,5,4,2,
+		4,9,12,9,4,
+		5,12,15,12,5,
+		4,9,12,9,4,
+		2,4,5,4,2,
+	};
+	for (int i = 0; i < sizeof(data); i++)
+	{
+		data[i] = (unsigned char)(1.0f * 255 * data[i] / 159);
+	}
+	// Give the image to OpenGL
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 5, 5, 0, GL_RED, GL_UNSIGNED_BYTE, data);
+
+	// OpenGL has now copied the data. Free our own version
+
+
+	// Poor filtering, or ...
+	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); 
+
+	// ... nice trilinear filtering ...
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	// ... which requires mipmaps. Generate them automatically.
+	glGenerateMipmap(GL_TEXTURE_2D);
+
+	// Return the ID of the texture we just created
+	return textureID;
+}
