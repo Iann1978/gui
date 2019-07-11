@@ -1,6 +1,6 @@
 #version 330 core
 
-uniform vec4 rect;
+uniform vec4 rect = vec4(0,0,1,1);
 uniform float screenWidth;
 uniform float screenHeight;
 
