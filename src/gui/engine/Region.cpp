@@ -420,7 +420,8 @@ void Region::RenderAddPass(GLuint texture)
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture);
 	glUniform1i(baseTextureID_inAddPass, 0);
-	glUniform4fv(colorID_inAddPass, 1, &Color::white.x);
+	glm::vec4 tmpcolor = color * 2.0f;
+	glUniform4fv(colorID_inAddPass, 1, &tmpcolor.x);
 
 
 	glEnable(GL_BLEND);

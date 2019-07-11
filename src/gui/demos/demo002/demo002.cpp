@@ -196,7 +196,7 @@ Region *CreatePolygon(std::vector<glm::vec3> polygon)
 	//	p.y = 1 - p.y / Screen::height * 2;
 	//	p.z = 0;
 	//}
-	Region *region = new Region(polygon, glm::vec4(1, 1, 1, 0.2));
+	Region *region = new Region(polygon, glm::vec4(0.30, 0.75, 0.98, 1));
 	return region;
 }
 
