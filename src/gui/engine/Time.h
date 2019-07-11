@@ -14,6 +14,9 @@ public:
 	//     since the start of the game.
 	static float time;
 
+	
+	static unsigned int frameCounter;
+
 public:
 	static void UpdateAtGameStart();
 	static void UpdateAtFrameStart();

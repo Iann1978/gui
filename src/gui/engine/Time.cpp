@@ -7,6 +7,8 @@ float Time::deltaTime;
 
 float Time::time;
 
+unsigned int Time::frameCounter;
+
 std::chrono::time_point<std::chrono::system_clock> start;
 std::chrono::time_point<std::chrono::system_clock> now;
 std::chrono::time_point<std::chrono::system_clock> last;
@@ -14,10 +16,12 @@ std::chrono::time_point<std::chrono::system_clock> last;
 void Time::UpdateAtGameStart()
 {
 	start = std::chrono::system_clock::now();
+	frameCounter = 0;
 }
 
 void Time::UpdateAtFrameStart()
 {
+	++frameCounter;
 	last = now;
 	now = std::chrono::system_clock::now();
 
