@@ -9,5 +9,6 @@ public:
 public:
 	static glm::vec4 black;
 	static glm::vec4 white;
+	static glm::vec4 black0;
 };
 
