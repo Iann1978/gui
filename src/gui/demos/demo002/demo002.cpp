@@ -157,6 +157,36 @@ public:
 		mousepos->Render();
 	}
 };
+class ShowFps : public IRenderable
+{
+	float fps = 0;
+	char fpsstr[100];
+	Text* text;
+	float lastTime;
+	
+public:
+
+	ShowFps()
+	{
+		sprintf_s(fpsstr, sizeof(fpsstr), "fps:%5.2f", fps);
+		text = new Text(fpsstr, 225, 5, 24);
+	}
+
+	void Update()
+	{
+		if (Time::frameCounter % 15 == 0)
+		{
+			float curTime = Time::time;
+			fps = 15 / (curTime - lastTime);
+			sprintf_s(fpsstr, sizeof(fpsstr), "fps:%5.2f",fps);
+			lastTime = curTime;
+		}
+	}
+	void Render()
+	{
+		text->Render();
+	}
+};
 
 Region *CreatePolygon(std::vector<glm::vec3> polygon)
 {
@@ -197,6 +227,8 @@ int main(void)
 
 
 	engine.uilist.push_back(new ShowMousePosition());
+	engine.uilist.push_back(new ShowFps());
+	
 	
 
 	engine.Run();
