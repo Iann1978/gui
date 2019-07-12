@@ -205,7 +205,7 @@ void Region::RenderPolygon()
 		glClear(GL_COLOR_BUFFER_BIT);
 		RenderBasePass(Color::black);
 
-		for (int i = 0; i < 5; i++)
+		for (int i = 0; i < 15; i++)
 		{
 			glBindFramebuffer(GL_FRAMEBUFFER, framebuffer1->framebuffer);
 			RenderTemplatePass(framebuffer0->texture);
@@ -216,6 +216,8 @@ void Region::RenderPolygon()
 
 		dirty = false;
 	}
+
+	
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glClearStencil(0);
 	glStencilMask(~0);
@@ -280,7 +282,8 @@ void Region::LoadTemplatePass()
 	templateHeightID = glGetUniformLocation(programOfTemplatePass, "templateHeight");
 	baseTextureID = glGetUniformLocation(programOfTemplatePass, "baseTexture");
 	templateTextureID = glGetUniformLocation(programOfTemplatePass, "templateTexture");
-
+	templateColorScaleID = glGetUniformLocation(programOfTemplatePass, "templateColorScale");
+	
 	//templateTexture = loadBMP_custom("images/template-white-5x5.bmp");
 	templateTexture = generateGaussianTemplate();
 }
@@ -297,6 +300,8 @@ void Region::RenderTemplatePass(GLuint texture)
 	glBindTexture(GL_TEXTURE_2D, templateTexture);
 	glUniform1i(templateTextureID, 1);
 
+	glm::vec4 templateColorScale = Color::white * 1.02f;
+	glUniform4fv(templateColorScaleID, 1, &templateColorScale.x);
 	glUniform1i(baseWidthID, Screen::width);
 	glUniform1i(baseHeightID, Screen::height);
 	glUniform1i(templateWidthID, 5);

@@ -67,6 +67,7 @@ public:
 	GLuint templateHeightID;
 	GLuint baseTextureID;
 	GLuint templateTextureID;
+	GLuint templateColorScaleID;
 	GLuint templateTexture;
 	void LoadTemplatePass();
 	void RenderTemplatePass(GLuint texture);
