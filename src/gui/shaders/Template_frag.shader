@@ -12,6 +12,8 @@ uniform int templateWidth;
 uniform int templateHeight;
 uniform sampler2D baseTexture;
 uniform sampler2D templateTexture;
+uniform vec4 templateColorOffset = vec4(0, 0, 0, 0);
+uniform vec4 templateColorScale = vec4(1, 1, 1, 1);
 
 in vec2 VertexTexcoord;
 
@@ -32,7 +34,7 @@ void main(){
 			vec2 baseTexcoord = VertexTexcoord +vec2(1.0f * i / baseWidth, 1.0f * j / baseHeight);
 			vec2 templateTexcoord = vec2(1.0f * i / templateWidth, 1.0f * j / templateHeight);
 			vec4 baseColor = texture(baseTexture, baseTexcoord);
-			vec4 templateColor = texture(templateTexture, templateTexcoord);
+			vec4 templateColor = texture(templateTexture, templateTexcoord) * templateColorScale + templateColorOffset;
 			newColor += baseColor * templateColor;
 			//newColor = vec4(1.0f*baseWidth/1100, 1.0f*baseHeight/1100,0, 1);
 		}
