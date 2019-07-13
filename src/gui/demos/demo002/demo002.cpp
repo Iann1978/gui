@@ -205,20 +205,55 @@ void CreatePolygons(std::list<IRenderable *>& renders)
 	std::vector<glm::vec3> polygon;
 
 	polygon.clear();
-	polygon.push_back(glm::vec3(512, 751, 0));
-	polygon.push_back(glm::vec3(585, 751, 0));
-	polygon.push_back(glm::vec3(845, 380, 0));
-	polygon.push_back(glm::vec3(824, 344, 0));
-	polygon.push_back(glm::vec3(280, 344, 0));
+	polygon.push_back(glm::vec3(512, 756, 0));
+	polygon.push_back(glm::vec3(589, 756, 0));
+	polygon.push_back(glm::vec3(850, 380, 0));
+	polygon.push_back(glm::vec3(822, 340, 0));
+	polygon.push_back(glm::vec3(275, 340, 0));
 	polygon.push_back(glm::vec3(250, 380, 0));
 	renders.push_back(new Region(polygon, glm::vec4(0.30, 0.75, 0.98, 1)));
+
+	polygon.clear();
+	polygon.push_back(glm::vec3(487, 797, 0));
+	polygon.push_back(glm::vec3(612, 797, 0));
+	polygon.push_back(glm::vec3(903, 380, 0));
+	polygon.push_back(glm::vec3(844, 296, 0));
+	polygon.push_back(glm::vec3(253, 296, 0));
+	polygon.push_back(glm::vec3(201, 379, 0));
+	renders.push_back(new Region(polygon, glm::vec4(0.98, 0.53, 0.24, 1)));
+
+
+
+	polygon.clear();
+	polygon.push_back(glm::vec3(892, 507, 0));
+	polygon.push_back(glm::vec3(942, 507, 0));
+	polygon.push_back(glm::vec3(1000, 370, 0));
+	polygon.push_back(glm::vec3(1000, 355, 0));
+	renders.push_back(new Region(polygon, glm::vec4(0.30, 0.75, 0.98, 0.8), Region::Effect::Fill));
 
 	polygon.clear();
 	polygon.push_back(glm::vec3(159, 507, 0));
 	polygon.push_back(glm::vec3(207, 507, 0));
 	polygon.push_back(glm::vec3(103, 353, 0));
 	polygon.push_back(glm::vec3(103, 372, 0));
-	renders.push_back(new Region(polygon, glm::vec4(0.30, 0.75, 0.98, 1), Region::Effect::Fill));
+	renders.push_back(new Region(polygon, glm::vec4(0.30, 0.75, 0.98, 0.8), Region::Effect::Fill));
+
+
+	polygon.clear();
+	polygon.push_back(glm::vec3(657, 870, 0));
+	polygon.push_back(glm::vec3(706, 870, 0));
+	polygon.push_back(glm::vec3(763, 736, 0));
+	polygon.push_back(glm::vec3(763, 722, 0));
+	renders.push_back(new Region(polygon, glm::vec4(0.30, 0.75, 0.98, 0.8), Region::Effect::Fill));
+
+
+
+
+	//polygon.clear();
+	//polygon.push_back(glm::vec3(549, 668, 0));
+	//polygon.push_back(glm::vec3(695, 458, 0));
+	//polygon.push_back(glm::vec3(402, 458, 0));
+	//renders.push_back(new Region(polygon, glm::vec4(0.30, 0.75, 0.98, 0.4), Region::Effect::Fill));
 }
 
 
@@ -226,8 +261,9 @@ int main(void)
 {
 	Engine engine(2200,1100);
 
-	//Image *image = new Image("images/fake002.dds", 0, 0, Screen::width, Screen::height,glm::vec4(1,1,1,0.4));
+
 	engine.uilist.push_back(new Background());
+	engine.uilist.push_back(new Image("images/fake002.dds", Screen::width / 2, 0, Screen::width / 2, Screen::height, glm::vec4(1, 1, 1, 1)));
 	CreateBackPoints(engine.uilist);
 	CreateBackgroundRects(engine.uilist);
 	CreatePolygons(engine.uilist);
