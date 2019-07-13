@@ -94,6 +94,9 @@
     <ClCompile Include="engine\EffectContainer.cpp">
       <Filter>engine</Filter>
     </ClCompile>
+    <ClCompile Include="engine\GradientRampEffect.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="common">
@@ -211,6 +214,9 @@
     <ClInclude Include="engine\EffectContainer.h">
       <Filter>engine</Filter>
     </ClInclude>
+    <ClInclude Include="engine\GradientRampEffect.h">
+      <Filter>engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\geo_frag.shader">
@@ -295,6 +301,12 @@
       <Filter>shaders</Filter>
     </None>
     <None Include="shaders\ColorTexture_vert.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\VertexColor_frag.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\VertexColor_vert.shader">
       <Filter>shaders</Filter>
     </None>
   </ItemGroup>

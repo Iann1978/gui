@@ -192,6 +192,7 @@
     <ClCompile Include="engine\Cube.cpp" />
     <ClCompile Include="engine\Curve.cpp" />
     <ClCompile Include="engine\EffectContainer.cpp" />
+    <ClCompile Include="engine\GradientRampEffect.cpp" />
     <ClCompile Include="engine\Engine.cpp" />
     <ClCompile Include="engine\FrameBuffer.cpp" />
     <ClCompile Include="engine\Image.cpp" />
@@ -233,6 +234,7 @@
     <ClInclude Include="engine\Cube.h" />
     <ClInclude Include="engine\Curve.h" />
     <ClInclude Include="engine\EffectContainer.h" />
+    <ClInclude Include="engine\GradientRampEffect.h" />
     <ClInclude Include="engine\Engine.h" />
     <ClInclude Include="engine\FrameBuffer.h" />
     <ClInclude Include="engine\Image.h" />
@@ -280,6 +282,8 @@
     <None Include="shaders\Template_vert.shader" />
     <None Include="shaders\Text_frag.shader" />
     <None Include="shaders\Text_vert.shader" />
+    <None Include="shaders\VertexColor_frag.shader" />
+    <None Include="shaders\VertexColor_vert.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="demos\demo002\fake.jpg" />
