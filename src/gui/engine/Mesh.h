@@ -9,7 +9,7 @@ public:
 	GLuint elementbuffer = 0;
 	GLuint elementsize = 0;
 public:
-	
+	Mesh(const Mesh&) = delete;
 	Mesh();
 	Mesh(const int vertexBufferLength, const float* vertexBufferData,  const int uvBufferLength, const float *uvBufferData, const int elementBufferLength, const unsigned short *elementBufferData);
 	~Mesh();
