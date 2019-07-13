@@ -10,6 +10,7 @@
 #include <Engine/Color.h>
 #include <Engine/FrameBuffer.h>
 #include <Engine/EffectContainer.h>
+#include <Engine/GradientRampEffect.h>
 
 
 #include <vector>
@@ -50,6 +51,7 @@ void Region::Render()
 	{
 	case Effect::Fill: RenderFill(); break;
 	case Effect::FadeInEdge: RenderFadeInEdge(); break;
+	case Effect::GradientRamp: RenderGradientRamp(); break;
 	default: printf("Error in Region::Render");
 	}
 }
@@ -179,7 +181,7 @@ void Region::LoadPolygon(std::vector<glm::vec3> polygon)
 	screenHeightID = glGetUniformLocation(program, "screenHeight");
 
 	effectContainer = new EffectContainer(mesh, color);
-
+	gradientRampEffect = new GradientRampEffect(mesh);
 
 ;
 
@@ -206,4 +208,9 @@ void Region::RenderFill()
 void Region::RenderFadeInEdge()
 {
 	effectContainer->Render();
+}
+
+void Region::RenderGradientRamp()
+{
+	gradientRampEffect->Render();
 }

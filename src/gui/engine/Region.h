@@ -6,6 +6,7 @@
 class Mesh;
 class FrameBuffer;
 class EffectContainer;
+class GradientRampEffect;
 class Region : public IRenderable
 {
 public:
@@ -17,9 +18,10 @@ public:
 	enum Effect {
 		Fill,
 		FadeInEdge,
+		GradientRamp,
 	};
 	EffectContainer *effectContainer = nullptr;
-
+	GradientRampEffect *gradientRampEffect = nullptr;
 	Type type;
 	Effect effect = Fill;
 	Mesh *mesh = nullptr;
@@ -50,9 +52,6 @@ public:
 
 	void RenderFill();
 	void RenderFadeInEdge();
-
-	
-
-
+	void RenderGradientRamp();
 };
 
