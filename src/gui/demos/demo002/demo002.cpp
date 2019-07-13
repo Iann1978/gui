@@ -249,11 +249,11 @@ void CreatePolygons(std::list<IRenderable *>& renders)
 
 
 
-	//polygon.clear();
-	//polygon.push_back(glm::vec3(549, 668, 0));
-	//polygon.push_back(glm::vec3(695, 458, 0));
-	//polygon.push_back(glm::vec3(402, 458, 0));
-	//renders.push_back(new Region(polygon, glm::vec4(0.30, 0.75, 0.98, 0.4), Region::Effect::Fill));
+	polygon.clear();
+	polygon.push_back(glm::vec3(549, 668, 0));
+	polygon.push_back(glm::vec3(695, 458, 0));
+	polygon.push_back(glm::vec3(402, 458, 0));
+	renders.push_back(new Region(polygon, glm::vec4(0.30, 0.75, 0.98, 0.4), Region::Effect::GradientRamp));
 }
 
 
