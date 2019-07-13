@@ -120,7 +120,7 @@ public:
 };
 
 Background::Background()
-	: Image("images/fake002.dds", 0, 0, Screen::width, Screen::height, glm::vec4(1, 1, 1, 0.4)) {}
+	: Image("images/fake002.dds", 0, 0, Screen::width/2, Screen::height, glm::vec4(1, 1, 1, 0.4)) {}
 void Background::Update()
 {
 	if (Input::GetKeyDown(Input::KeyCode::KeyQ))
@@ -224,7 +224,7 @@ void CreatePolygons(std::list<IRenderable *>& renders)
 
 int main(void)
 {
-	Engine engine(1100,1100);
+	Engine engine(2200,1100);
 
 	//Image *image = new Image("images/fake002.dds", 0, 0, Screen::width, Screen::height,glm::vec4(1,1,1,0.4));
 	engine.uilist.push_back(new Background());

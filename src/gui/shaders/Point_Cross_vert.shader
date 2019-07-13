@@ -14,7 +14,7 @@ void main() {
 	float y = input_VertexPosition.y;
 	float xx = x/screenWidth*2 - 1;
 	float yy = 1-y/screenHeight*2;
-	gl_Position = vec4(xx,yy,0,1);
+	gl_Position = vec4(input_VertexPosition,1);
 	//gl_Position = vec4(input_VertexPosition, 1);
 
 }
