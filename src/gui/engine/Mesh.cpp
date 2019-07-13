@@ -22,16 +22,28 @@ Mesh::Mesh()
 {
 
 }
-Mesh::Mesh(const int vertexBufferLength, const float* vertexBufferData, const int uvBufferLength, const float *uvBufferData, const int elementBufferLength, const unsigned short *elementBufferData)
+Mesh::Mesh(const int vertexBufferLength, const float* vertexBufferData,
+	const int uvBufferLength, const float *uvBufferData, 
+	const int colorBufferLength, const float *colorBufferData,
+	const int elementBufferLength, const unsigned short *elementBufferData)
 {
 	glGenBuffers(1, &vertexbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
 	glBufferData(GL_ARRAY_BUFFER, vertexBufferLength * sizeof(float), vertexBufferData, GL_STATIC_DRAW);
 
+	if (uvBufferData)
+	{
+		glGenBuffers(1, &uvbuffer);
+		glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
+		glBufferData(GL_ARRAY_BUFFER, uvBufferLength * sizeof(float), uvBufferData, GL_STATIC_DRAW);
+	}
 
-	glGenBuffers(1, &uvbuffer);
-	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
-	glBufferData(GL_ARRAY_BUFFER, uvBufferLength * sizeof(float), uvBufferData, GL_STATIC_DRAW);
+	if (colorBufferData)
+	{
+		glGenBuffers(1, &colorbuffer);
+		glBindBuffer(GL_ARRAY_BUFFER, colorbuffer);
+		glBufferData(GL_ARRAY_BUFFER, colorBufferLength * sizeof(float), colorBufferData, GL_STATIC_DRAW);
+	}
 
 	glGenBuffers(1, &elementbuffer);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
@@ -52,7 +64,10 @@ Mesh *Mesh::quad3 = nullptr;
 void Mesh::LoadPredefinedMeshes()
 {
 	
-	quad2 = new Mesh(12, quad2_vertexBufferData, 8, quad2_uvBufferData, 6, quad2_elementBufferData);
+	quad2 = new Mesh(12, quad2_vertexBufferData,
+		8, quad2_uvBufferData, 
+		0, nullptr,
+		6, quad2_elementBufferData);
 	quad3 = CreateMesh(glm::vec4(-1, -1, 2, 2));
 }
 
@@ -70,7 +85,10 @@ Mesh *Mesh::CreateMesh(glm::vec4 rect)
 		x,		y + h,	0.0f,
 	};
 
-	return new Mesh(12, vertexBufferData, 8, quad2_uvBufferData, 6, quad2_elementBufferData);
+	return new Mesh(12, vertexBufferData,
+		8, quad2_uvBufferData,
+		0, nullptr,
+		6, quad2_elementBufferData);
 }
 Mesh *Mesh::CreateGradientMesh(glm::vec4 rect, glm::vec4 color0, glm::vec4 color1)
 {
