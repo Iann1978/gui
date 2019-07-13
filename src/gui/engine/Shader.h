@@ -9,6 +9,7 @@ public:
 	Shader(const char *name, const char *vertexShaderFile, const char *fragmentShaderFile, const char *geometryShaderFile=nullptr);
 	~Shader();
 
+	GLuint GetLocation(const char *valuename);
 public:
 	static Shader *Find(const char *name);
 

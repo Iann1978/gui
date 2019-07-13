@@ -18,6 +18,11 @@ Shader::~Shader()
 	glDeleteProgram(program);
 }
 
+GLuint Shader::GetLocation(const char *valuename)
+{
+	return glGetUniformLocation(program, valuename);
+}
+
 Shader *Shader::Find(const char *name)
 {
 	std::map<std::string, Shader*>::iterator it = shaders.find(name);
