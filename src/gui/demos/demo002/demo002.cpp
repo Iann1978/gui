@@ -203,15 +203,22 @@ Region *CreatePolygon(std::vector<glm::vec3> polygon)
 void CreatePolygons(std::list<IRenderable *>& renders)
 {
 	std::vector<glm::vec3> polygon;
+
+	polygon.clear();
 	polygon.push_back(glm::vec3(512, 751, 0));
 	polygon.push_back(glm::vec3(585, 751, 0));
 	polygon.push_back(glm::vec3(845, 380, 0));
 	polygon.push_back(glm::vec3(824, 344, 0));
 	polygon.push_back(glm::vec3(280, 344, 0));
 	polygon.push_back(glm::vec3(250, 380, 0));
+	renders.push_back(new Region(polygon, glm::vec4(0.30, 0.75, 0.98, 1)));
 
-	Region *region = CreatePolygon(polygon);
-	renders.push_back(region);
+	polygon.clear();
+	polygon.push_back(glm::vec3(159, 507, 0));
+	polygon.push_back(glm::vec3(207, 507, 0));
+	polygon.push_back(glm::vec3(103, 353, 0));
+	polygon.push_back(glm::vec3(103, 372, 0));
+	renders.push_back(new Region(polygon, glm::vec4(0.30, 0.75, 0.98, 1), Region::Effect::Fill));
 }
 
 

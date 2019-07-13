@@ -21,19 +21,19 @@ extern "C"
 
 
 
-Region::Region(glm::vec4 rect, glm::vec4 color)
+Region::Region(glm::vec4 rect, glm::vec4 color, Effect effect)
 {
 	this->type = Rect;
-	this->effect = Fill;
+	this->effect = effect;
 	this->rect = rect;
 	this->color = color;
 	LoadRect(rect, color);
 }
 
-Region::Region(std::vector<glm::vec3> polygon, glm::vec4 color)
+Region::Region(std::vector<glm::vec3> polygon, glm::vec4 color, Effect effect)
 {
 	this->type = Polygon;
-	this->effect = FadeInEdge;
+	this->effect = effect;
 	this->color = color;
 	LoadPolygon(polygon);
 }
@@ -46,10 +46,10 @@ Region::~Region()
 
 void Region::Render()
 {
-	switch (type)
+	switch (effect)
 	{
-	case Rect: RenderRect(); break;
-	case Polygon: RenderPolygon(); break;
+	case Effect::Fill: RenderFill(); break;
+	case Effect::FadeInEdge: RenderFadeInEdge(); break;
 	default: printf("Error in Region::Render");
 	}
 }
@@ -73,24 +73,11 @@ void Region::LoadRect(glm::vec4 rect, glm::vec4 color)
 
 
 	mesh = Mesh::CreateMesh(rect);
+
+	effectContainer = new EffectContainer(mesh, color);
 }
 
-void Region::RenderRect()
-{
-	glUseProgram(program);
 
-	glUniform4fv(mainColorId, 1, &color.x);
-	glUniform1f(screenWidthID, Screen::width);
-	glUniform1f(screenHeightID, Screen::height);
-
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glDisable(GL_DEPTH_TEST);
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
-	Mesh::RenderMesh(mesh);
-}
 
 void Region::LoadPolygon(std::vector<glm::vec3> polygon)
 {
@@ -184,16 +171,39 @@ void Region::LoadPolygon(std::vector<glm::vec3> polygon)
 	delete vertexBufferData;
 
 
+	Shader *shader = Shader::Find("Region");
+	program = shader->program;
 
+	mainColorId = glGetUniformLocation(program, "mainColor");
+	screenWidthID = glGetUniformLocation(program, "screenWidth");
+	screenHeightID = glGetUniformLocation(program, "screenHeight");
 
 	effectContainer = new EffectContainer(mesh, color);
+
 
 ;
 
 }
-void Region::RenderPolygon()
+
+
+void Region::RenderFill()
+{
+	glUseProgram(program);
+
+	glUniform4fv(mainColorId, 1, &color.x);
+	glUniform1f(screenWidthID, Screen::width);
+	glUniform1f(screenHeightID, Screen::height);
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glDisable(GL_DEPTH_TEST);
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glDisable(GL_STENCIL_TEST);
+
+	Mesh::RenderMesh(mesh);
+}
+void Region::RenderFadeInEdge()
 {
 	effectContainer->Render();
-	return;
-
 }
