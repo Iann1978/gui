@@ -191,6 +191,7 @@
     <ClCompile Include="engine\Color.cpp" />
     <ClCompile Include="engine\Cube.cpp" />
     <ClCompile Include="engine\Curve.cpp" />
+    <ClCompile Include="engine\EffectContainer.cpp" />
     <ClCompile Include="engine\Engine.cpp" />
     <ClCompile Include="engine\FrameBuffer.cpp" />
     <ClCompile Include="engine\Image.cpp" />
@@ -231,6 +232,7 @@
     <ClInclude Include="engine\Color.h" />
     <ClInclude Include="engine\Cube.h" />
     <ClInclude Include="engine\Curve.h" />
+    <ClInclude Include="engine\EffectContainer.h" />
     <ClInclude Include="engine\Engine.h" />
     <ClInclude Include="engine\FrameBuffer.h" />
     <ClInclude Include="engine\Image.h" />

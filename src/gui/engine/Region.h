@@ -5,6 +5,7 @@
 
 class Mesh;
 class FrameBuffer;
+class EffectContainer;
 class Region : public IRenderable
 {
 public:
@@ -17,6 +18,7 @@ public:
 		Fill,
 		FadeInEdge,
 	};
+	EffectContainer *effectContainer;
 
 	Type type;
 	Effect effect = Fill;
@@ -30,10 +32,7 @@ public:
 	glm::vec4 color;
 
 
-	FrameBuffer *framebuffer0;
-	FrameBuffer *framebuffer1;
 
-	bool dirty = true;
 
 
 
@@ -51,35 +50,7 @@ public:
 	void LoadPolygon(std::vector<glm::vec3> polygon);
 	void RenderPolygon();
 
-	// Base pass
-	void LoadBasePass();
-	void RenderBasePass(glm::vec4 color);
-
-	// Mask Pass
-	void RenderMaskPass();
-
-
-	// Template pass
-	GLuint programOfTemplatePass;
-	GLuint baseWidthID;
-	GLuint baseHeightID;
-	GLuint templateWidthID;
-	GLuint templateHeightID;
-	GLuint baseTextureID;
-	GLuint templateTextureID;
-	GLuint templateColorScaleID;
-	GLuint templateTexture;
-	void LoadTemplatePass();
-	void RenderTemplatePass(GLuint texture);
-
-	// Add pass
-	GLuint programOfAddPass;
-	GLuint baseTextureID_inAddPass;
-	GLuint colorID_inAddPass;
-	void LoadAddPass();
-	void RenderAddPass(GLuint texture);
-	// Effect
-
+	
 
 
 };

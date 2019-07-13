@@ -91,6 +91,9 @@
     <ClCompile Include="engine\Mesh.cpp">
       <Filter>engine</Filter>
     </ClCompile>
+    <ClCompile Include="engine\EffectContainer.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="common">
@@ -203,6 +206,9 @@
       <Filter>engine</Filter>
     </ClInclude>
     <ClInclude Include="engine\Mesh.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\EffectContainer.h">
       <Filter>engine</Filter>
     </ClInclude>
   </ItemGroup>
