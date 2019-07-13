@@ -231,7 +231,7 @@ GLuint generateGaussianTemplate()
 	glBindTexture(GL_TEXTURE_2D, textureID);
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 	unsigned char data[] = { 2,2,2,4,4,4,5,5,5,4,4,4,2,2,2,
-		4,4,4,9,9,9,12,12,12,9,9,9,4,4,4,0,
+		4,4,4,9,9,9,12,12,12,9,9,9,4,4,4,
 		5,5,5,12,12,12,15,15,15,12,12,12,5,5,5,
 		4,4,4,9,9,9,12,12,12,9,9,9,4,4,4,
 		2,2,2,4,4,4,5,5,5,4,4,4,2,2,2,
