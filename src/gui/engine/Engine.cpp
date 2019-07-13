@@ -104,6 +104,7 @@ void Engine::LoadAllShaders()
 	shader = new Shader("Region", "shaders/Region_vert.shader", "shaders/Region_frag.shader");
 	shader = new Shader("Template", "shaders/Template_vert.shader", "shaders/Template_frag.shader");
 	shader = new Shader("ColorTexture", "shaders/ColorTexture_vert.shader", "shaders/ColorTexture_frag.shader");
+	shader = new Shader("VertexColor", "shaders/VertexColor_vert.shader", "shaders/VertexColor_frag.shader");
 }
 
 void Engine::ReleaseAllShaders()
@@ -119,6 +120,7 @@ void Engine::ReleaseAllShaders()
 	delete Shader::Find("Region");
 	delete Shader::Find("Template");
 	delete Shader::Find("ColorTexture");
+	delete Shader::Find("VertexColor");
 }
 
 void Engine::Run()
