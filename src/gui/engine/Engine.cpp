@@ -93,7 +93,7 @@ Engine::~Engine()
 
 void Engine::LoadAllShaders()
 {
-	Shader *shader = new Shader("Curve", "shaders/Curve_vert.shader", "shaders/Curve_frag.shader");
+	Shader *shader = new Shader("Curve", "shaders/Curve_vert.shader", "shaders/Curve_frag.shader", "shaders/Curve_geo.shader");
 	shader = new Shader("Image", "shaders/Image_vert.shader", "shaders/Image_frag.shader");
 	shader = new Shader("Text", "shaders/Text_vert.shader", "shaders/Text_frag.shader");
 	shader = new Shader("PostProcess_HBlur", "shaders/PostProcess_HBlur_vert.shader", "shaders/PostProcess_HBlur_frag.shader");

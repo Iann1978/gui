@@ -309,6 +309,9 @@
     <None Include="shaders\VertexColor_vert.shader">
       <Filter>shaders</Filter>
     </None>
+    <None Include="shaders\Curve_geo.shader">
+      <Filter>shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="demos\demo002\fake.jpg">

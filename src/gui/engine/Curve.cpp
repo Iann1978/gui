@@ -26,6 +26,7 @@ void Curve::LoadMaterial()
 	program = shader->program;
 	screenWidthID = glGetUniformLocation(program, "screenWidth");
 	screenHeightID = glGetUniformLocation(program, "screenHeight");
+	widthID = glGetUniformLocation(program, "width");
 }
 
 Curve::Curve(int pointNumber, float *vertexBufferData, float *colorBufferData)
@@ -34,8 +35,9 @@ Curve::Curve(int pointNumber, float *vertexBufferData, float *colorBufferData)
 	LoadMesh(pointNumber, vertexBufferData, colorBufferData);
 }
 
-Curve::Curve(std::vector<glm::vec3> curve, glm::vec3 color)
+Curve::Curve(std::vector<glm::vec3> curve, glm::vec3 color, float width)
 {
+	this->width = width;
 	std::vector<glm::vec3> colorarray(curve.size(), color);
 	LoadMaterial();
 	LoadMesh(curve.size(), &curve[0].x, &colorarray[0].x);
@@ -55,6 +57,7 @@ void Curve::Render()
 
 	glUniform1f(screenWidthID, Screen::width);
 	glUniform1f(screenHeightID, Screen::height);
+	glUniform1f(widthID, width);
 	
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);

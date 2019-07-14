@@ -256,21 +256,35 @@ void CreatePolygons(std::list<IRenderable *>& renders)
 	renders.push_back(new Region(polygon, glm::vec4(0.30, 0.75, 0.98, 0.4), Region::Effect::GradientRamp));
 
 
-	std::vector<glm::vec3> curve;
 
-	curve.clear();
-	curve.push_back(glm::vec3(463, 847, 0));
-	curve.push_back(glm::vec3(638, 847, 0));
-	curve.push_back(glm::vec3(960, 381, 0));
-	curve.push_back(glm::vec3(864, 250, 0));
-	curve.push_back(glm::vec3(229, 250, 0));
-	curve.push_back(glm::vec3(143, 381, 0));
-	curve.push_back(glm::vec3(463, 847, 0));
-	renders.push_back(new Curve(curve, glm::vec3(0.30, 0.75, 0.98)));
 }
 
 
+void CreateCurves(std::list<IRenderable *>& renders)
+{
+	std::vector<glm::vec3> curve;
 
+	curve.clear();
+	curve.push_back(glm::vec3(466, 845, 0));
+	curve.push_back(glm::vec3(635, 845, 0));
+	curve.push_back(glm::vec3(957, 378, 0));
+	curve.push_back(glm::vec3(870, 250, 0));
+	curve.push_back(glm::vec3(229, 250, 0));
+	curve.push_back(glm::vec3(140, 378, 0));
+	curve.push_back(glm::vec3(466, 845, 0));
+	renders.push_back(new Curve(curve, glm::vec3(0.30, 0.75, 0.98)));
+
+
+	curve.clear();
+	curve.push_back(glm::vec3(476, 835, 0));
+	curve.push_back(glm::vec3(625, 835, 0));
+	curve.push_back(glm::vec3(944, 378, 0));
+	curve.push_back(glm::vec3(860, 260, 0));
+	curve.push_back(glm::vec3(238, 260, 0));
+	curve.push_back(glm::vec3(154, 378, 0));
+	curve.push_back(glm::vec3(476, 835, 0));
+	renders.push_back(new Curve(curve, glm::vec3(0.30, 0.75, 0.98),5));
+}
 
 int main(void)
 {
@@ -282,6 +296,7 @@ int main(void)
 	CreateBackPoints(engine.uilist);
 	CreateBackgroundRects(engine.uilist);
 	CreatePolygons(engine.uilist);
+	CreateCurves(engine.uilist);
 
 
 
