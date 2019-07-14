@@ -262,28 +262,50 @@ void CreatePolygons(std::list<IRenderable *>& renders)
 
 void CreateCurves(std::list<IRenderable *>& renders)
 {
-	std::vector<glm::vec3> curve;
+	std::vector<glm::vec3> points;
+	std::vector<glm::vec4> colors;
 
-	curve.clear();
-	curve.push_back(glm::vec3(466, 845, 0));
-	curve.push_back(glm::vec3(635, 845, 0));
-	curve.push_back(glm::vec3(957, 378, 0));
-	curve.push_back(glm::vec3(870, 250, 0));
-	curve.push_back(glm::vec3(229, 250, 0));
-	curve.push_back(glm::vec3(140, 378, 0));
-	curve.push_back(glm::vec3(466, 845, 0));
-	renders.push_back(new Curve(curve, glm::vec3(0.30, 0.75, 0.98)));
+	points.clear();
+	points.push_back(glm::vec3(466, 845, 0));
+	points.push_back(glm::vec3(635, 845, 0));
+	points.push_back(glm::vec3(957, 378, 0));
+	points.push_back(glm::vec3(870, 250, 0));
+	points.push_back(glm::vec3(229, 250, 0));
+	points.push_back(glm::vec3(140, 378, 0));
+	points.push_back(glm::vec3(466, 845, 0));
+	renders.push_back(new Curve(points, glm::vec4(0.30, 0.75, 0.98, 1.0)));
 
 
-	curve.clear();
-	curve.push_back(glm::vec3(476, 835, 0));
-	curve.push_back(glm::vec3(625, 835, 0));
-	curve.push_back(glm::vec3(944, 378, 0));
-	curve.push_back(glm::vec3(860, 260, 0));
-	curve.push_back(glm::vec3(238, 260, 0));
-	curve.push_back(glm::vec3(154, 378, 0));
-	curve.push_back(glm::vec3(476, 835, 0));
-	renders.push_back(new Curve(curve, glm::vec3(0.30, 0.75, 0.98),5));
+	points.clear();
+	points.push_back(glm::vec3(476, 835, 0));
+	points.push_back(glm::vec3(625, 835, 0));
+	points.push_back(glm::vec3(944, 378, 0));
+	points.push_back(glm::vec3(860, 260, 0));
+	points.push_back(glm::vec3(238, 260, 0));
+	points.push_back(glm::vec3(154, 378, 0));
+	points.push_back(glm::vec3(476, 835, 0));
+	renders.push_back(new Curve(points, glm::vec4(0.30, 0.75, 0.98,1.0),5));
+
+	points.clear();
+	points.push_back(glm::vec3(361, 161, 0));
+	points.push_back(glm::vec3(361, 95, 0));
+	renders.push_back(new Curve(points, glm::vec4(0.30, 0.75, 0.78,1.0), 12));
+
+	int heights[] = { 25,40,35,30,60,25,70,30 };
+	int intevalX = 20;
+	for (int i = 0; i < 8; i++)
+	{
+		int h = heights[i];
+		points.clear();
+		points.push_back(glm::vec3(382+ intevalX*i, 161, 0));
+		points.push_back(glm::vec3(382+ intevalX*i, 161-h, 0));
+		colors.clear();
+		colors.push_back(glm::vec4(0.30, 0.75, 0.78, 1.0));
+		colors.push_back(glm::vec4(0.30, 0.75, 0.78, 0.0));
+		renders.push_back(new Curve(points, colors, 15));
+	}
+
+
 }
 
 int main(void)

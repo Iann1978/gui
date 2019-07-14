@@ -16,7 +16,8 @@ class Curve : public IRenderable
 
 public:
 	Curve(int pointNumber, float *vertexBufferData, float *colorBufferData);
-	Curve(std::vector<glm::vec3> curve, glm::vec3 color, float width = 1);
+	Curve(std::vector<glm::vec3> points, glm::vec4 color, float width = 1);
+	Curve(std::vector<glm::vec3> points, std::vector<glm::vec4> colors, float width = 1);
 	~Curve();
 
 	void Update();

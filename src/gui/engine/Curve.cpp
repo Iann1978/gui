@@ -18,7 +18,7 @@ void Curve::LoadMesh(int pointNumber, float *vertexBufferData, float *colorBuffe
 	glBufferData(GL_ARRAY_BUFFER, pointNumber * sizeof(float) * 3, vertexBufferData, GL_STATIC_DRAW);
 	glGenBuffers(1, &colorbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, colorbuffer);
-	glBufferData(GL_ARRAY_BUFFER, pointNumber * sizeof(float) * 3, colorBufferData, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, pointNumber * sizeof(float) * 4, colorBufferData, GL_STATIC_DRAW);
 }
 void Curve::LoadMaterial()
 {
@@ -35,12 +35,19 @@ Curve::Curve(int pointNumber, float *vertexBufferData, float *colorBufferData)
 	LoadMesh(pointNumber, vertexBufferData, colorBufferData);
 }
 
-Curve::Curve(std::vector<glm::vec3> curve, glm::vec3 color, float width)
+Curve::Curve(std::vector<glm::vec3> points, glm::vec4 color, float width)
 {
 	this->width = width;
-	std::vector<glm::vec3> colorarray(curve.size(), color);
+	std::vector<glm::vec4> colors(points.size(), color);
 	LoadMaterial();
-	LoadMesh(curve.size(), &curve[0].x, &colorarray[0].x);
+	LoadMesh(points.size(), &points[0].x, &colors[0].x);
+}
+
+Curve::Curve(std::vector<glm::vec3> points, std::vector<glm::vec4> colors, float width)
+{
+	this->width = width;
+	LoadMaterial();
+	LoadMesh(points.size(), &points[0].x, &colors[0].x);
 }
 
 Curve::~Curve()
@@ -75,7 +82,7 @@ void Curve::Render()
 	glBindBuffer(GL_ARRAY_BUFFER, colorbuffer);
 	glVertexAttribPointer(
 		1,                                // attribute. No particular reason for 1, but must match the layout in the shader.
-		3,                                // size : U+V => 2
+		4,                                // size : U+V => 2
 		GL_FLOAT,                         // type
 		GL_FALSE,                         // normalized?
 		0,                                // stride

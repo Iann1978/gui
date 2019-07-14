@@ -2,8 +2,8 @@
 
 layout(lines) in;
 layout(triangle_strip, max_vertices = 4) out;
-out vec3 VertexColor;
-in vec3 vColor[];
+out vec4 VertexColor;
+in vec4 vColor[];
 
 uniform float screenWidth;
 uniform float screenHeight;
@@ -24,7 +24,6 @@ void main()
 	vec4 p1 = gl_in[0].gl_Position;
 	vec4 p2 = gl_in[1].gl_Position;
 	
-	VertexColor = vColor[0];
 	vec2 dir = normalize(p2.xy - p1.xy);
 	vec2 normal = vec2(dir.y, -dir.x);
 
@@ -38,9 +37,23 @@ void main()
 	coords[2] = p2 + offset2;
 	coords[3] = p2 - offset2;
 
-	for (int i = 0; i < 4; ++i) {
-		gl_Position = transfer(coords[i]);
-		EmitVertex();
-	}
+	
+
+	VertexColor = vColor[0];
+	gl_Position = transfer(coords[0]);
+	EmitVertex();
+
+	VertexColor = vColor[0];
+	gl_Position = transfer(coords[1]);
+	EmitVertex();
+
+	VertexColor = vColor[1];
+	gl_Position = transfer(coords[2]);
+	EmitVertex();
+
+	VertexColor = vColor[1];
+	gl_Position = transfer(coords[3]);
+	EmitVertex();
+	
 	EndPrimitive();
 }
