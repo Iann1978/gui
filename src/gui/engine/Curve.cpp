@@ -10,29 +10,36 @@
 
 
 	
-
-
-Curve::Curve(int pointNumber, float *vertexBufferData, float *colorBufferData)
+void Curve::LoadMesh(int pointNumber, float *vertexBufferData, float *colorBufferData)
 {
-
 	this->pointNumber = pointNumber;
-	//shader = LoadShaders("shaders/Curve_vert.shader", "shaders/Curve_frag.shader");
-	Shader *shader = Shader::Find("Curve");
-	program = shader->program;
-
-	screenWidthID = glGetUniformLocation(program, "screenWidth");
-	screenHeightID = glGetUniformLocation(program, "screenHeight");
-	
 	glGenBuffers(1, &vertexbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
 	glBufferData(GL_ARRAY_BUFFER, pointNumber * sizeof(float) * 3, vertexBufferData, GL_STATIC_DRAW);
-
-
 	glGenBuffers(1, &colorbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, colorbuffer);
 	glBufferData(GL_ARRAY_BUFFER, pointNumber * sizeof(float) * 3, colorBufferData, GL_STATIC_DRAW);
 }
+void Curve::LoadMaterial()
+{
+	Shader *shader = Shader::Find("Curve");
+	program = shader->program;
+	screenWidthID = glGetUniformLocation(program, "screenWidth");
+	screenHeightID = glGetUniformLocation(program, "screenHeight");
+}
 
+Curve::Curve(int pointNumber, float *vertexBufferData, float *colorBufferData)
+{	
+	LoadMaterial();
+	LoadMesh(pointNumber, vertexBufferData, colorBufferData);
+}
+
+Curve::Curve(std::vector<glm::vec3> curve, glm::vec3 color)
+{
+	std::vector<glm::vec3> colorarray(curve.size(), color);
+	LoadMaterial();
+	LoadMesh(curve.size(), &curve[0].x, &colorarray[0].x);
+}
 
 Curve::~Curve()
 {
@@ -72,11 +79,18 @@ void Curve::Render()
 		(void*)0                          // array buffer offset
 	);
 
+	glDisable(GL_DEPTH_TEST);
+
+	glDisable(GL_STENCIL_TEST);
+
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glDisable(GL_DEPTH_TEST);
-	glLineWidth(7.0f);
-	glEnable(GL_LINE_WIDTH);
+	
+	glLineWidth(5);
+	glEnable(GL_LINE_SMOOTH);
+
+	GLfloat lineWidthRange[2] = { 0.0f, 0.0f };
+	glGetFloatv(GL_ALIASED_LINE_WIDTH_RANGE, lineWidthRange);
 
 	// Draw the triangle !
 	glDrawArrays(GL_LINE_STRIP, 0, pointNumber); // 12*3 indices starting at 0 -> 12 triangles

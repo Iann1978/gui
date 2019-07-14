@@ -254,7 +254,22 @@ void CreatePolygons(std::list<IRenderable *>& renders)
 	polygon.push_back(glm::vec3(695, 458, 0));
 	polygon.push_back(glm::vec3(402, 458, 0));
 	renders.push_back(new Region(polygon, glm::vec4(0.30, 0.75, 0.98, 0.4), Region::Effect::GradientRamp));
+
+
+	std::vector<glm::vec3> curve;
+
+	curve.clear();
+	curve.push_back(glm::vec3(463, 847, 0));
+	curve.push_back(glm::vec3(638, 847, 0));
+	curve.push_back(glm::vec3(960, 381, 0));
+	curve.push_back(glm::vec3(864, 250, 0));
+	curve.push_back(glm::vec3(229, 250, 0));
+	curve.push_back(glm::vec3(143, 381, 0));
+	curve.push_back(glm::vec3(463, 847, 0));
+	renders.push_back(new Curve(curve, glm::vec3(0.30, 0.75, 0.98)));
 }
+
+
 
 
 int main(void)
@@ -267,6 +282,7 @@ int main(void)
 	CreateBackPoints(engine.uilist);
 	CreateBackgroundRects(engine.uilist);
 	CreatePolygons(engine.uilist);
+
 
 
 	engine.uilist.push_back(new ShowMousePosition());
