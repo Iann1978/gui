@@ -14,6 +14,7 @@
 #include <Engine/Cube.h>
 #include <Engine/Curve.h>
 #include <Engine/Point.h>
+#include <Engine/Circle.h>
 #include <Engine/Region.h>
 #include <Engine/Engine.h>
 
@@ -308,6 +309,37 @@ void CreateCurves(std::list<IRenderable *>& renders)
 
 }
 
+void CreatePanel0(std::list<IRenderable *>& renders)
+{
+	std::vector<glm::vec3> points;
+	std::vector<glm::vec4> colors;
+
+	points.clear();
+	points.push_back(glm::vec3(985, 109, 0));
+	points.push_back(glm::vec3(985, 133, 0));
+	points.push_back(glm::vec3(1022, 133, 0));
+	points.push_back(glm::vec3(1022, 109, 0));
+	renders.push_back(new Curve(points, glm::vec4(0.30, 0.75, 0.78, 1.0), 1.8));
+
+	points.clear();
+	points.push_back(glm::vec3(737, 294, 0));
+	points.push_back(glm::vec3(747, 316, 0));
+	points.push_back(glm::vec3(839, 315, 0));
+	points.push_back(glm::vec3(953, 152, 0));
+	points.push_back(glm::vec3(1020, 152, 0));
+	renders.push_back(new Curve(points, glm::vec4(0.30, 0.75, 0.78, 1.0), 1.8));
+
+
+	float pi = 3.14159265358;
+	renders.push_back(new Circle(glm::vec3(990, 291, 0), glm::vec3(0.30, 0.75, 0.78), 15, 105 * pi / 180, 255 * pi / 180));
+	renders.push_back(new Circle(glm::vec3(990, 291, 0), glm::vec3(0.30, 0.75, 0.78), 15, 285 * pi / 180, 435 * pi / 180));
+	renders.push_back(new Circle(glm::vec3(990, 291, 0), glm::vec3(0.30, 0.75, 0.78), 20, 15 * pi / 180, 165 * pi / 180));
+	renders.push_back(new Circle(glm::vec3(990, 291, 0), glm::vec3(0.30, 0.75, 0.78), 20, 195 * pi / 180, 345 * pi / 180));
+
+
+
+}
+
 int main(void)
 {
 	Engine engine(2200,1100);
@@ -319,7 +351,7 @@ int main(void)
 	CreateBackgroundRects(engine.uilist);
 	CreatePolygons(engine.uilist);
 	CreateCurves(engine.uilist);
-
+	CreatePanel0(engine.uilist);
 
 
 	engine.uilist.push_back(new ShowMousePosition());

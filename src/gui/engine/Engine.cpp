@@ -105,6 +105,7 @@ void Engine::LoadAllShaders()
 	shader = new Shader("Template", "shaders/Template_vert.shader", "shaders/Template_frag.shader");
 	shader = new Shader("ColorTexture", "shaders/ColorTexture_vert.shader", "shaders/ColorTexture_frag.shader");
 	shader = new Shader("VertexColor", "shaders/VertexColor_vert.shader", "shaders/VertexColor_frag.shader");
+	shader = new Shader("Circle", "shaders/Circle_vert.shader", "shaders/Circle_frag.shader", "shaders/Circle_geo.shader");
 }
 
 void Engine::ReleaseAllShaders()
@@ -121,6 +122,7 @@ void Engine::ReleaseAllShaders()
 	delete Shader::Find("Template");
 	delete Shader::Find("ColorTexture");
 	delete Shader::Find("VertexColor");
+	delete Shader::Find("Circle");
 }
 
 void Engine::Run()

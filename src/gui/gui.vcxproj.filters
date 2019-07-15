@@ -97,6 +97,9 @@
     <ClCompile Include="engine\GradientRampEffect.cpp">
       <Filter>engine</Filter>
     </ClCompile>
+    <ClCompile Include="engine\Circle.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="common">
@@ -217,6 +220,9 @@
     <ClInclude Include="engine\GradientRampEffect.h">
       <Filter>engine</Filter>
     </ClInclude>
+    <ClInclude Include="engine\Circle.h">
+      <Filter>engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\geo_frag.shader">
@@ -310,6 +316,15 @@
       <Filter>shaders</Filter>
     </None>
     <None Include="shaders\Curve_geo.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\Circle_frag.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\Circle_geo.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\Circle_vert.shader">
       <Filter>shaders</Filter>
     </None>
   </ItemGroup>
