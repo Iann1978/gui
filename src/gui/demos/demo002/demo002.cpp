@@ -19,7 +19,9 @@
 #include <Engine/Engine.h>
 
 
+#include <demos/demo002/ProcessBar.h>
 #include <StatusBar.h>
+
 
 
 
@@ -329,6 +331,39 @@ void CreatePanel0(std::list<IRenderable *>& renders)
 	points.push_back(glm::vec3(1020, 152, 0));
 	renders.push_back(new Curve(points, glm::vec4(0.30, 0.75, 0.78, 1.0), 1.8));
 
+	points.clear();
+	points.push_back(glm::vec3(991, 129, 0));
+	points.push_back(glm::vec3(991, 120, 0));
+	renders.push_back(new Curve(points, glm::vec4(0.30, 0.75, 0.78, 1.0), 1.8));
+
+	points.clear();
+	points.push_back(glm::vec3(995, 121, 0));
+	points.push_back(glm::vec3(1002, 121, 0));
+	renders.push_back(new Curve(points, glm::vec4(0.30, 0.75, 0.78, 1.0), 1.8));
+
+	points.clear();
+	points.push_back(glm::vec3(995, 127, 0));
+	points.push_back(glm::vec3(1002, 127, 0));
+	renders.push_back(new Curve(points, glm::vec4(0.30, 0.75, 0.78, 1.0), 1.8));
+
+
+	points.clear();
+	points.push_back(glm::vec3(958, 196, 0));
+	points.push_back(glm::vec3(958, 220, 0));
+	points.push_back(glm::vec3(981, 220, 0));
+	points.push_back(glm::vec3(981, 196, 0));
+	renders.push_back(new Curve(points, glm::vec4(0.30, 0.75, 0.78, 1.0), 1.8));
+
+	points.clear();
+	points.push_back(glm::vec3(945, 195, 0));
+	points.push_back(glm::vec3(950, 195, 0));
+	renders.push_back(new Curve(points, glm::vec4(0.30, 0.75, 0.78, 1.0), 1.8));
+
+	points.clear();
+	points.push_back(glm::vec3(941, 200, 0));
+	points.push_back(glm::vec3(951, 200, 0));
+	renders.push_back(new Curve(points, glm::vec4(0.30, 0.75, 0.78, 1.0), 1.8));
+
 
 	float pi = 3.14159265358;
 	renders.push_back(new Circle(glm::vec3(990, 291, 0), glm::vec3(0.30, 0.75, 0.78), 15, 105 * pi / 180, 255 * pi / 180));
@@ -337,7 +372,7 @@ void CreatePanel0(std::list<IRenderable *>& renders)
 	renders.push_back(new Circle(glm::vec3(990, 291, 0), glm::vec3(0.30, 0.75, 0.78), 20, 195 * pi / 180, 345 * pi / 180));
 
 
-
+	renders.push_back(new ProcessBar(glm::vec4(991,162,20,6)));
 }
 
 int main(void)

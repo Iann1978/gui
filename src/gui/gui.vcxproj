@@ -187,6 +187,7 @@
     <ClCompile Include="demos\demo002\demo002.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="demos\demo002\ProcessBar.cpp" />
     <ClCompile Include="engine\Camera.cpp" />
     <ClCompile Include="engine\Circle.cpp" />
     <ClCompile Include="engine\Color.cpp" />
@@ -230,6 +231,7 @@
     <ClInclude Include="common\text2D.hpp" />
     <ClInclude Include="common\texture.hpp" />
     <ClInclude Include="common\vboindexer.hpp" />
+    <ClInclude Include="demos\demo002\ProcessBar.h" />
     <ClInclude Include="engine\Camera.h" />
     <ClInclude Include="engine\Circle.h" />
     <ClInclude Include="engine\Color.h" />
