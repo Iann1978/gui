@@ -19,6 +19,9 @@
 #include <Engine/Engine.h>
 
 
+#include <editor/Command.h>
+
+
 #include <demos/demo002/ProcessBar.h>
 #include <StatusBar.h>
 
@@ -379,6 +382,7 @@ int main(void)
 {
 	Engine engine(2200,1100);
 
+	engine.uilist.push_back(new Command(&engine));
 
 	engine.uilist.push_back(new Background());
 	engine.uilist.push_back(new Image("images/fake002.dds", Screen::width / 2, 0, Screen::width / 2, Screen::height, glm::vec4(1, 1, 1, 1)));

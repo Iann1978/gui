@@ -1,6 +1,6 @@
 #pragma once
 #include <Engine/Renderable.h>
-
+#include <Engine/Color.h>
 #include <vector>
 
 class Curve : public IRenderable
@@ -16,7 +16,7 @@ class Curve : public IRenderable
 
 public:
 	Curve(int pointNumber, float *vertexBufferData, float *colorBufferData);
-	Curve(std::vector<glm::vec3> points, glm::vec4 color, float width = 1);
+	Curve(std::vector<glm::vec3> points, glm::vec4 color = Color::white, float width = 1);
 	Curve(std::vector<glm::vec3> points, std::vector<glm::vec4> colors, float width = 1);
 	~Curve();
 

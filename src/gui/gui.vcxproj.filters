@@ -103,6 +103,9 @@
     <ClCompile Include="demos\demo002\ProcessBar.cpp">
       <Filter>demos\demo002</Filter>
     </ClCompile>
+    <ClCompile Include="editor\Command.cpp">
+      <Filter>editor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="common">
@@ -128,6 +131,9 @@
     </Filter>
     <Filter Include="test">
       <UniqueIdentifier>{3581e5b6-e6ac-4edf-a168-276f3782761d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="editor">
+      <UniqueIdentifier>{236d31ee-0e44-485f-9063-dffa803c352b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -228,6 +234,9 @@
     </ClInclude>
     <ClInclude Include="demos\demo002\ProcessBar.h">
       <Filter>demos\demo002</Filter>
+    </ClInclude>
+    <ClInclude Include="editor\Command.h">
+      <Filter>editor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
