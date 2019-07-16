@@ -2,6 +2,10 @@
 #include "prebuild.h"
 
 #include <set>
+#include <fstream>
+#include <iostream>
+#include <filesystem>
+#include <string>
 
 #include <Engine/Renderable.h>
 #include <Engine/Time.h>
@@ -17,9 +21,11 @@
 #include <Engine/Circle.h>
 #include <Engine/Region.h>
 #include <Engine/Engine.h>
+#include <Engine/Serializer/CurveSerializer.h>
 
 
 #include <editor/Command.h>
+
 
 
 #include <demos/demo002/ProcessBar.h>
@@ -313,7 +319,21 @@ void CreateCurves(std::list<IRenderable *>& renders)
 
 
 }
+std::wstring s2ws(const std::string& str)
+{
+	using convert_typeX = std::codecvt_utf8<wchar_t>;
+	std::wstring_convert<convert_typeX, wchar_t> converterX;
 
+	return converterX.from_bytes(str);
+}
+
+std::string ws2s(const std::wstring& wstr)
+{
+	using convert_typeX = std::codecvt_utf8<wchar_t>;
+	std::wstring_convert<convert_typeX, wchar_t> converterX;
+
+	return converterX.to_bytes(wstr);
+}
 void CreatePanel0(std::list<IRenderable *>& renders)
 {
 	std::vector<glm::vec3> points;
@@ -376,6 +396,18 @@ void CreatePanel0(std::list<IRenderable *>& renders)
 
 
 	renders.push_back(new ProcessBar(glm::vec4(991,162,20,6)));
+
+
+	//CurveParameter curveParameter = CurveSerializer::Load("curve");
+	
+	for (auto& p : std::experimental::filesystem::directory_iterator("./demos/demo002/curves"))
+	{
+		std::wstring wstr = p.path();
+		std::string str = ws2s(wstr);
+		CurveParameter curveParameter = CurveSerializer::Load(str.c_str());
+		renders.push_back(new Curve(curveParameter.points, glm::vec4(0.30, 0.75, 0.78, 1.0), 1.8));
+	}
+	//std::experimental::filesystem::cre
 }
 
 int main(void)

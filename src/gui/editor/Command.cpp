@@ -5,6 +5,12 @@
 #include <Engine/Input.h>
 #include <Engine/Curve.h>
 
+#include <Engine/Serializer/CurveSerializer.h>
+
+#include <iostream>
+#include <sstream>
+#include <string>
+
 Command::Command(Engine *engine)
 {
 	this->engine = engine;
@@ -24,6 +30,12 @@ void Command::Update()
 		{
 			engine->uilist.push_back(curve);
 			curve = nullptr;
+			CurveParameter param;
+			param.points = points;
+			static int counter = 0;
+			std::stringstream ss;
+			ss << "./demos/demo002/curves/" << counter++;
+			CurveSerializer::Save(ss.str().c_str(), param);
 		}
 		points.clear();
 	}

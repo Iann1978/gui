@@ -43,7 +43,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -207,6 +207,7 @@
     <ClCompile Include="engine\PostProcess_Blur.cpp" />
     <ClCompile Include="engine\Region.cpp" />
     <ClCompile Include="engine\Screen.cpp" />
+    <ClCompile Include="engine\serializer\CurveSerializer.cpp" />
     <ClCompile Include="engine\Shader.cpp" />
     <ClCompile Include="engine\Text.cpp" />
     <ClCompile Include="engine\Time.cpp" />
@@ -254,6 +255,7 @@
     <ClInclude Include="engine\Region.h" />
     <ClInclude Include="engine\Renderable.h" />
     <ClInclude Include="engine\Screen.h" />
+    <ClInclude Include="engine\serializer\CurveSerializer.h" />
     <ClInclude Include="engine\Shader.h" />
     <ClInclude Include="engine\Text.h" />
     <ClInclude Include="engine\Time.h" />
