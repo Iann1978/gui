@@ -223,6 +223,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\ext\json\json.hpp" />
     <ClInclude Include="..\..\ext\triangle\triangle.h" />
     <ClInclude Include="common\controls.hpp" />
     <ClInclude Include="common\objloader.hpp" />

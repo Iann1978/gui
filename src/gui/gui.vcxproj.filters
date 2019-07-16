@@ -135,6 +135,9 @@
     <Filter Include="editor">
       <UniqueIdentifier>{236d31ee-0e44-485f-9063-dffa803c352b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ext\json">
+      <UniqueIdentifier>{a79b6f15-257b-40c4-87e6-c84965156386}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common\controls.hpp">
@@ -237,6 +240,9 @@
     </ClInclude>
     <ClInclude Include="editor\Command.h">
       <Filter>editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ext\json\json.hpp">
+      <Filter>ext\json</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
