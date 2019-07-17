@@ -3,6 +3,12 @@
 class Mesh
 {
 public:
+	enum Type
+	{
+		Triangles,
+	};
+	Type type;
+public:
 	GLuint vertexbuffer = 0;
 	GLuint uvbuffer = 0;
 	GLuint colorbuffer = 0;
@@ -11,7 +17,7 @@ public:
 public:
 	Mesh(const Mesh&) = delete;
 	Mesh();
-	Mesh(const int vertexBufferLength, const float* vertexBufferData,
+	Mesh(Type type, const int vertexBufferLength, const float* vertexBufferData,
 		const int uvBufferLength, const float *uvBufferData, 
 		const int colorBufferLength, const float *colorBufferData,
 		const int elementBufferLength, const unsigned short *elementBufferData);
@@ -20,6 +26,7 @@ public:
 public:
 	static Mesh *quad2;//rect(0,0,1,1)
 	static Mesh *quad3;//rect(-1,-1,2,2)
+
 	static void LoadPredefinedMeshes();
 	static Mesh *CreateQuad(glm::vec4 rect);
 	static Mesh *CreateGradientMesh(glm::vec4 rect, glm::vec4 color0, glm::vec4 color1);

@@ -168,7 +168,7 @@ void Region::LoadPolygon(std::vector<glm::vec3> polygon)
 	}
 
 
-	mesh = new Mesh(out.numberofpoints * 3, vertexBufferData, 
+	mesh = new Mesh(Mesh::Type::Triangles, out.numberofpoints * 3, vertexBufferData, 
 		0, nullptr,
 		0, nullptr,
 		out.numberoftriangles * 3, elementBufferData);

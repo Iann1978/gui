@@ -22,11 +22,12 @@ Mesh::Mesh()
 {
 
 }
-Mesh::Mesh(const int vertexBufferLength, const float* vertexBufferData,
+Mesh::Mesh(Type type, const int vertexBufferLength, const float* vertexBufferData,
 	const int uvBufferLength, const float *uvBufferData, 
 	const int colorBufferLength, const float *colorBufferData,
 	const int elementBufferLength, const unsigned short *elementBufferData)
 {
+	this->type = type;
 	glGenBuffers(1, &vertexbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
 	glBufferData(GL_ARRAY_BUFFER, vertexBufferLength * sizeof(float), vertexBufferData, GL_STATIC_DRAW);
@@ -81,7 +82,7 @@ Mesh *Mesh::CreateQuad(glm::vec4 rect)
 		x,		y + h,	0.0f,
 	};
 
-	return new Mesh(12, vertexBufferData,
+	return new Mesh(Triangles, 12, vertexBufferData,
 		8, quad2_uvBufferData,
 		0, nullptr,
 		6, quad2_elementBufferData);
