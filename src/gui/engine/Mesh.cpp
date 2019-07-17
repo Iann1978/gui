@@ -62,16 +62,12 @@ Mesh *Mesh::quad2 = nullptr;
 Mesh *Mesh::quad3 = nullptr;
 
 void Mesh::LoadPredefinedMeshes()
-{
-	
-	quad2 = new Mesh(12, quad2_vertexBufferData,
-		8, quad2_uvBufferData, 
-		0, nullptr,
-		6, quad2_elementBufferData);
-	quad3 = CreateMesh(glm::vec4(-1, -1, 2, 2));
+{	
+	quad2 = CreateQuad(glm::vec4(0, 0, 1, 1));
+	quad3 = CreateQuad(glm::vec4(-1, -1, 2, 2));
 }
 
-Mesh *Mesh::CreateMesh(glm::vec4 rect)
+Mesh *Mesh::CreateQuad(glm::vec4 rect)
 {
 	float x = rect.x;
 	float y = rect.y;

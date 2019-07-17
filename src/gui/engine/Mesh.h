@@ -18,14 +18,11 @@ public:
 	~Mesh();
 
 public:
-	//static Mesh quad;
-	static Mesh *quad2;
-	static Mesh *quad3;
+	static Mesh *quad2;//rect(0,0,1,1)
+	static Mesh *quad3;//rect(-1,-1,2,2)
 	static void LoadPredefinedMeshes();
-	//static Mesh *CreateMesh(const int vertexBufferLength, const float* vertexBufferData, const int uvBufferLength, const float *uvBufferData, const int elementBufferLength, const unsigned short *elementBufferData);
-	static Mesh *CreateMesh(glm::vec4 rect);
+	static Mesh *CreateQuad(glm::vec4 rect);
 	static Mesh *CreateGradientMesh(glm::vec4 rect, glm::vec4 color0, glm::vec4 color1);
-	//static Mesh quad0011;
 	static void RenderMesh(Mesh *mesh);
 };
 

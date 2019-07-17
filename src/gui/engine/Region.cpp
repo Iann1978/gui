@@ -74,7 +74,7 @@ void Region::LoadRect(glm::vec4 rect, glm::vec4 color)
 	screenHeightID = glGetUniformLocation(program, "screenHeight");
 
 
-	mesh = Mesh::CreateMesh(rect);
+	mesh = Mesh::CreateQuad(rect);
 
 	effectContainer = new EffectContainer(mesh, color);
 }
