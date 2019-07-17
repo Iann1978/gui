@@ -2,7 +2,7 @@
 #include <Engine/Renderable.h>
 
 
-
+class Mesh;
 class Point : public IRenderable
 {
 public:
@@ -12,9 +12,8 @@ public:
 		Cross,
 	};
 	Type type;
+	Mesh *mesh;
 	GLuint program;
-	GLuint vertexbuffer;
-	GLuint colorbuffer;
 	GLuint screenWidthID;
 	GLuint screenHeightID;
 	GLuint centerColorID;
