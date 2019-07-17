@@ -118,24 +118,10 @@ Mesh *Mesh::CreateGradientMesh(glm::vec4 rect, glm::vec4 color0, glm::vec4 color
 		color1.r, color1.g,color1.b,color1.a,
 	};
 
-	Mesh *mesh = new Mesh();
-
-
-	glGenBuffers(1, &mesh->vertexbuffer);
-	glBindBuffer(GL_ARRAY_BUFFER, mesh->vertexbuffer);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexBufferData), vertexBufferData, GL_STATIC_DRAW);
-
-
-	glGenBuffers(1, &mesh->colorbuffer);
-	glBindBuffer(GL_ARRAY_BUFFER, mesh->colorbuffer);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexColorData), vertexColorData, GL_STATIC_DRAW);
-
-	glGenBuffers(1, &mesh->elementbuffer);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->elementbuffer);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(quad2_elementBufferData), quad2_elementBufferData, GL_STATIC_DRAW);
-	mesh->elementsize = 6;
-
-	return mesh;
+	return new Mesh(Triangles, 12, vertexBufferData,
+		0, nullptr,
+		16, vertexColorData,		
+		6, quad2_elementBufferData);
 }
 
 void RenderTrianglesMesh(Mesh *mesh)
@@ -270,5 +256,7 @@ void Mesh::RenderMesh(Mesh *mesh)
 		RenderTrianglesMesh(mesh);
 	else if (mesh->type == Type::Points)
 		RenderPointsMesh(mesh);
+	else
+		printf("Error in Mesh::RenderMesh().");
 	
 }
