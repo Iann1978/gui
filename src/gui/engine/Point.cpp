@@ -7,6 +7,7 @@
 #include <Engine/Input.h>
 #include <Engine/Screen.h>
 #include <Engine/Mesh.h>
+#include <Engine/Material.h>
 
 
 
@@ -62,10 +63,15 @@ void Point::Update()
 void Point::LoadNormal(glm::vec3 position, glm::vec3 color)
 {
 	Shader *shader = Shader::Find("Curve");
-	program = shader->program;
+	//program = shader->program;
 
-	screenWidthID = glGetUniformLocation(program, "screenWidth");
-	screenHeightID = glGetUniformLocation(program, "screenHeight");
+	//screenWidthID = glGetUniformLocation(program, "screenWidth");
+	//screenHeightID = glGetUniformLocation(program, "screenHeight");
+
+	material = new Material(shader);
+	material->SetFloat("screenWidth", Screen::width);
+	material->SetFloat("screenHeight", Screen::height);
+
 
 	mesh = Mesh::CreatePoint(position, glm::vec4(color.r, color.g, color.b, 1));
 }
@@ -73,10 +79,12 @@ void Point::LoadNormal(glm::vec3 position, glm::vec3 color)
 void Point::RenderNormal()
 {
 
-	glUseProgram(program);
+	//glUseProgram(program);
 
-	glUniform1f(screenWidthID, Screen::width);
-	glUniform1f(screenHeightID, Screen::height);
+	//glUniform1f(screenWidthID, Screen::width);
+	//glUniform1f(screenHeightID, Screen::height);
+
+	material->Use();
 
 
 	glEnable(GL_BLEND);
@@ -91,20 +99,26 @@ void Point::RenderNormal()
 void Point::LoadStar(glm::vec3 position, glm::vec3 color)
 {
 	Shader *shader = Shader::Find("Point_Star");
-	program = shader->program;
+	//program = shader->program;
 
-	screenWidthID = glGetUniformLocation(program, "screenWidth");
-	screenHeightID = glGetUniformLocation(program, "screenHeight");
+	//screenWidthID = glGetUniformLocation(program, "screenWidth");
+	//screenHeightID = glGetUniformLocation(program, "screenHeight");
+
+	material = new Material(shader);
+	material->SetFloat("screenWidth", Screen::width);
+	material->SetFloat("screenHeight", Screen::height);
 
 	mesh = Mesh::CreatePoint(position, glm::vec4(color.r, color.g, color.b, 1));
 }
 void Point::RenderStar()
 {
 
-	glUseProgram(program);
+	//glUseProgram(program);
 
-	glUniform1f(screenWidthID, Screen::width);
-	glUniform1f(screenHeightID, Screen::height);
+	//glUniform1f(screenWidthID, Screen::width);
+	//glUniform1f(screenHeightID, Screen::height);
+
+	material->Use();
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -119,22 +133,28 @@ void Point::LoadCross(glm::vec3 position, glm::vec3 color)
 {
 	this->color = color;
 	Shader *shader = Shader::Find("Point_Cross");
-	program = shader->program;
+	material = new Material(shader);
+	material->SetFloat("screenWidth", Screen::width);
+	material->SetFloat("screenHeight", Screen::height);
+	material->SetVector("centerColor", color);
 
-	screenWidthID = glGetUniformLocation(program, "screenWidth");
-	screenHeightID = glGetUniformLocation(program, "screenHeight");
-	centerColorID = glGetUniformLocation(program, "centerColor");
+	//program = shader->program;
+
+	//screenWidthID = glGetUniformLocation(program, "screenWidth");
+	//screenHeightID = glGetUniformLocation(program, "screenHeight");
+	//centerColorID = glGetUniformLocation(program, "centerColor");
 
 	mesh = Mesh::CreatePoint(position, glm::vec4(color.r, color.g, color.b, 1));
 }
 void Point::RenderCross()
 {
 
-	glUseProgram(program);
+	material->Use();
+	//glUseProgram(program);
 
-	glUniform1f(screenWidthID, Screen::width);
-	glUniform1f(screenHeightID, Screen::height);
-	glUniform3f(centerColorID, color.r, color.g, color.b);
+	//glUniform1f(screenWidthID, Screen::width);
+	//glUniform1f(screenHeightID, Screen::height);
+	//glUniform3f(centerColorID, color.r, color.g, color.b);
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -150,24 +170,34 @@ void Point::LoadPolygon(glm::vec3 position, glm::vec3 color)
 {
 	this->color = color;
 	Shader *shader = Shader::Find("Point_Polygon");
-	program = shader->program;
+	material = new Material(shader);
+	material->SetFloat("screenWidth", Screen::width);
+	material->SetFloat("screenHeight", Screen::height);
+	material->SetVector("centerColor", color);
+	material->SetFloat("angle", angle);
 
-	screenWidthID = glGetUniformLocation(program, "screenWidth");
-	screenHeightID = glGetUniformLocation(program, "screenHeight");
-	centerColorID = glGetUniformLocation(program, "centerColor");
-	angleID = glGetUniformLocation(program, "angle");
+
+	//program = shader->program;
+
+	//screenWidthID = glGetUniformLocation(program, "screenWidth");
+	//screenHeightID = glGetUniformLocation(program, "screenHeight");
+	//centerColorID = glGetUniformLocation(program, "centerColor");
+	//angleID = glGetUniformLocation(program, "angle");
 
 	mesh = Mesh::CreatePoint(position, glm::vec4(color.r, color.g, color.b, 1));
 }
 void Point::RenderPolygon()
 {
 
-	glUseProgram(program);
+	//glUseProgram(program);
 
-	glUniform1f(screenWidthID, Screen::width);
-	glUniform1f(screenHeightID, Screen::height);
-	glUniform3f(centerColorID, color.r, color.g, color.b);
-	glUniform1f(angleID, angle);
+	//glUniform1f(screenWidthID, Screen::width);
+	//glUniform1f(screenHeightID, Screen::height);
+	//glUniform3f(centerColorID, color.r, color.g, color.b);
+	//glUniform1f(angleID, angle);
+
+	material->SetFloat("angle", angle);
+	material->Use();
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

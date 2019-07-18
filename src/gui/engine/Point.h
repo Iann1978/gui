@@ -3,6 +3,7 @@
 
 
 class Mesh;
+class Material;
 class Point : public IRenderable
 {
 public:
@@ -14,11 +15,12 @@ public:
 	};
 	Type type;
 	Mesh *mesh;
-	GLuint program;
-	GLuint screenWidthID;
-	GLuint screenHeightID;
-	GLuint centerColorID;
-	GLuint angleID;
+	Material *material;
+	//GLuint program;
+	//GLuint screenWidthID;
+	//GLuint screenHeightID;
+	//GLuint centerColorID;
+	//GLuint angleID;
 	glm::vec3 position;
 	glm::vec3 color;
 	float angle = 0;
