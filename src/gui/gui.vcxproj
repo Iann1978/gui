@@ -200,6 +200,7 @@
     <ClCompile Include="engine\FrameBuffer.cpp" />
     <ClCompile Include="engine\Image.cpp" />
     <ClCompile Include="engine\Input.cpp" />
+    <ClCompile Include="engine\Material.cpp" />
     <ClCompile Include="engine\Mesh.cpp" />
     <ClCompile Include="engine\Point.cpp" />
     <ClCompile Include="engine\PostProcess.cpp" />
@@ -247,6 +248,7 @@
     <ClInclude Include="engine\FrameBuffer.h" />
     <ClInclude Include="engine\Image.h" />
     <ClInclude Include="engine\Input.h" />
+    <ClInclude Include="engine\Material.h" />
     <ClInclude Include="engine\Mesh.h" />
     <ClInclude Include="engine\Point.h" />
     <ClInclude Include="engine\PostProcess.h" />

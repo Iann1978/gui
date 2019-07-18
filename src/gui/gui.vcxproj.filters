@@ -109,6 +109,9 @@
     <ClCompile Include="engine\serializer\CurveSerializer.cpp">
       <Filter>engine\serializer</Filter>
     </ClCompile>
+    <ClCompile Include="engine\Material.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="common">
@@ -252,6 +255,9 @@
     </ClInclude>
     <ClInclude Include="engine\serializer\CurveSerializer.h">
       <Filter>engine\serializer</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\Material.h">
+      <Filter>engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
