@@ -10,6 +10,7 @@ public:
 		Normal,
 		Star,
 		Cross,
+		Polygon,
 	};
 	Type type;
 	Mesh *mesh;
@@ -35,5 +36,8 @@ public:
 	
 	void LoadCross(glm::vec3 position, glm::vec3 color);
 	void RenderCross();
+
+	void LoadPolygon(glm::vec3 position, glm::vec3 color);
+	void RenderPolygon();
 };
 

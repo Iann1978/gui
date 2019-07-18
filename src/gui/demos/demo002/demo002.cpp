@@ -410,6 +410,11 @@ void CreatePanel0(std::list<IRenderable *>& renders)
 	//std::experimental::filesystem::cre
 }
 
+void CreateTest(std::list<IRenderable *>& renders)
+{
+	renders.push_back(new Point(glm::vec3(353, 982, 0), glm::vec3(0.30, 0.75, 0.78), Point::Type::Polygon));
+}
+
 int main(void)
 {
 	Engine engine(2200,1100);
@@ -423,6 +428,7 @@ int main(void)
 	CreatePolygons(engine.uilist);
 	CreateCurves(engine.uilist);
 	CreatePanel0(engine.uilist);
+	CreateTest(engine.uilist);
 
 
 	engine.uilist.push_back(new ShowMousePosition());
