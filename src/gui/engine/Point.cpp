@@ -38,6 +38,12 @@ Point::~Point()
 		delete mesh;
 		mesh = nullptr;
 	}
+
+	if (material)
+	{
+		delete material;
+		material = nullptr;
+	}
 }
 
 void Point::Render()
