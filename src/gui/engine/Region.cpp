@@ -44,6 +44,11 @@ Region::Region(std::vector<glm::vec3> polygon, glm::vec4 color, Effect effect)
 Region::~Region()
 {
 	//glDeleteBuffers(1, &vertexbuffer);
+	if (material)
+	{
+		delete material;
+		material = nullptr;
+	}
 }
 
 void Region::Render()
