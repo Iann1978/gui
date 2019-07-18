@@ -8,6 +8,7 @@ public:
 
 	std::map<std::string, float> floatValues;
 	std::map<std::string, glm::vec3> vec3Values;
+	std::map<std::string, glm::vec4> vec4Values;
 	
 	
 public:
@@ -17,6 +18,7 @@ public:
 public:
 	void SetFloat(const char *name, const float value);
 	void SetVector(const char *name, const glm::vec3 value);
+	void SetVector(const char *name, const glm::vec4 value);
 	void Use();
 };
 

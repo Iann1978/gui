@@ -27,6 +27,10 @@ void Material::SetVector(const char *name, const glm::vec3 value)
 {
 	vec3Values[name] = value;
 }
+void Material::SetVector(const char *name, const glm::vec4 value)
+{
+	vec4Values[name] = value;
+}
 void Material::Use()
 {
 	glUseProgram(shader->program);
@@ -40,5 +44,11 @@ void Material::Use()
 	{
 		GLuint id = glGetUniformLocation(shader->program, i.first.c_str());
 		glUniform3f(id, i.second.x, i.second.y, i.second.z);
+	}
+
+	for (auto i : vec4Values)
+	{
+		GLuint id = glGetUniformLocation(shader->program, i.first.c_str());
+		glUniform4f(id, i.second.x, i.second.y, i.second.z, i.second.w);
 	}
 }
