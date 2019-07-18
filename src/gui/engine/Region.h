@@ -7,6 +7,8 @@ class Mesh;
 class FrameBuffer;
 class EffectContainer;
 class GradientRampEffect;
+class Material;
+
 class Region : public IRenderable
 {
 public:
@@ -25,10 +27,11 @@ public:
 	Type type;
 	Effect effect = Fill;
 	Mesh *mesh = nullptr;
-	GLuint program;
-	GLuint mainColorId;
-	GLuint screenWidthID;
-	GLuint screenHeightID;
+	Material *material = nullptr;
+	//GLuint program;
+	//GLuint mainColorId;
+	//GLuint screenWidthID;
+	//GLuint screenHeightID;
 
 	glm::vec4 rect;
 	glm::vec4 color;

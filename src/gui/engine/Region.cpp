@@ -11,6 +11,7 @@
 #include <Engine/FrameBuffer.h>
 #include <Engine/EffectContainer.h>
 #include <Engine/GradientRampEffect.h>
+#include <Engine/Material.h>
 
 
 #include <vector>
@@ -67,11 +68,14 @@ void Region::LoadRect(glm::vec4 rect, glm::vec4 color)
 	this->rect = rect;
 	this->color = color;
 	Shader *shader = Shader::Find("Region");
-	program = shader->program;
+	material = new Material(shader);
+	material->SetVector("mainColor", color);
+	material->SetFloat("screenWidth", Screen::width);
+	material->SetFloat("screenHeight", Screen::height);
 
-	mainColorId = glGetUniformLocation(program, "mainColor");
-	screenWidthID = glGetUniformLocation(program, "screenWidth");
-	screenHeightID = glGetUniformLocation(program, "screenHeight");
+	//mainColorId = glGetUniformLocation(program, "mainColor");
+	//screenWidthID = glGetUniformLocation(program, "screenWidth");
+	//screenHeightID = glGetUniformLocation(program, "screenHeight");
 
 
 	mesh = Mesh::CreateQuad(rect);
@@ -177,11 +181,16 @@ void Region::LoadPolygon(std::vector<glm::vec3> polygon)
 
 
 	Shader *shader = Shader::Find("Region");
-	program = shader->program;
+	material = new Material(shader);
+	material->SetVector("mainColor", color);
+	material->SetFloat("screenWidth", Screen::width);
+	material->SetFloat("screenHeight", Screen::height);
 
-	mainColorId = glGetUniformLocation(program, "mainColor");
-	screenWidthID = glGetUniformLocation(program, "screenWidth");
-	screenHeightID = glGetUniformLocation(program, "screenHeight");
+	//program = shader->program;
+
+	//mainColorId = glGetUniformLocation(program, "mainColor");
+	//screenWidthID = glGetUniformLocation(program, "screenWidth");
+	//screenHeightID = glGetUniformLocation(program, "screenHeight");
 
 	effectContainer = new EffectContainer(mesh, color);
 	gradientRampEffect = new GradientRampEffect(mesh);
@@ -193,11 +202,12 @@ void Region::LoadPolygon(std::vector<glm::vec3> polygon)
 
 void Region::RenderFill()
 {
-	glUseProgram(program);
+	material->Use();
+	//glUseProgram(program);
 
-	glUniform4fv(mainColorId, 1, &color.x);
-	glUniform1f(screenWidthID, Screen::width);
-	glUniform1f(screenHeightID, Screen::height);
+	//glUniform4fv(mainColorId, 1, &color.x);
+	//glUniform1f(screenWidthID, Screen::width);
+	//glUniform1f(screenHeightID, Screen::height);
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
