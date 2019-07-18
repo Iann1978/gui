@@ -18,8 +18,10 @@ public:
 	GLuint screenWidthID;
 	GLuint screenHeightID;
 	GLuint centerColorID;
+	GLuint angleID;
 	glm::vec3 position;
 	glm::vec3 color;
+	float angle = 0;
 
 public:
 	Point(glm::vec3 position, glm::vec3 color, Type type = Normal);

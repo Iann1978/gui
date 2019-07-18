@@ -3,6 +3,7 @@ layout(points) in;
 layout(triangle_strip, max_vertices = 8) out;
 uniform float screenWidth;
 uniform float screenHeight;
+uniform float angle = 0;
 vec4 transfer(vec4 v)
 {
 	float x = v.x;
@@ -25,9 +26,9 @@ void main() {
 
 	for (int i = 0; i <= segment; i++)
 	{
-		float angle = i * 2 * pi / segment;
-		float x = radius * cos(angle);
-		float y = radius * sin(angle);
+		float a = i * 2 * pi / segment + angle;
+		float x = radius * cos(a);
+		float y = radius * sin(a);
 		gl_Position = transfer(gl_in[0].gl_Position + vec4(x, y, 0.0, 0.0));
 		EmitVertex();
 	}

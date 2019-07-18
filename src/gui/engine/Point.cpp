@@ -155,6 +155,7 @@ void Point::LoadPolygon(glm::vec3 position, glm::vec3 color)
 	screenWidthID = glGetUniformLocation(program, "screenWidth");
 	screenHeightID = glGetUniformLocation(program, "screenHeight");
 	centerColorID = glGetUniformLocation(program, "centerColor");
+	angleID = glGetUniformLocation(program, "angle");
 
 	mesh = Mesh::CreatePoint(position, glm::vec4(color.r, color.g, color.b, 1));
 }
@@ -166,6 +167,7 @@ void Point::RenderPolygon()
 	glUniform1f(screenWidthID, Screen::width);
 	glUniform1f(screenHeightID, Screen::height);
 	glUniform3f(centerColorID, color.r, color.g, color.b);
+	glUniform1f(angleID, angle);
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

@@ -412,7 +412,13 @@ void CreatePanel0(std::list<IRenderable *>& renders)
 
 void CreateTest(std::list<IRenderable *>& renders)
 {
-	renders.push_back(new Point(glm::vec3(353, 982, 0), glm::vec3(0.30, 0.75, 0.78), Point::Type::Polygon));
+	Point *point = new Point(glm::vec3(353, 982, 0), glm::vec3(0.30, 0.75, 0.78), Point::Type::Polygon);
+	renders.push_back(point);
+
+	point = new Point(glm::vec3(213, 93, 0), glm::vec3(0.30, 0.75, 0.78), Point::Type::Polygon);
+	point->angle = -pi<float>() / 2;
+	renders.push_back(point);
+	
 }
 
 int main(void)
