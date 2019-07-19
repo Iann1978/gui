@@ -112,6 +112,9 @@
     <ClCompile Include="engine\Material.cpp">
       <Filter>engine</Filter>
     </ClCompile>
+    <ClCompile Include="demos\demo002\MaskedShapes.cpp">
+      <Filter>demos\demo002</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="common">
@@ -258,6 +261,9 @@
     </ClInclude>
     <ClInclude Include="engine\Material.h">
       <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="demos\demo002\MaskedShapes.h">
+      <Filter>demos\demo002</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

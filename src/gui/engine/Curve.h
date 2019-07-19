@@ -7,6 +7,7 @@ class Mesh;
 class Material;
 class Curve : public IRenderable
 {
+public:
 	//GLuint program;
 	Mesh *mesh;
 	Material *material;
