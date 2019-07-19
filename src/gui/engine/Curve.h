@@ -3,9 +3,11 @@
 #include <Engine/Color.h>
 #include <vector>
 
+class Mesh;
 class Curve : public IRenderable
 {
 	GLuint program;
+	Mesh *mesh;
 	GLuint vertexbuffer;
 	GLuint colorbuffer;
 	GLuint screenWidthID;

@@ -5,7 +5,7 @@ uniform float screenHeight;
 
 // Input vertex data, different for all executions of this shader.
 layout(location = 0) in vec3 input_VertexPosition;
-layout(location = 1) in vec4 input_VertexColor;
+layout(location = 2) in vec4 input_VertexColor;
 out vec4 vColor;
 // Output data ; will be interpolated for each fragment.
 //out vec3 VertexColor;
