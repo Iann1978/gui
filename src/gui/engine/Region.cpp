@@ -15,10 +15,10 @@
 
 
 #include <vector>
-extern "C"
-{
-#include "../../ext/triangle/triangle.h"
-}
+//extern "C"
+//{
+//#include "../../ext/triangle/triangle.h"
+//}
 
 
 
@@ -93,98 +93,98 @@ void Region::LoadRect(glm::vec4 rect, glm::vec4 color)
 void Region::LoadPolygon(std::vector<glm::vec3> polygon)
 {
 
-	struct triangulateio in, out;
-	in.numberofpoints = polygon.size();
-	in.numberofpointattributes = 1;
-	in.pointlist = (REAL *)malloc(in.numberofpoints * 2 * sizeof(REAL));
-	for (size_t i = 0; i < in.numberofpoints; i++)
-	{
-		in.pointlist[2 * i] = polygon[i].x;
-		in.pointlist[2 * i + 1] = polygon[i].y;
-	}
-	in.pointmarkerlist = (int *)malloc(in.numberofpoints * sizeof(int));
-	for (size_t i = 0; i < in.numberofpoints; i++)
-	{
-		in.pointmarkerlist[i] = 1;
-	}
-	in.pointattributelist = (REAL *)malloc(in.numberofpoints *
-		in.numberofpointattributes *
-		sizeof(REAL));
-	for (size_t i = 0; i < in.numberofpoints; i++)
-	{
-		in.pointattributelist[i] = 10;
-	}
+	//struct triangulateio in, out;
+	//in.numberofpoints = polygon.size();
+	//in.numberofpointattributes = 1;
+	//in.pointlist = (REAL *)malloc(in.numberofpoints * 2 * sizeof(REAL));
+	//for (size_t i = 0; i < in.numberofpoints; i++)
+	//{
+	//	in.pointlist[2 * i] = polygon[i].x;
+	//	in.pointlist[2 * i + 1] = polygon[i].y;
+	//}
+	//in.pointmarkerlist = (int *)malloc(in.numberofpoints * sizeof(int));
+	//for (size_t i = 0; i < in.numberofpoints; i++)
+	//{
+	//	in.pointmarkerlist[i] = 1;
+	//}
+	//in.pointattributelist = (REAL *)malloc(in.numberofpoints *
+	//	in.numberofpointattributes *
+	//	sizeof(REAL));
+	//for (size_t i = 0; i < in.numberofpoints; i++)
+	//{
+	//	in.pointattributelist[i] = 10;
+	//}
 
-	in.numberofsegments = in.numberofpoints;
-	in.segmentlist = (int*)malloc(in.numberofpoints * 2 * sizeof(int));
+	//in.numberofsegments = in.numberofpoints;
+	//in.segmentlist = (int*)malloc(in.numberofpoints * 2 * sizeof(int));
 
-	for (size_t i = 0; i < in.numberofsegments; i++)
-	{
-		if (i == in.numberofsegments - 1)
-		{
-			in.segmentlist[2 * i] = i;
-			in.segmentlist[2 * i + 1] = 0;
-		}
-		else
-		{
-			in.segmentlist[2 * i] = i;
-			in.segmentlist[2 * i + 1] = i + 1;
-		}
-	}
-	in.segmentmarkerlist = (int*)malloc(in.numberofsegments * sizeof(int));
-	for (size_t i = 0; i < in.numberofsegments; i++)
-	{
-		in.segmentmarkerlist[i] = 1;
-	}
+	//for (size_t i = 0; i < in.numberofsegments; i++)
+	//{
+	//	if (i == in.numberofsegments - 1)
+	//	{
+	//		in.segmentlist[2 * i] = i;
+	//		in.segmentlist[2 * i + 1] = 0;
+	//	}
+	//	else
+	//	{
+	//		in.segmentlist[2 * i] = i;
+	//		in.segmentlist[2 * i + 1] = i + 1;
+	//	}
+	//}
+	//in.segmentmarkerlist = (int*)malloc(in.numberofsegments * sizeof(int));
+	//for (size_t i = 0; i < in.numberofsegments; i++)
+	//{
+	//	in.segmentmarkerlist[i] = 1;
+	//}
 
-	in.numberofholes = 0;
-	in.numberofregions = 0;
+	//in.numberofholes = 0;
+	//in.numberofregions = 0;
 
-	out.pointlist = (REAL *)NULL;            /* Not needed if -N switch used. */
-											 /* Not needed if -N switch used or number of point attributes is zero: */
-	out.pointattributelist = (REAL *)NULL;
-	out.pointmarkerlist = (int *)NULL; /* Not needed if -N or -B switch used. */
-	out.trianglelist = (int *)NULL;          /* Not needed if -E switch used. */
-											 /* Not needed if -E switch used or number of triangle attributes is zero: */
-	out.triangleattributelist = (REAL *)NULL;
-	out.neighborlist = (int *)NULL;         /* Needed only if -n switch used. */
-											/* Needed only if segments are output (-p or -c) and -P not used: */
-	out.segmentlist = (int *)NULL;
-	/* Needed only if segments are output (-p or -c) and -P and -B not used: */
-	out.segmentmarkerlist = (int *)NULL;
-	out.edgelist = (int *)NULL;             /* Needed only if -e switch used. */
-	out.edgemarkerlist = (int *)NULL;   /* Needed if -e used and -B not used. */
-
-
-	triangulate((char *)"pzAen", &in, &out, (struct triangulateio *) NULL);
+	//out.pointlist = (REAL *)NULL;            /* Not needed if -N switch used. */
+	//										 /* Not needed if -N switch used or number of point attributes is zero: */
+	//out.pointattributelist = (REAL *)NULL;
+	//out.pointmarkerlist = (int *)NULL; /* Not needed if -N or -B switch used. */
+	//out.trianglelist = (int *)NULL;          /* Not needed if -E switch used. */
+	//										 /* Not needed if -E switch used or number of triangle attributes is zero: */
+	//out.triangleattributelist = (REAL *)NULL;
+	//out.neighborlist = (int *)NULL;         /* Needed only if -n switch used. */
+	//										/* Needed only if segments are output (-p or -c) and -P not used: */
+	//out.segmentlist = (int *)NULL;
+	///* Needed only if segments are output (-p or -c) and -P and -B not used: */
+	//out.segmentmarkerlist = (int *)NULL;
+	//out.edgelist = (int *)NULL;             /* Needed only if -e switch used. */
+	//out.edgemarkerlist = (int *)NULL;   /* Needed if -e used and -B not used. */
 
 
-	float *vertexBufferData = new float[out.numberofpoints * 3];
-	for (int i = 0; i < out.numberofpoints; i++)
-	{
-		vertexBufferData[i * 3 + 0] = out.pointlist[i * 2 + 0];
-		vertexBufferData[i * 3 + 1] = out.pointlist[i * 2 + 1];
-		vertexBufferData[i * 3 + 2] = 0.1;
-	}
+	//triangulate((char *)"pzAen", &in, &out, (struct triangulateio *) NULL);
 
 
-	unsigned short *elementBufferData = new unsigned short[out.numberoftriangles * 3];
-	for (int i = 0; i < out.numberoftriangles; i++)
-	{
-		elementBufferData[i * 3 + 0] = out.trianglelist[i * 3 + 0];
-		elementBufferData[i * 3 + 1] = out.trianglelist[i * 3 + 1];
-		elementBufferData[i * 3 + 2] = out.trianglelist[i * 3 + 2];
-	}
+	//float *vertexBufferData = new float[out.numberofpoints * 3];
+	//for (int i = 0; i < out.numberofpoints; i++)
+	//{
+	//	vertexBufferData[i * 3 + 0] = out.pointlist[i * 2 + 0];
+	//	vertexBufferData[i * 3 + 1] = out.pointlist[i * 2 + 1];
+	//	vertexBufferData[i * 3 + 2] = 0.1;
+	//}
 
 
-	mesh = new Mesh(Mesh::Type::Triangles, out.numberofpoints * 3, vertexBufferData, 
-		0, nullptr,
-		0, nullptr,
-		out.numberoftriangles * 3, elementBufferData);
-	delete elementBufferData;
-	delete vertexBufferData;
+	//unsigned short *elementBufferData = new unsigned short[out.numberoftriangles * 3];
+	//for (int i = 0; i < out.numberoftriangles; i++)
+	//{
+	//	elementBufferData[i * 3 + 0] = out.trianglelist[i * 3 + 0];
+	//	elementBufferData[i * 3 + 1] = out.trianglelist[i * 3 + 1];
+	//	elementBufferData[i * 3 + 2] = out.trianglelist[i * 3 + 2];
+	//}
 
 
+	//mesh = new Mesh(Mesh::Type::Triangles, out.numberofpoints * 3, vertexBufferData, 
+	//	0, nullptr,
+	//	0, nullptr,
+	//	out.numberoftriangles * 3, elementBufferData);
+	//delete elementBufferData;
+	//delete vertexBufferData;
+
+	mesh = Mesh::CreatePolygon(polygon);
 	Shader *shader = Shader::Find("Region");
 	material = new Material(shader);
 	material->SetVector("mainColor", color);

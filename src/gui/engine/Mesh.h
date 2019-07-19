@@ -31,6 +31,7 @@ public:
 	static void LoadPredefinedMeshes();
 	static Mesh *CreateQuad(glm::vec4 rect);
 	static Mesh *CreatePoint(glm::vec3 position, glm::vec4 color);
+	static Mesh *CreatePolygon(std::vector<glm::vec3> points);
 	static Mesh *CreateGradientMesh(glm::vec4 rect, glm::vec4 color0, glm::vec4 color1);
 	static void RenderMesh(Mesh *mesh);
 };
