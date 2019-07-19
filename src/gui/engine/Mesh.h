@@ -6,6 +6,7 @@ public:
 	enum Type
 	{
 		Triangles,
+		LineStrip,
 		Points,
 	};
 	Type type;
@@ -32,6 +33,7 @@ public:
 	static Mesh *CreateQuad(glm::vec4 rect);
 	static Mesh *CreatePoint(glm::vec3 position, glm::vec4 color);
 	static Mesh *CreatePolygon(std::vector<glm::vec3> points);
+	static Mesh *CreateLineStrip(std::vector<glm::vec3> points, std::vector<glm::vec4> colors);
 	static Mesh *CreateGradientMesh(glm::vec4 rect, glm::vec4 color0, glm::vec4 color1);
 	static void RenderMesh(Mesh *mesh);
 };

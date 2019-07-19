@@ -49,10 +49,14 @@ Mesh::Mesh(Type type, const int vertexBufferLength, const float* vertexBufferDat
 		glBindBuffer(GL_ARRAY_BUFFER, colorbuffer);
 		glBufferData(GL_ARRAY_BUFFER, colorBufferLength * sizeof(float), colorBufferData, GL_STATIC_DRAW);
 	}
+	
+	if (elementBufferData)
+	{
+		glGenBuffers(1, &elementbuffer);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, elementBufferLength * sizeof(unsigned short), elementBufferData, GL_STATIC_DRAW);
+	}
 
-	glGenBuffers(1, &elementbuffer);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, elementBufferLength * sizeof(unsigned short), elementBufferData, GL_STATIC_DRAW);
 	elementsize = elementBufferLength;
 }
 
@@ -193,6 +197,14 @@ Mesh *Mesh::CreatePolygon(std::vector<glm::vec3> points)
 	delete elementBufferData;
 	delete vertexBufferData;
 	return mesh;
+}
+
+Mesh *Mesh::CreateLineStrip(std::vector<glm::vec3> points, std::vector<glm::vec4> colors)
+{
+	return new Mesh(LineStrip, points.size()*3, &points[0].x,
+		0, nullptr,
+		colors.size()*3, &colors[0].x,
+		0, nullptr);
 }
 
 Mesh *Mesh::CreateGradientMesh(glm::vec4 rect, glm::vec4 color0, glm::vec4 color1)
@@ -349,12 +361,73 @@ void RenderPointsMesh(Mesh *mesh)
 	glDisableVertexAttribArray(1);
 	glDisableVertexAttribArray(2);
 }
+
+void RenderLineStripMesh(Mesh *mesh)
+{
+	if (mesh->type != Mesh::Type::LineStrip)
+	{
+		printf("Error in RenderLineStripMesh");
+		return;
+	}
+
+	glEnableVertexAttribArray(0);
+	glBindBuffer(GL_ARRAY_BUFFER, mesh->vertexbuffer);
+	glVertexAttribPointer(
+		0,                  // attribute. No particular reason for 0, but must match the layout in the shader.
+		3,                  // size
+		GL_FLOAT,           // type
+		GL_FALSE,           // normalized?
+		0,                  // stride
+		(void*)0            // array buffer offset
+	);
+
+	if (mesh->uvbuffer)
+	{
+		// 2nd attribute buffer : UVs
+		glEnableVertexAttribArray(1);
+		//glBindBuffer(GL_ARRAY_BUFFER, uvbuffer_image);
+		glBindBuffer(GL_ARRAY_BUFFER, mesh->uvbuffer);
+		glVertexAttribPointer(
+			1,                                // attribute. No particular reason for 1, but must match the layout in the shader.
+			2,                                // size : U+V => 2
+			GL_FLOAT,                         // type
+			GL_FALSE,                         // normalized?
+			0,                                // stride
+			(void*)0                          // array buffer offset
+		);
+	}
+
+
+	if (mesh->colorbuffer)
+	{
+		// 2nd attribute buffer : UVs
+		glEnableVertexAttribArray(2);
+		//glBindBuffer(GL_ARRAY_BUFFER, uvbuffer_image);
+		glBindBuffer(GL_ARRAY_BUFFER, mesh->colorbuffer);
+		glVertexAttribPointer(
+			2,                                // attribute. No particular reason for 1, but must match the layout in the shader.
+			4,                                // size : U+V => 2
+			GL_FLOAT,                         // type
+			GL_FALSE,                         // normalized?
+			0,                                // stride
+			(void*)0                          // array buffer offset
+		);
+	}
+
+	glDrawArrays(GL_LINE_STRIP, 0, mesh->elementsize); // 12*3 indices starting at 0 -> 12 triangles
+
+	glDisableVertexAttribArray(0);
+	glDisableVertexAttribArray(1);
+	glDisableVertexAttribArray(2);
+}
 void Mesh::RenderMesh(Mesh *mesh)
 {
 	if (mesh->type == Type::Triangles)
 		RenderTrianglesMesh(mesh);
 	else if (mesh->type == Type::Points)
 		RenderPointsMesh(mesh);
+	else if (mesh->type == Type::LineStrip)
+		RenderLineStripMesh(mesh);
 	else
 		printf("Error in Mesh::RenderMesh().");
 	
