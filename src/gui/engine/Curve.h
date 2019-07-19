@@ -4,15 +4,17 @@
 #include <vector>
 
 class Mesh;
+class Material;
 class Curve : public IRenderable
 {
-	GLuint program;
+	//GLuint program;
 	Mesh *mesh;
-	GLuint vertexbuffer;
-	GLuint colorbuffer;
-	GLuint screenWidthID;
-	GLuint screenHeightID;
-	GLuint widthID;
+	Material *material;
+	//GLuint vertexbuffer;
+	//GLuint colorbuffer;
+	//GLuint screenWidthID;
+	//GLuint screenHeightID;
+	//GLuint widthID;
 	int pointNumber;
 	float width = 1;
 

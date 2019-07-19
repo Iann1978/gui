@@ -7,6 +7,7 @@
 #include <Engine/Input.h>
 #include <Engine/Screen.h>
 #include <Engine/Mesh.h>
+#include <Engine/Material.h>
 
 
 
@@ -29,11 +30,16 @@ void Curve::LoadMesh(int pointNumber, float *vertexBufferData, float *colorBuffe
 }
 void Curve::LoadMaterial()
 {
+	
 	Shader *shader = Shader::Find("Curve");
-	program = shader->program;
-	screenWidthID = glGetUniformLocation(program, "screenWidth");
-	screenHeightID = glGetUniformLocation(program, "screenHeight");
-	widthID = glGetUniformLocation(program, "width");
+	material = new Material(shader);
+	material->SetFloat("screenWidth", Screen::width);
+	material->SetFloat("screenHeight", Screen::height);
+	material->SetFloat("width", width);
+	//program = shader->program;
+	//screenWidthID = glGetUniformLocation(program, "screenWidth");
+	//screenHeightID = glGetUniformLocation(program, "screenHeight");
+	//widthID = glGetUniformLocation(program, "width");
 }
 
 Curve::Curve(int pointNumber, float *vertexBufferData, float *colorBufferData)
@@ -67,12 +73,13 @@ Curve::~Curve()
 
 void Curve::Render()
 {
+	material->Use();
 
-	glUseProgram(program);
+	//glUseProgram(program);
 
-	glUniform1f(screenWidthID, Screen::width);
-	glUniform1f(screenHeightID, Screen::height);
-	glUniform1f(widthID, width);
+	//glUniform1f(screenWidthID, Screen::width);
+	//glUniform1f(screenHeightID, Screen::height);
+	//glUniform1f(widthID, width);
 	
 	//glEnableVertexAttribArray(0);
 	//glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
