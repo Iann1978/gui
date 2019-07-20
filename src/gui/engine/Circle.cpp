@@ -28,6 +28,12 @@ Circle::~Circle()
 		delete mesh;
 		mesh = nullptr;
 	}
+
+	if (material)
+	{
+		delete material;
+		material = nullptr;
+	}
 }
 
 void Circle::Render()
