@@ -32,6 +32,7 @@
 #include <StatusBar.h>
 #include "MaskedShapes.h"
 #include "MaskedShapes2.h"
+#include "ColumnDiagram.h"
 
 
 
@@ -601,6 +602,7 @@ int main(void)
 	CreateTest(engine.uilist);
 	engine.uilist.push_back(new MaskedShapes());
 	engine.uilist.push_back(new MaskedShapes2());
+	engine.uilist.push_back(new ColumnDiagram(glm::vec4(418, 267, 425, 25)));
 
 
 	engine.uilist.push_back(new ShowMousePosition());

@@ -118,6 +118,9 @@
     <ClCompile Include="demos\demo002\MaskedShapes2.cpp">
       <Filter>demos\demo002</Filter>
     </ClCompile>
+    <ClCompile Include="demos\demo002\ColumnDiagram.cpp">
+      <Filter>demos\demo002</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="common">
@@ -269,6 +272,9 @@
       <Filter>demos\demo002</Filter>
     </ClInclude>
     <ClInclude Include="demos\demo002\MaskedShapes2.h">
+      <Filter>demos\demo002</Filter>
+    </ClInclude>
+    <ClInclude Include="demos\demo002\ColumnDiagram.h">
       <Filter>demos\demo002</Filter>
     </ClInclude>
   </ItemGroup>
