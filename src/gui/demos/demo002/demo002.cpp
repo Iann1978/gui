@@ -31,6 +31,7 @@
 #include <demos/demo002/ProcessBar.h>
 #include <StatusBar.h>
 #include "MaskedShapes.h"
+#include "MaskedShapes2.h"
 
 
 
@@ -523,6 +524,7 @@ int main(void)
 	CreatePanel0(engine.uilist);
 	CreateTest(engine.uilist);
 	engine.uilist.push_back(new MaskedShapes());
+	engine.uilist.push_back(new MaskedShapes2());
 
 
 	engine.uilist.push_back(new ShowMousePosition());
