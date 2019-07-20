@@ -24,6 +24,7 @@ public:
 	//GLuint startAngleID;
 	//GLuint endAngleID;
 	float  radius;
+	float  width = 2;
 	float  startAngle;
 	float  endAngle;
 	glm::vec3 position;

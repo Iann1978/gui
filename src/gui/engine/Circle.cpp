@@ -70,6 +70,7 @@ void Circle::LoadCross(glm::vec3 position, glm::vec3 color)
 	material->SetFloat("radius", radius);
 	material->SetFloat("startAngle", startAngle);
 	material->SetFloat("endAngle", endAngle);
+	material->SetFloat("width", width);
 
 	//program = shader->program;
 

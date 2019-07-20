@@ -1,12 +1,13 @@
 #version 330 core
 layout(points) in;
-layout(line_strip, max_vertices = 33) out;
+layout(triangle_strip, max_vertices = 100) out;
 
 uniform float screenWidth;
 uniform float screenHeight;
 uniform float radius = 20;
 uniform float startAngle = 0;
 uniform float endAngle = 6.28318530716;
+uniform float width = 2;
 
 vec4 transfer(vec4 v)
 {
@@ -29,9 +30,14 @@ void main() {
 	for (int i = 0; i <= count; i++)
 	{
 		angle = startAngle + i * (endAngle-startAngle) / count;
-		float x = radius * cos(angle);
-		float y = radius * sin(angle);
-		gl_Position = transfer(gl_in[0].gl_Position + vec4(x, y, 0.0, 0.0));
+		float x0 = (radius - width / 2) * cos(angle);
+		float y0 = (radius - width / 2) * sin(angle);
+		float x1 = (radius + width / 2) * cos(angle);
+		float y1 = (radius + width / 2) * sin(angle);
+
+		gl_Position = transfer(gl_in[0].gl_Position + vec4(x0, y0, 0.0, 0.0));
+		EmitVertex();
+		gl_Position = transfer(gl_in[0].gl_Position + vec4(x1, y1, 0.0, 0.0));
 		EmitVertex();
 	}
 
