@@ -18,7 +18,10 @@ Material::~Material()
 {
 }
 
-
+void Material::SetInt(const char *name, const int value)
+{
+	intValues[name] = value;
+}
 void Material::SetFloat(const char *name, const float value)
 {
 	floatValues[name] = value;
@@ -34,6 +37,12 @@ void Material::SetVector(const char *name, const glm::vec4 value)
 void Material::Use()
 {
 	glUseProgram(shader->program);
+	for (auto i : intValues)
+	{
+		GLuint id = glGetUniformLocation(shader->program, i.first.c_str());
+		glUniform1i(id, i.second);
+	}
+
 	for (auto i : floatValues)
 	{
 		GLuint id = glGetUniformLocation(shader->program, i.first.c_str());
