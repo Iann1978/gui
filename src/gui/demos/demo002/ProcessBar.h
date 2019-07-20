@@ -5,25 +5,26 @@
 #include <vector>
 
 class Region;
-
-class ProcessBar : public IRenderable
+namespace demo002
 {
-public:
-	enum Direction 
+	class ProcessBar : public IRenderable
 	{
-		Horizontal,
-		Vertical,
+	public:
+		enum Direction
+		{
+			Horizontal,
+			Vertical,
+		};
+		Direction direction;
+		glm::vec4 rect;
+		std::vector<Region *> fills;
+
+	public:
+		ProcessBar(glm::vec4 rect, Direction direction = Horizontal);
+		~ProcessBar();
+
+	public:
+		void Update() {};
+		void Render();
 	};
-	Direction direction;
-	glm::vec4 rect;
-	std::vector<Region *> fills;
-
-public:
-	ProcessBar(glm::vec4 rect, Direction direction = Horizontal);
-	~ProcessBar();
-
-public:
-	void Update() {};
-	void Render();
-};
-
+}

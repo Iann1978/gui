@@ -39,7 +39,7 @@
 
 #pragma warning (disable: 4996)
 
-
+using namespace demo002;
 
 void CreateBackPoints(std::list<IRenderable*>& renders)
 {
@@ -557,6 +557,9 @@ void CreateProcessBars(std::list<IRenderable *>& renders)
 	renders.push_back(new ProcessBar(glm::vec4(125, 205, 18, 8)));
 	renders.push_back(new ProcessBar(glm::vec4(86, 244, 25, 6)));
 	renders.push_back(new ProcessBar(glm::vec4(171, 515, 25, 6)));
+
+	renders.push_back(new ProcessBar(glm::vec4(394, 936, 4, 16), ProcessBar::Direction::Vertical));
+	renders.push_back(new ProcessBar(glm::vec4(112, 88, 8, 12), ProcessBar::Direction::Vertical));
 }
 
 
@@ -683,12 +686,12 @@ void CreateTheLast(std::list<IRenderable *>& renders)
 
 int main(void)
 {
-	Engine engine(2200,1100);
+	Engine engine(1100,1100);
 
 	engine.uilist.push_back(new Command(&engine));
 
-	engine.uilist.push_back(new Background());
-	engine.uilist.push_back(new Image("images/fake002.dds", Screen::width / 2, 0, Screen::width / 2, Screen::height, glm::vec4(1, 1, 1, 1)));
+	//engine.uilist.push_back(new Background());
+	//engine.uilist.push_back(new Image("images/fake002.dds", Screen::width / 2, 0, Screen::width / 2, Screen::height, glm::vec4(1, 1, 1, 1)));
 	CreateBackPoints(engine.uilist);
 	CreateBackgroundRects(engine.uilist);
 	CreatePolygons(engine.uilist);
@@ -703,7 +706,7 @@ int main(void)
 	CreateTheLast(engine.uilist);
 
 
-	engine.uilist.push_back(new ShowMousePosition());
+	//engine.uilist.push_back(new ShowMousePosition());
 	engine.uilist.push_back(new ShowFps());
 	
 	

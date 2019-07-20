@@ -4,28 +4,31 @@
 class Curve;
 class Mesh;
 class Material;
-class MaskedShapes : public IRenderable
+namespace demo002
 {
-public:
-	MaskedShapes();
-	~MaskedShapes();
+	class MaskedShapes : public IRenderable
+	{
+	public:
+		MaskedShapes();
+		~MaskedShapes();
 
-public:
-	void Update() {};
-	void Render();
+	public:
+		void Update() {};
+		void Render();
 
-	void ClearStencil();
+		void ClearStencil();
 
-	Mesh *stencilMesh;
-	Material *stencilMat;
-	void LoadStencilPass();
-	void RenderStencilPass();
+		Mesh *stencilMesh;
+		Material *stencilMat;
+		void LoadStencilPass();
+		void RenderStencilPass();
 
-	Curve *gradient;
-	Curve *gradient1;
-	Curve *gradient2;
+		Curve *gradient;
+		Curve *gradient1;
+		Curve *gradient2;
 
-	void LoadGradientPass();
-	void RenderGradientPass();
-};
+		void LoadGradientPass();
+		void RenderGradientPass();
+	};
+}
 

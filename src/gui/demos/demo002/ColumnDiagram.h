@@ -5,18 +5,23 @@ class Curve;
 class Mesh;
 class Material;
 class Region;
-class ColumnDiagram : public IRenderable
+
+namespace demo002
 {
+	class ColumnDiagram : public IRenderable
+	{
 
-	std::vector<Curve *> fills;
-public:
-	ColumnDiagram(glm::vec4 rect);
-	~ColumnDiagram();
+		std::vector<Curve *> fills;
+	public:
+		ColumnDiagram(glm::vec4 rect);
+		~ColumnDiagram();
 
-public:
-	void Update() {};
-	void Render();
+	public:
+		void Update() {};
+		void Render();
 
 
-};
+	};
+}
+
 
