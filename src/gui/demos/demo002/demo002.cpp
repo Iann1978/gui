@@ -320,6 +320,40 @@ void CreateCurves(std::list<IRenderable *>& renders)
 
 
 }
+
+void CreateCircles(std::list<IRenderable *>& renders)
+{
+	float pi = 3.14159265358;
+	renders.push_back(new Circle(glm::vec3(990, 291, 0), glm::vec3(0.30, 0.75, 0.78), 15, 105 * pi / 180, 255 * pi / 180));
+	renders.push_back(new Circle(glm::vec3(990, 291, 0), glm::vec3(0.30, 0.75, 0.78), 15, 285 * pi / 180, 435 * pi / 180));
+	renders.push_back(new Circle(glm::vec3(990, 291, 0), glm::vec3(0.30, 0.75, 0.78), 20, 15 * pi / 180, 165 * pi / 180));
+	renders.push_back(new Circle(glm::vec3(990, 291, 0), glm::vec3(0.30, 0.75, 0.78), 20, 195 * pi / 180, 345 * pi / 180));
+
+	renders.push_back(new Circle(glm::vec3(63, 518, 0), glm::vec3(0.30, 0.75, 0.78), 15, 105 * pi / 180, 255 * pi / 180));
+	renders.push_back(new Circle(glm::vec3(63, 518, 0), glm::vec3(0.30, 0.75, 0.78), 15, 285 * pi / 180, 435 * pi / 180));
+	renders.push_back(new Circle(glm::vec3(63, 518, 0), glm::vec3(0.30, 0.75, 0.78), 20, 15 * pi / 180, 165 * pi / 180));
+	renders.push_back(new Circle(glm::vec3(63, 518, 0), glm::vec3(0.30, 0.75, 0.78), 20, 195 * pi / 180, 345 * pi / 180));
+
+
+	renders.push_back(new Circle(glm::vec3(825, 707, 0), glm::vec3(0.30, 0.75, 0.78), 20, 15 * pi / 180, 165 * pi / 180));
+	renders.push_back(new Circle(glm::vec3(825, 707, 0), glm::vec3(0.30, 0.75, 0.78), 20, 195 * pi / 180, 345 * pi / 180));
+	renders.push_back(new Circle(glm::vec3(825, 707, 0), glm::vec3(0.30, 0.75, 0.78), 25, 105 * pi / 180, 255 * pi / 180));
+	renders.push_back(new Circle(glm::vec3(825, 707, 0), glm::vec3(0.30, 0.75, 0.78), 25, 285 * pi / 180, 435 * pi / 180));
+
+	renders.push_back(new Circle(glm::vec3(361, 198, 0), glm::vec3(0.30, 0.75, 0.78), 20, 15 * pi / 180, 165 * pi / 180));
+	renders.push_back(new Circle(glm::vec3(361, 198, 0), glm::vec3(0.30, 0.75, 0.78), 20, 195 * pi / 180, 345 * pi / 180));
+	renders.push_back(new Circle(glm::vec3(361, 198, 0), glm::vec3(0.30, 0.75, 0.78), 25, 105 * pi / 180, 255 * pi / 180));
+	renders.push_back(new Circle(glm::vec3(361, 198, 0), glm::vec3(0.30, 0.75, 0.78), 25, 285 * pi / 180, 435 * pi / 180));
+
+	renders.push_back(new Circle(glm::vec3(615, 978, 0), glm::vec3(0.30, 0.75, 0.78), 20, 15 * pi / 180, 165 * pi / 180));
+	renders.push_back(new Circle(glm::vec3(615, 978, 0), glm::vec3(0.30, 0.75, 0.78), 20, 195 * pi / 180, 345 * pi / 180));
+	renders.push_back(new Circle(glm::vec3(615, 978, 0), glm::vec3(0.30, 0.75, 0.78), 25, 105 * pi / 180, 255 * pi / 180));
+	renders.push_back(new Circle(glm::vec3(615, 978, 0), glm::vec3(0.30, 0.75, 0.78), 25, 285 * pi / 180, 435 * pi / 180));
+
+	renders.push_back(new Circle(glm::vec3(96, 209, 0), glm::vec3(0.30, 0.75, 0.78), 26));
+	renders.push_back(new Circle(glm::vec3(52, 542, 0), glm::vec3(0.30, 0.75, 0.78), 26));
+
+}
 std::wstring s2ws(const std::string& str)
 {
 	using convert_typeX = std::codecvt_utf8<wchar_t>;
@@ -389,11 +423,6 @@ void CreatePanel0(std::list<IRenderable *>& renders)
 	renders.push_back(new Curve(points, glm::vec4(0.30, 0.75, 0.78, 1.0), 1.8));
 
 
-	float pi = 3.14159265358;
-	renders.push_back(new Circle(glm::vec3(990, 291, 0), glm::vec3(0.30, 0.75, 0.78), 15, 105 * pi / 180, 255 * pi / 180));
-	renders.push_back(new Circle(glm::vec3(990, 291, 0), glm::vec3(0.30, 0.75, 0.78), 15, 285 * pi / 180, 435 * pi / 180));
-	renders.push_back(new Circle(glm::vec3(990, 291, 0), glm::vec3(0.30, 0.75, 0.78), 20, 15 * pi / 180, 165 * pi / 180));
-	renders.push_back(new Circle(glm::vec3(990, 291, 0), glm::vec3(0.30, 0.75, 0.78), 20, 195 * pi / 180, 345 * pi / 180));
 
 
 	renders.push_back(new ProcessBar(glm::vec4(991,162,20,6)));
@@ -434,6 +463,7 @@ int main(void)
 	CreateBackgroundRects(engine.uilist);
 	CreatePolygons(engine.uilist);
 	CreateCurves(engine.uilist);
+	CreateCircles(engine.uilist);
 	CreatePanel0(engine.uilist);
 	CreateTest(engine.uilist);
 	engine.uilist.push_back(new MaskedShapes());
