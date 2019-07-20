@@ -19,7 +19,9 @@ public:
 	
 	glm::vec3 position;
 	glm::vec3 color;
+	float size = 18;
 	float angle = 0;
+	int segment = 3;
 
 public:
 	Point(glm::vec3 position, glm::vec3 color, Type type = Normal);

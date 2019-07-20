@@ -1,9 +1,11 @@
 #version 330 core
 layout(points) in;
-layout(triangle_strip, max_vertices = 8) out;
+layout(triangle_strip, max_vertices = 18) out;
 uniform float screenWidth;
 uniform float screenHeight;
+uniform float size = 18;
 uniform float angle = 0;
+uniform int segment = 3;
 vec4 transfer(vec4 v)
 {
 	float x = v.x;
@@ -20,8 +22,8 @@ void main() {
 	//float x = cos(angle);
 	//float y = sin(angle);
 
-	int segment = 3;
-	float radius = 9;
+	//int segment = 3;
+	float radius = size/2;
 	float pi = 3.14159265358;
 
 	for (int i = 0; i <= segment; i++)

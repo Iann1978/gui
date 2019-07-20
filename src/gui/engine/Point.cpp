@@ -140,7 +140,9 @@ void Point::LoadPolygon(glm::vec3 position, glm::vec3 color)
 }
 void Point::RenderPolygon()
 {
+	material->SetFloat("size", size);
 	material->SetFloat("angle", angle);
+	material->SetInt("segment", segment);
 	material->Use();
 
 	glEnable(GL_BLEND);
