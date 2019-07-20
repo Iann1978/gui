@@ -272,6 +272,66 @@ void CreatePolygons(std::list<IRenderable *>& renders)
 
 
 
+	polygon.clear();
+	polygon.push_back(glm::vec3(652, 984, 0));
+	polygon.push_back(glm::vec3(729, 984, 0));
+	polygon.push_back(glm::vec3(737, 979, 0));
+	polygon.push_back(glm::vec3(729, 972, 0));
+	polygon.push_back(glm::vec3(652, 972, 0));
+	renders.push_back(new Region(polygon, glm::vec4(0.30, 0.75, 0.98, 0.8), Region::Effect::Fill));
+
+	polygon.clear();
+	polygon.push_back(glm::vec3(652 - 600, 984 - 670, 0));
+	polygon.push_back(glm::vec3(729 - 600, 984 - 670, 0));
+	polygon.push_back(glm::vec3(737 - 600, 979 - 670, 0));
+	polygon.push_back(glm::vec3(729 - 600, 972 - 670, 0));
+	polygon.push_back(glm::vec3(652 - 600, 972 - 670, 0));
+	renders.push_back(new Region(polygon, glm::vec4(0.30, 0.75, 0.98, 0.8), Region::Effect::Fill));
+
+
+	polygon.clear();
+	polygon.push_back(glm::vec3(411, 330, 0));
+	polygon.push_back(glm::vec3(525, 330, 0));
+	polygon.push_back(glm::vec3(562, 296, 0));
+	polygon.push_back(glm::vec3(377, 296, 0));
+	renders.push_back(new Region(polygon, glm::vec4(0.30, 0.75, 0.98, 0.5), Region::Effect::Fill));
+
+	polygon.clear();
+	polygon.push_back(glm::vec3(354, 246, 0));
+	polygon.push_back(glm::vec3(360, 246, 0));
+	polygon.push_back(glm::vec3(360, 236, 0));
+	polygon.push_back(glm::vec3(354, 236, 0));
+	renders.push_back(new Region(polygon, glm::vec4(0.30, 0.75, 0.98, 1), Region::Effect::Fill));
+
+	polygon.clear();
+	polygon.push_back(glm::vec3(280, 282, 0));
+	polygon.push_back(glm::vec3(357, 282, 0));
+	polygon.push_back(glm::vec3(379, 261, 0));
+	polygon.push_back(glm::vec3(259, 261, 0));
+	renders.push_back(new Region(polygon, glm::vec4(0.30, 0.75, 0.98, 0.3), Region::Effect::Fill));
+
+
+	polygon.clear();
+	polygon.push_back(glm::vec3(281, 272, 0));
+	polygon.push_back(glm::vec3(321, 272, 0));
+	polygon.push_back(glm::vec3(334, 261, 0));
+	polygon.push_back(glm::vec3(269, 261, 0));
+	renders.push_back(new Region(polygon, glm::vec4(0.30, 0.75, 0.98, 0.3), Region::Effect::Fill));
+
+	polygon.clear();
+	polygon.push_back(glm::vec3(281 + 65, 272, 0));
+	polygon.push_back(glm::vec3(321 + 65, 272, 0));
+	polygon.push_back(glm::vec3(334 + 65, 261, 0));
+	polygon.push_back(glm::vec3(269 + 65, 261, 0));
+	renders.push_back(new Region(polygon, glm::vec4(0.30, 0.75, 0.98, 0.3), Region::Effect::Fill));
+
+	polygon.clear();
+	polygon.push_back(glm::vec3(247, 508, 0));
+	polygon.push_back(glm::vec3(380, 695, 0));
+	polygon.push_back(glm::vec3(382, 677, 0));
+	polygon.push_back(glm::vec3(267, 512, 0));
+	renders.push_back(new Region(polygon, glm::vec4(0.30, 0.75, 0.98, 0.3), Region::Effect::Fill));
+
 }
 
 
@@ -597,6 +657,30 @@ void CreateTest(std::list<IRenderable *>& renders)
 	
 }
 
+void CreateTheLast(std::list<IRenderable *>& renders)
+{
+	float pi = 3.14159265358;
+	Point *point = new Point(glm::vec3(392, 971, 0), glm::vec4(0.30, 0.75, 0.78, 1.0), Point::Type::Polygon);
+	point->angle = pi / 4;
+	point->segment = 4;
+	point->size = 12;
+	renders.push_back(point);
+
+	point = new Point(glm::vec3(203, 53, 0), glm::vec4(0.30, 0.75, 0.78, 1.0), Point::Type::Polygon);
+	point->angle = pi / 4;
+	point->segment = 4;
+	point->size = 12;
+	renders.push_back(point);
+
+
+	point = new Point(glm::vec3(89, 213, 0), glm::vec4(0.30, 0.75, 0.78, 1.0), Point::Type::Polygon);
+	point->angle = pi / 4;
+	point->segment = 4;
+	point->size = 20;
+	renders.push_back(point);
+
+}
+
 int main(void)
 {
 	Engine engine(2200,1100);
@@ -616,6 +700,7 @@ int main(void)
 	engine.uilist.push_back(new MaskedShapes());
 	engine.uilist.push_back(new MaskedShapes2());
 	engine.uilist.push_back(new ColumnDiagram(glm::vec4(418, 267, 425, 25)));
+	CreateTheLast(engine.uilist);
 
 
 	engine.uilist.push_back(new ShowMousePosition());
