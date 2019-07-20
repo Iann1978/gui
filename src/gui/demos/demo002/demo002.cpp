@@ -376,7 +376,83 @@ void CreateCurves(std::list<IRenderable *>& renders)
 	colors.push_back(glm::vec4(0.30, 0.75, 0.78, 1.0));
 	colors.push_back(glm::vec4(0.30, 0.75, 0.78, 0.0));
 	renders.push_back(new Curve(points, colors, 15));
+
+
+	points.clear();
+	points.push_back(glm::vec3(508, 242, 0));
+	points.push_back(glm::vec3(508-85, 242, 0));
+	colors.clear();
+	colors.push_back(glm::vec4(0.30, 0.75, 0.78, 1.0));
+	colors.push_back(glm::vec4(0.30, 0.75, 0.78, 0.0));
+	renders.push_back(new Curve(points, colors, 5));
+
+	points.clear();
+	points.push_back(glm::vec3(531, 242, 0));
+	points.push_back(glm::vec3(531 + 85, 242, 0));
+	colors.clear();
+	colors.push_back(glm::vec4(0.30, 0.75, 0.78, 1.0));
+	colors.push_back(glm::vec4(0.30, 0.75, 0.78, 0.0));
+	renders.push_back(new Curve(points, colors, 5));
+
+	points.clear();
+	points.push_back(glm::vec3(515, 242, 0));
+	points.push_back(glm::vec3(525, 242, 0));
+	colors.clear();
+	colors.push_back(glm::vec4(0.30, 0.75, 0.78, 1.0));
+	colors.push_back(glm::vec4(0.30, 0.75, 0.78, 1.0));
+	renders.push_back(new Curve(points, colors, 5));
+
+
+	points.clear();
+	points.push_back(glm::vec3(476, 871, 0));
+	points.push_back(glm::vec3(476 - 60, 871, 0));
+	colors.clear();
+	colors.push_back(glm::vec4(0.30, 0.75, 0.78, 1.0));
+	colors.push_back(glm::vec4(0.30, 0.75, 0.78, 0.0));
+	renders.push_back(new Curve(points, colors, 13));
+
+	points.clear();
+	points.push_back(glm::vec3(495, 871, 0));
+	points.push_back(glm::vec3(495 + 60, 871, 0));
+	colors.clear();
+	colors.push_back(glm::vec4(0.30, 0.75, 0.78, 1.0));
+	colors.push_back(glm::vec4(0.30, 0.75, 0.78, 0.0));
+	renders.push_back(new Curve(points, colors, 13));
+
+	points.clear();
+	points.push_back(glm::vec3(480, 871, 0));
+	points.push_back(glm::vec3(490, 871, 0));
+	colors.clear();
+	colors.push_back(glm::vec4(0.30, 0.75, 0.78, 1.0));
+	colors.push_back(glm::vec4(0.30, 0.75, 0.78, 1.0));
+	renders.push_back(new Curve(points, colors, 13));
+
+
+	points.clear();
+	points.push_back(glm::vec3(476, 887, 0));
+	points.push_back(glm::vec3(476 - 60, 887, 0));
+	colors.clear();
+	colors.push_back(glm::vec4(0.30, 0.75, 0.78, 1.0));
+	colors.push_back(glm::vec4(0.30, 0.75, 0.78, 0.0));
+	renders.push_back(new Curve(points, colors, 3));
+
+	points.clear();
+	points.push_back(glm::vec3(495, 887, 0));
+	points.push_back(glm::vec3(495 + 60, 887, 0));
+	colors.clear();
+	colors.push_back(glm::vec4(0.30, 0.75, 0.78, 1.0));
+	colors.push_back(glm::vec4(0.30, 0.75, 0.78, 0.0));
+	renders.push_back(new Curve(points, colors, 3));
+
+	points.clear();
+	points.push_back(glm::vec3(480, 887, 0));
+	points.push_back(glm::vec3(490, 887, 0));
+	colors.clear();
+	colors.push_back(glm::vec4(0.30, 0.75, 0.78, 1.0));
+	colors.push_back(glm::vec4(0.30, 0.75, 0.78, 1.0));
+	renders.push_back(new Curve(points, colors, 3));
 }
+
 
 void CreateCircles(std::list<IRenderable *>& renders)
 {

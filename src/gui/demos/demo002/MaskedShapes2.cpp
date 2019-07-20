@@ -94,8 +94,8 @@ void  MaskedShapes2::LoadGradientPass()
 	gradient2 = new Curve(points, colors, 15);
 
 	points.clear();
-	points.push_back(glm::vec3(370, 671, 0));
-	points.push_back(glm::vec3(140, 671, 0));
+	points.push_back(glm::vec3(370, 674, 0));
+	points.push_back(glm::vec3(140, 674, 0));
 	gradient3 = new Curve(points, colors, 15);
 
 }
