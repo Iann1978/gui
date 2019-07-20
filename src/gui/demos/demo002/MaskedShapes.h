@@ -22,6 +22,9 @@ public:
 	void RenderStencilPass();
 
 	Curve *gradient;
+	Curve *gradient1;
+	Curve *gradient2;
+
 	void LoadGradientPass();
 	void RenderGradientPass();
 };

@@ -83,6 +83,16 @@ void  MaskedShapes::LoadGradientPass()
 	colors.push_back(glm::vec4(0.30, 0.75, 0.78, 0));
 	gradient = new Curve(points, colors, 25);
 
+	points.clear();
+	points.push_back(glm::vec3(800, 423, 0));
+	points.push_back(glm::vec3(1050, 423, 0));
+	gradient1 = new Curve(points, colors, 25);
+
+	points.clear();
+	points.push_back(glm::vec3(290, 423, 0));
+	points.push_back(glm::vec3(40, 423, 0));
+	gradient2 = new Curve(points, colors, 25);
+
 }
 void  MaskedShapes::RenderGradientPass()
 {
@@ -96,6 +106,8 @@ void  MaskedShapes::RenderGradientPass()
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	gradient->material->Use();
 	Mesh::RenderMesh(gradient->mesh);
+	Mesh::RenderMesh(gradient1->mesh);
+	Mesh::RenderMesh(gradient2->mesh);
 
 	//gradient->Render();
 }
