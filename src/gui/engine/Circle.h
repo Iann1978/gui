@@ -2,7 +2,7 @@
 #include <Engine/Renderable.h>
 #include <Engine/Color.h>
 
-
+class Mesh;
 class Circle : public IRenderable
 {
 public:
@@ -11,9 +11,10 @@ public:
 		Normal,
 	};
 	Type type;
+	Mesh *mesh;
 	GLuint program;
-	GLuint vertexbuffer;
-	GLuint colorbuffer;
+	//GLuint vertexbuffer;
+	//GLuint colorbuffer;
 	GLuint screenWidthID;
 	GLuint screenHeightID;
 	GLuint centerColorID;
