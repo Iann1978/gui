@@ -3,6 +3,7 @@
 #include <Engine/Color.h>
 
 class Mesh;
+class Material;
 class Circle : public IRenderable
 {
 public:
@@ -12,15 +13,16 @@ public:
 	};
 	Type type;
 	Mesh *mesh;
-	GLuint program;
+	Material *material;
+	//GLuint program;
 	//GLuint vertexbuffer;
 	//GLuint colorbuffer;
-	GLuint screenWidthID;
-	GLuint screenHeightID;
-	GLuint centerColorID;
-	GLuint radiusID;
-	GLuint startAngleID;
-	GLuint endAngleID;
+	//GLuint screenWidthID;
+	//GLuint screenHeightID;
+	//GLuint centerColorID;
+	//GLuint radiusID;
+	//GLuint startAngleID;
+	//GLuint endAngleID;
 	float  radius;
 	float  startAngle;
 	float  endAngle;

@@ -7,6 +7,7 @@
 #include <Engine/Input.h>
 #include <Engine/Screen.h>
 #include <Engine/Mesh.h>
+#include <Engine/Material.h>
 
 
 
@@ -62,14 +63,22 @@ void Circle::LoadCross(glm::vec3 position, glm::vec3 color)
 {
 	this->color = color;
 	Shader *shader = Shader::Find("Circle");
-	program = shader->program;
+	material = new Material(shader);
+	material->SetFloat("screenWidth", Screen::width);
+	material->SetFloat("screenHeight", Screen::height);
+	material->SetVector("centerColor", color);
+	material->SetFloat("radius", radius);
+	material->SetFloat("startAngle", startAngle);
+	material->SetFloat("endAngle", endAngle);
 
-	screenWidthID = glGetUniformLocation(program, "screenWidth");
-	screenHeightID = glGetUniformLocation(program, "screenHeight");
-	centerColorID = glGetUniformLocation(program, "centerColor");
-	radiusID = glGetUniformLocation(program, "radius");
-	startAngleID = glGetUniformLocation(program, "startAngle");
-	endAngleID = glGetUniformLocation(program, "endAngle");
+	//program = shader->program;
+
+	//screenWidthID = glGetUniformLocation(program, "screenWidth");
+	//screenHeightID = glGetUniformLocation(program, "screenHeight");
+	//centerColorID = glGetUniformLocation(program, "centerColor");
+	//radiusID = glGetUniformLocation(program, "radius");
+	//startAngleID = glGetUniformLocation(program, "startAngle");
+	//endAngleID = glGetUniformLocation(program, "endAngle");
 
 
 	mesh = Mesh::CreatePoint(position, glm::vec4(color,1));
@@ -84,16 +93,17 @@ void Circle::LoadCross(glm::vec3 position, glm::vec3 color)
 }
 void Circle::RenderCross()
 {
+	material->Use();
 
-	glUseProgram(program);
+	//glUseProgram(program);
 
-	glUniform1f(screenWidthID, Screen::width);
-	glUniform1f(screenHeightID, Screen::height);
-	glUniform1f(radiusID, radius);
-	glUniform1f(startAngleID, startAngle);
-	glUniform1f(endAngleID, endAngle);
+	//glUniform1f(screenWidthID, Screen::width);
+	//glUniform1f(screenHeightID, Screen::height);
+	//glUniform1f(radiusID, radius);
+	//glUniform1f(startAngleID, startAngle);
+	//glUniform1f(endAngleID, endAngle);
 
-	glUniform3f(centerColorID, color.r, color.g, color.b);
+	//glUniform3f(centerColorID, color.r, color.g, color.b);
 
 	//glEnableVertexAttribArray(0);
 	//glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
