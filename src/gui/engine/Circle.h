@@ -14,15 +14,7 @@ public:
 	Type type;
 	Mesh *mesh;
 	Material *material;
-	//GLuint program;
-	//GLuint vertexbuffer;
-	//GLuint colorbuffer;
-	//GLuint screenWidthID;
-	//GLuint screenHeightID;
-	//GLuint centerColorID;
-	//GLuint radiusID;
-	//GLuint startAngleID;
-	//GLuint endAngleID;
+
 	float  radius;
 	float  width = 2;
 	float  startAngle;

@@ -28,18 +28,10 @@ public:
 	Effect effect = Fill;
 	Mesh *mesh = nullptr;
 	Material *material = nullptr;
-	//GLuint program;
-	//GLuint mainColorId;
-	//GLuint screenWidthID;
-	//GLuint screenHeightID;
+
 
 	glm::vec4 rect;
 	glm::vec4 color;
-
-
-
-
-
 
 public:
 	Region(glm::vec4 rect, glm::vec4 color, Effect effect = Effect::Fill);

@@ -8,14 +8,8 @@ class Material;
 class Curve : public IRenderable
 {
 public:
-	//GLuint program;
 	Mesh *mesh;
 	Material *material;
-	//GLuint vertexbuffer;
-	//GLuint colorbuffer;
-	//GLuint screenWidthID;
-	//GLuint screenHeightID;
-	//GLuint widthID;
 	int pointNumber;
 	float width = 1;
 

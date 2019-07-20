@@ -16,11 +16,7 @@ public:
 	Type type;
 	Mesh *mesh;
 	Material *material;
-	//GLuint program;
-	//GLuint screenWidthID;
-	//GLuint screenHeightID;
-	//GLuint centerColorID;
-	//GLuint angleID;
+	
 	glm::vec3 position;
 	glm::vec3 color;
 	float angle = 0;
