@@ -488,6 +488,18 @@ void CreateCircles(std::list<IRenderable *>& renders)
 	renders.push_back(new Circle(glm::vec3(52, 542, 0), glm::vec3(0.30, 0.75, 0.78), 26));
 
 }
+
+void CreateProcessBars(std::list<IRenderable *>& renders)
+{
+	renders.push_back(new ProcessBar(glm::vec4(991, 162, 20, 6)));
+	renders.push_back(new ProcessBar(glm::vec4(152, 46, 25, 6)));
+	renders.push_back(new ProcessBar(glm::vec4(55, 205, 18, 8)));
+	renders.push_back(new ProcessBar(glm::vec4(125, 205, 18, 8)));
+	renders.push_back(new ProcessBar(glm::vec4(86, 244, 25, 6)));
+	renders.push_back(new ProcessBar(glm::vec4(171, 515, 25, 6)));
+}
+
+
 std::wstring s2ws(const std::string& str)
 {
 	using convert_typeX = std::codecvt_utf8<wchar_t>;
@@ -559,7 +571,7 @@ void CreatePanel0(std::list<IRenderable *>& renders)
 
 
 
-	renders.push_back(new ProcessBar(glm::vec4(991,162,20,6)));
+
 
 
 	//CurveParameter curveParameter = CurveSerializer::Load("curve");
@@ -598,6 +610,7 @@ int main(void)
 	CreatePolygons(engine.uilist);
 	CreateCurves(engine.uilist);
 	CreateCircles(engine.uilist);
+	CreateProcessBars(engine.uilist);
 	CreatePanel0(engine.uilist);
 	CreateTest(engine.uilist);
 	engine.uilist.push_back(new MaskedShapes());
